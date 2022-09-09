@@ -1,0 +1,31 @@
+@import "css/reset.css";
+@import "css/variables.css";
+
+/* Components */
+@import "css/components/nav-bar.css";
+@import "css/components/movies.css";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (max-width: 520px) {
+  .nav {
+    padding: 20px; 
+  }
+  .movies {
+    margin: 20px;
+  }
+}
