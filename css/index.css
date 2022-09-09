@@ -24,6 +24,6 @@ body {
     padding: 20px; 
   }
   .movies {
-    margin: 20px;
+    margin: 25px auto;
   }
 }
