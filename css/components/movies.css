@@ -1,11 +1,11 @@
 .movies {
   width: 100%;
   max-width: 520px;
-  margin: 40px auto;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
-  padding: 60px 20px;
+  padding: 110px 20px 40px 20px;
 }
 
 .movie img {
@@ -20,8 +20,10 @@
 }
 
 .movie h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
   text-align: center;
-  font-size: 1.2rem;
 }
 
 @keyframes active {

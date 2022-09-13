@@ -1,0 +1,80 @@
+.header {
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: background-color 1s ease-out;
+}
+
+.header .col,
+.col .items {
+  display: flex;
+  align-items: center;
+}
+
+.col .logo {
+  margin-right: 50px;
+  width: 95px;
+  height: 25px;
+  fill: var(--red);
+}
+
+.col .logo:hover {
+  animation: active 0.8s ease infinite;
+}
+
+.col .logo path {
+  stroke-width: 4px;
+  stroke: white;
+}
+
+.col .search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.col .input {
+  max-width: 220px;
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  padding: 10px;
+  padding-left: 40px;
+  color: var(--white-darker);
+  outline: none;
+  border-radius: 5px;
+  background-color: #000a;
+  border: 1px solid #fff9;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.col .input::placeholder {
+  color: var(--white-darker);
+}
+
+.col .search-btn {
+  cursor: pointer;
+  color: #fff;
+  height: 24px;
+  transition: transform 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 20px;
+  }
+  .col .logo {
+    margin-right: 80px;
+  }
+}

@@ -1,0 +1,19 @@
+.banner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  background-position: center;
+  background-size: cover;
+}
+
+.banner .title {
+  font-size: 68px;
+  margin-bottom: 14px;
+}
+
+.banner .overview {
+  font-size: 30px;
+  width: 50%;
+}
