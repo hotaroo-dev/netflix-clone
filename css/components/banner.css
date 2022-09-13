@@ -17,3 +17,12 @@
   font-size: 30px;
   width: 50%;
 }
+
+@media screen and (max-width: 600px) {
+  .banner {
+    padding: 25px;
+  }
+  .banner .overview {
+    width: 100%;
+  }
+}
