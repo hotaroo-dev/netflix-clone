@@ -38,7 +38,7 @@ const createMovie = (data) => {
 
   movies.appendChild(movie)
   movie.classList.add('movie')
-  movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
+  movie.innerHTML = `<img src="${getMovieImage(data.backdrop_path)}">`
   movie.innerHTML += `<h3>${data.title}</h3>`
   movie.addEventListener('click', () => console.log(data))
 }

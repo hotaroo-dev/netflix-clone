@@ -10,7 +10,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background-color 1s ease-out;
+  transition: background-color .8s ease-out;
 }
 
 .header .col,
@@ -52,8 +52,10 @@
   color: var(--white-darker);
   outline: none;
   border-radius: 5px;
-  background-color: #000a;
-  border: 1px solid #fff9;
+  background-color: #0005;
+  backdrop-filter: blur(5px) saturate(180%) contrast(140%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%) contrast(140%);
+  border: 1px solid #fff8;
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.2s ease-in-out;
