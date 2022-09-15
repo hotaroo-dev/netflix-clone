@@ -3,7 +3,7 @@ Create movie app (no framework)
 
 # Group Member
 - [x] sothearo
-- [ ] your name
+- [x] sybun
 - [ ] your name
 - [ ] your name
 - [ ] your name
