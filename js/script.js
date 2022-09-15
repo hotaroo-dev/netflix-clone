@@ -11,26 +11,24 @@ window.addEventListener('scroll', () => {
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
-
 const getMovies = async () => {
-  const response = await fetch(`${BASE_PATH}/movie/popular?api_key=${API_KEY}`)
-  const { results } = await response.json()
-  return results
+  return await Promise.all(['movie', 'tv'].map(id =>
+    fetch(`${BASE_PATH}/${id}/popular?api_key=${API_KEY}`).then(response => response.json())))
 }
 
 const getMovieImage = (path, format) => {
   return `https://image.tmdb.org/t/p/${format ? format : "original"}${path}`
 }
 
-const createBanner = (data) => {
+const createBanner = (data, i) => {
   const banner = document.querySelector('.banner')
   const title = banner.querySelector('.title')
   const overview = banner.querySelector('.overview')
 
   banner.style.backgroundImage = `linear-gradient(to right, #000, #0002), 
-    url(${getMovieImage(data[6].backdrop_path)})`
-  title.innerHTML = `<h2>${data[6].title}</h2>`
-  overview.innerHTML = `<p>${data[6].overview}</p>`
+    url(${getMovieImage(data[i].backdrop_path)})`
+  title.innerHTML = `<h2>${data[i].title || data[i].name}</h2>`
+  overview.innerHTML = `<p>${data[i].overview}</p>`
 }
 
 const createMovie = (data) => {
@@ -43,18 +41,15 @@ const createMovie = (data) => {
   movie.addEventListener('click', () => console.log(data))
 }
 
-getMovies()
-  .then(results => {
-    createBanner(results)
-    results.map(movie => createMovie(movie))
-  })
+const homePath = document.querySelector('#home a')
+const tvPath = document.querySelector('#series a')
 
-home.addEventListener('click', () => {
-  movies.innerHTML = ''
-  getMovies()
-    .then(results => {
-      results.map(movie => createMovie(movie))
-    })
+getMovies().then(response => {
+  const movie = response[0]
+  const tv = response[1]
+
+  homePath.classList.contains('active') && createBanner(movie.results, 9)
+  tvPath.classList.contains('active') && createBanner(tv.results, 4)
 })
 
 /* search */
@@ -89,7 +84,7 @@ search.addEventListener('submit', (e) => {
       }
     })
   })
-  inputTitle.value = ''
+  input.value = ''
 })
 
 
