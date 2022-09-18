@@ -1,0 +1,103 @@
+.series-banner {
+  height: 58vh;
+  box-shadow: 0 5px 10px #000a;
+  justify-content: flex-end;
+}
+
+.genres {
+  display: flex;
+  gap: 40px;
+  padding: 25px 40px;
+  margin: 0 60px;
+  border-bottom: 4px solid #000a;
+}
+
+.genres li {
+  font-size: 18px;
+  padding: 0 10px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.genres li::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 65px;
+  height: 6px;
+  background-color: red;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.genres li:hover {
+  color: #c21010;
+}
+
+.genres li:hover::after {
+  transform: scaleX(1);
+}
+
+main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 25px;
+  padding: 30px 60px;
+}
+
+main h3 {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.series {
+  padding: 0;
+  grid-template-columns: 2.8fr repeat(5, 1fr);
+}
+
+.series .card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px #0007;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.card > img {
+  width: 36.5%;
+}
+
+.card h3 {
+  font-size: 30px;
+  margin-top: 20px;
+  color: var(--red);
+}
+
+.card > div {
+  display: grid;
+  grid-template-rows: repeat(3, auto) 1fr;
+  padding: 0 20px;
+}
+
+.card ul {
+  grid-row: 2 / 3;
+  color: #fff8;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.card p {
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #fffa;
+  padding: 0 20px;
+}

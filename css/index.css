@@ -1,11 +1,15 @@
-@import "reset.css";
-@import "variables.css";
+@import 'reset.css';
+@import 'variables.css';
 
 /* Components */
-@import "components/header.css";
-@import "components/nav-bar.css";
-@import "components/banner.css";
-@import "components/movies.css";
+@import 'components/header.css';
+@import 'components/nav-bar.css';
+@import 'components/banner.css';
+@import 'components/movies.css';
+@import 'components/modal.css';
+
+/* Screens */
+@import 'screens/series.css';
 
 html {
   box-sizing: border-box;
@@ -18,8 +22,9 @@ html {
 }
 
 body {
+  height: 100vh;
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.2;
   color: #e5e5e5;
+  background-color: #202023;
 }
-

@@ -24,39 +24,81 @@
         <nav id="no-mobile">
           <ul class="items">
             <li id="home" class="item"><a href="index.html">Home</a></li>
-            <li id="series" class="item"><a class="active" href="series.html">Series</a></li>
+            <li id="series" class="item">
+              <a class="active" href="series.html">Series</a>
+            </li>
           </ul>
-          </nav>
+        </nav>
       </div>
 
       <div class="col">
         <form class="search">
-            <svg
-              class="search-btn"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search..."
-              class="input"
-              name="title"
-            />
+          <svg
+            class="search-btn"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clipRule="evenodd"
+            ></path>
+          </svg>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="input"
+            name="title"
+          />
         </form>
       </div>
     </header>
 
-    <div class="banner">
+    <div class="banner series-banner">
       <div class="title"></div>
       <div class="overview"></div>
+      <div class="btn-wrapper">
+        <div class="watch btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"
+            />
+          </svg>
+          <span class="btn-text">Watch now</span>
+        </div>
+
+        <div class="info btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+              d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-144c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"
+            />
+          </svg>
+          <span class="btn-text">More information</span>
+        </div>
+      </div>
     </div>
-    <div id="movies" class="movies"></div>
+
+    <nav>
+      <ul class="genres">
+        <li>Action</li>
+        <li>Adventure</li>
+        <li>Comedy</li>
+        <li>Crime</li>
+        <li>Drama</li>
+        <li>Fantasy</li>
+        <li>Sci-Fi</li>
+        <li>Thriller</li>
+      </ul>
+    </nav>
+
+    <main>
+      <h3>Top Picks</h3>
+      <div id="movies" class="movies series"></div>
+    </main>
+
+    <section class="modal">
+      <div class="modal-series card"></div>
+    </section>
   </body>
 </html>

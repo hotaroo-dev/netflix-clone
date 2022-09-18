@@ -10,7 +10,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background-color .8s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
 
 .header .col,
@@ -52,8 +52,8 @@
   color: var(--white-darker);
   outline: none;
   border-radius: 5px;
-  background-color: #0005;
-  border: 1px solid #fff8;
+  background-color: #0008;
+  border: 1px solid #fff5;
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.2s ease-in-out;
