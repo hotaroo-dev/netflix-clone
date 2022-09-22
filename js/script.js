@@ -107,7 +107,7 @@ const createModal = (e, data) => {
   starsInner.style.width = `${starPercentage}%`
 
   series.querySelector("span").addEventListener("click", () => {
-    modal.classList.remove("active")
+    modal.classList.remove("modal-active")
     series.style.opacity = 0
   })
 }
@@ -121,7 +121,7 @@ const createMovie = data => {
   movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
 
   movie.addEventListener("click", e => {
-    modal.classList.add("active")
+    modal.classList.add("modal-active")
     createModal(e, data)
   })
 }
@@ -142,14 +142,15 @@ getMovies().then(response => {
     getGenres("tv").then(({ genres }) =>
       genres.splice(1, 8).map(genre => {
         const li = document.createElement("li")
-        document.querySelector("ul.genres").appendChild(li)
         li.innerHTML = `<a href="#">${genre.name}</a>`
         li.addEventListener("click", () => {
           getMoviesWithGenre("tv", genre.id).then(data => {
             movies.innerHTML = ""
             data.results.map(poster => createMovie(poster))
+            li.classList.add('active')
           })
         })
+        document.querySelector("ul.genres").appendChild(li)
       })
     )
   }

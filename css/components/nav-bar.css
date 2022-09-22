@@ -20,19 +20,19 @@
   transition: transform 0.2s;
 }
 
-.items .item a:hover {
+.item a:hover {
   color: var(--white-ligter);
 }
 
-.items .item a:hover::after {
+.item a:hover::after {
   transform: scaleX(1);
 }
 
-.items .item a.active {
+.item a.active {
   color: var(--white-ligter)
 }
 
-.items .item a.active::after {
+.item a.active::after {
   transform: scaleX(1);
 }
 

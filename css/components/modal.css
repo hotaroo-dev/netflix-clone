@@ -9,7 +9,7 @@
   place-content: center;
 }
 
-.active {
+.modal-active {
   z-index: 1;
   background-color: #000a;
   backdrop-filter: blur(2px) saturate(140%) contrast(90%);
