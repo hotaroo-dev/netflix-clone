@@ -17,11 +17,12 @@
   padding: 0 15px;
   position: relative;
   transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
 .genres li::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -25px;
   left: 0;
