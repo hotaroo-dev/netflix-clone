@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>movie app</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="js/script.js" defer></script>
   </head>
   <body>
@@ -80,21 +85,14 @@
     </div>
 
     <nav>
-      <ul class="genres">
-        <li>Action</li>
-        <li>Adventure</li>
-        <li>Comedy</li>
-        <li>Crime</li>
-        <li>Drama</li>
-        <li>Fantasy</li>
-        <li>Sci-Fi</li>
-        <li>Thriller</li>
-      </ul>
+      <ul class="genres"></ul>
     </nav>
 
     <main>
       <h3>Top Picks</h3>
-      <div id="movies" class="movies series"></div>
+      <div class="swiper">
+        <div id="movies" class="swiper-wrapper movies series"></div>
+      </div>
     </main>
 
     <section class="modal">

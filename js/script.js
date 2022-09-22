@@ -8,18 +8,41 @@ window.addEventListener('scroll', () => {
   }
 })
 
+const swiper = new Swiper('.swiper', {
+  direction: 'horizontal',
+  slidesPerView: 5.05,
+  spaceBetween: 25,
+  speed: 400,
+  loop: true
+})
+
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
 const getMovies = async () => {
   return await Promise.all(
     ['movie', 'tv'].map(id =>
-      fetch(`${BASE_PATH}/${id}/popular?api_key=${API_KEY}`).then(response =>
+      fetch(`${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}`).then(response =>
         response.json()
       )
     )
   )
 }
+
+const getGenres = async id => {
+  return await (
+    await fetch(`${BASE_PATH}/genre/${id}/list?api_key=${API_KEY}`)
+  ).json()
+}
+
+getGenres('tv').then(({ genres }) =>
+  genres.splice(1, 8).map(genre => {
+    console.log(genre)
+    const li = document.createElement('li')
+    li.innerHTML = `<a href="#">${genre.name}</a>`
+    document.querySelector('ul.genres').appendChild(li)
+  })
+)
 
 const getMovieImage = (path, format) => {
   return `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
@@ -30,7 +53,7 @@ const createBanner = data => {
   const title = banner.querySelector('.title')
   const overview = banner.querySelector('.overview')
 
-  banner.style.backgroundImage = `linear-gradient(to right, #100f0f 10%,  #0002), 
+  banner.style.backgroundImage = `linear-gradient(to right, #100f0f 20%,  #0002), 
     url(${getMovieImage(data.backdrop_path)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
@@ -38,7 +61,7 @@ const createBanner = data => {
 
 const createCard = data => {
   const card = document.createElement('div')
-  movies.appendChild(card)
+  document.querySelector('main').appendChild(card)
   card.classList.add('card')
   card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
   card.innerHTML += `<p>${data.overview}</p>`
@@ -60,9 +83,13 @@ const createModal = (e, data) => {
   series.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
 
   let detail = series.querySelector('div')
+
   let ul = document.createElement('ul')
   getDetail(data).then(data => {
-    console.log(data)
+    const releaseYear = document.createElement('li')
+    releaseYear.innerText = `${data.first_air_date.split('-')[0]}`
+    ul.appendChild(releaseYear)
+
     data.genres.map((genre, i, arr) => {
       let li = document.createElement('li')
       li.innerText = arr.length - 1 === i ? `${genre.name}` : `${genre.name},`
@@ -70,6 +97,23 @@ const createModal = (e, data) => {
     })
   })
   detail.appendChild(ul)
+
+  /* rating */
+  let rating = document.createElement('div')
+  rating.innerHTML += `<span>${data.vote_average}/10</span>`
+
+  let starsOuter = document.createElement('div')
+  let starsInner = document.createElement('div')
+  starsOuter.classList.add('stars-outer')
+  starsInner.classList.add('stars-inner')
+  starsOuter.appendChild(starsInner)
+  rating.appendChild(starsOuter)
+  detail.appendChild(rating)
+
+  const totalRating = 10
+  let starPercentage = (data.vote_average / totalRating) * 100
+  starPercentage = Math.round(starPercentage / 10) * 10
+  starsInner.style.width = `${starPercentage}%`
 
   series.querySelector('span').addEventListener('click', () => {
     modal.classList.remove('active')
@@ -81,7 +125,7 @@ const modal = document.querySelector('.modal')
 const createMovie = data => {
   const movie = document.createElement('div')
   movies.appendChild(movie)
-  movie.classList.add('movie')
+  movie.classList.add('movie', 'swiper-slide')
   movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
 
   movie.addEventListener('click', e => {
@@ -97,11 +141,11 @@ getMovies().then(response => {
   const movie = response[0]
   const tv = response[1]
 
-  homePath.classList.contains('active') && createBanner(movie.results[10])
+  homePath.classList.contains('active') && createBanner(movie.results[13])
   if (tvPath.classList.contains('active')) {
-    createBanner(tv.results[9])
-    createCard(tv.results[9])
-    tv.results.splice(0, 5).map(movie => createMovie(movie))
+    createBanner(tv.results[8])
+    createCard(tv.results[8])
+    tv.results.map(movie => createMovie(movie))
   }
 })
 

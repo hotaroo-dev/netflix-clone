@@ -1,21 +1,13 @@
 .movies {
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-  padding: 40px 20px;
 }
 
 .movie img {
-  max-width: 100%;
+  max-width: 104%;
   border-radius: 6px;
   box-shadow: 0 4px 8px #000a;
   transition: transform 0.2s ease-in-out;
-}
-
-.movie img:hover {
-  transform: scale(1.03) translateY(-10px);
 }
 
 .movie h3 {
@@ -23,16 +15,4 @@
   font-weight: 600;
   color: #000;
   text-align: center;
-}
-
-@keyframes active {
-  0% {
-    fill-opacity: 1;
-  }
-  50% {
-    fill-opacity: 0;
-  }
-  100% {
-    fill-opacity: 1;
-  }
 }
