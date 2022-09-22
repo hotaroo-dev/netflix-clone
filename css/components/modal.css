@@ -12,7 +12,8 @@
 .active {
   z-index: 1;
   background-color: #000a;
-  backdrop-filter: blur(2px) saturate(160%) contrast(90%);
+  backdrop-filter: blur(2px) saturate(140%) contrast(90%);
+  -webkit-backdrop-filter: blur(2px) saturate(140%) contrast(90%);
 }
 
 .modal .modal-series {
@@ -65,11 +66,11 @@
 }
 
 .stars-outer::before {
-  content: '\2605 \2605 \2605 \2605 \2605';
+  content: "\2605 \2605 \2605 \2605 \2605";
 }
 
 .stars-inner::before {
-  content: '\2605 \2605 \2605 \2605 \2605';
+  content: "\2605 \2605 \2605 \2605 \2605";
   color: #ffac33;
 }
 
