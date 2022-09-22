@@ -60,6 +60,7 @@ main h3 {
 
 .swiper {
   max-width: 100%;
+  cursor: pointer;
 }
 
 .series {

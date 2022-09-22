@@ -8,14 +8,6 @@ window.addEventListener('scroll', () => {
   }
 })
 
-const swiper = new Swiper('.swiper', {
-  direction: 'horizontal',
-  slidesPerView: 5.05,
-  spaceBetween: 25,
-  speed: 400,
-  loop: true
-})
-
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
@@ -34,15 +26,6 @@ const getGenres = async id => {
     await fetch(`${BASE_PATH}/genre/${id}/list?api_key=${API_KEY}`)
   ).json()
 }
-
-getGenres('tv').then(({ genres }) =>
-  genres.splice(1, 8).map(genre => {
-    console.log(genre)
-    const li = document.createElement('li')
-    li.innerHTML = `<a href="#">${genre.name}</a>`
-    document.querySelector('ul.genres').appendChild(li)
-  })
-)
 
 const getMovieImage = (path, format) => {
   return `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
@@ -77,7 +60,7 @@ const createModal = (e, data) => {
   const series = document.querySelector('.modal-series')
   series.style.opacity = 1
   series.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
-    url(${getMovieImage(data.backdrop_path, 'w500')})`
+    url(${getMovieImage(data.backdrop_path)})`
   series.innerHTML = `<img src="${e.target.src}">`
   series.innerHTML += '<span>&times;</span>'
   series.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
@@ -143,6 +126,14 @@ getMovies().then(response => {
 
   homePath.classList.contains('active') && createBanner(movie.results[13])
   if (tvPath.classList.contains('active')) {
+    getGenres('tv').then(({ genres }) =>
+      genres.splice(1, 8).map(genre => {
+        console.log(genre)
+        const li = document.createElement('li')
+        li.innerHTML = `<a href="#">${genre.name}</a>`
+        document.querySelector('ul.genres').appendChild(li)
+      })
+    )
     createBanner(tv.results[8])
     createCard(tv.results[8])
     tv.results.map(movie => createMovie(movie))

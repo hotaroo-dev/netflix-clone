@@ -11,6 +11,17 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="js/script.js" defer></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const swiper = new Swiper('.swiper', {
+          direction: 'horizontal',
+          slidesPerView: 5.05,
+          spaceBetween: 25,
+          speed: 400,
+          loop: true
+        })
+      })
+    </script>
   </head>
   <body>
     <header class="header">
