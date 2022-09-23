@@ -90,7 +90,7 @@ main h3 {
 }
 
 .card > img {
-  max-width: 103%;
+  max-width: 101%;
 }
 
 .card h3 {
@@ -123,4 +123,10 @@ main h3 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   padding: 0 20px;
+}
+
+@media screen and (max-width: 1250px) {
+  .card img {
+    max-width: 100%;
+  }
 }
