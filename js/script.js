@@ -135,8 +135,8 @@ getMovies().then(response => {
 
   homePath.classList.contains('active') && createBanner(movie.results[13])
   if (tvPath.classList.contains('active')) {
-    createBanner(tv.results[11])
-    createCard(tv.results[11])
+    createBanner(tv.results[13])
+    createCard(tv.results[13])
     tv.results.map(movie => createMovie(movie))
 
     getGenres('tv').then(({ genres }) => {
@@ -145,7 +145,8 @@ getMovies().then(response => {
         const li = document.createElement('li')
         ul.appendChild(li)
         li.innerHTML = `<a href="#">${genre.name}</a>`
-        li.addEventListener('click', () => {
+        li.addEventListener('click', e => {
+          e.preventDefault()
           ul.querySelectorAll('li').forEach(
             li =>
               li.classList.contains('active') && li.classList.remove('active')

@@ -2,7 +2,6 @@
   z-index: 2;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
   background-color: rgba(0, 0, 0, 0);
@@ -11,6 +10,10 @@
   top: 0;
   left: 0;
   transition: background-color 0.5s ease-in-out;
+}
+
+.col:last-child {
+  margin-left: auto;
 }
 
 .header .col,
