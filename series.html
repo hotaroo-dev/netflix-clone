@@ -15,12 +15,13 @@
       window.addEventListener('DOMContentLoaded', () => {
         const swiper = new Swiper('.swiper', {
           direction: 'horizontal',
-          slidesPerView: 5.05,
+          slidesPerView: 8,
           spaceBetween: 25,
-          speed: 400,
+          speed: 350,
           loop: true,
-          pagination: {
-            el: '.swiper-pagination'
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
           }
         })
         document
@@ -108,10 +109,10 @@
     </nav>
 
     <main>
-      <h3>Top Picks</h3>
       <div class="swiper">
         <div id="movies" class="swiper-wrapper movies series"></div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </main>
 

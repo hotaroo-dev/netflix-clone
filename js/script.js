@@ -136,7 +136,6 @@ getMovies().then(response => {
   homePath.classList.contains('active') && createBanner(movie.results[13])
   if (tvPath.classList.contains('active')) {
     createBanner(tv.results[13])
-    createCard(tv.results[13])
     tv.results.map(movie => createMovie(movie))
 
     getGenres('tv').then(({ genres }) => {

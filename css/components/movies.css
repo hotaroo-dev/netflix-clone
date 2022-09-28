@@ -4,7 +4,7 @@
 }
 
 .movie img {
-  max-width: 104%;
+  max-width: 100%;
   border-radius: 6px;
   box-shadow: 0 4px 8px #000a;
   transition: transform 0.2s ease-in-out;
