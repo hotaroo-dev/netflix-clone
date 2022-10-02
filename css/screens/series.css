@@ -78,10 +78,7 @@ main {
   grid-column: 2 / 3;
   width: 100%;
   display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1.5fr;
   box-shadow: 0 4px 8px #0007;
-  border-radius: 6px;
   overflow: hidden;
 }
 

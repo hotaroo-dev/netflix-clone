@@ -50,6 +50,9 @@
             name="title"
           />
         </form>
+        <nav id="mobile">
+          <button onclick="toggleMenu()" />
+        </nav>
       </div>
     </header>
 
@@ -59,4 +62,13 @@
     </div>
     <div id="movies" class="movies"></div>
   </body>
+
+  <script>
+    const toggleMenu = () => {
+      const nav = document.querySelector('nav#mobile')
+      nav.classList.contains('open')
+        ? nav.classList.remove('open')
+        : nav.classList.add('open')
+    }
+  </script>
 </html>

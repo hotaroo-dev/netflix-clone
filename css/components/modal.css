@@ -16,14 +16,18 @@
   -webkit-backdrop-filter: blur(4px) saturate(140%) contrast(90%);
 }
 
-.modal .modal-series {
+.modal-active .modal-series {
+  opacity: 1;
+}
+
+.modal-series {
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
   max-width: 60vw;
   background-color: #202023;
   border-radius: 8px;
   opacity: 0;
-  transition: all 0.1s linear;
+  transition: all 0.15s linear;
   position: relative;
   top: -75px;
   padding: 25px;

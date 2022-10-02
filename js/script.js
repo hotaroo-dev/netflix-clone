@@ -14,7 +14,7 @@ const BASE_PATH = 'https://api.themoviedb.org/3'
 const getMovies = async () => {
   return await Promise.all(
     ['movie', 'tv'].map(id =>
-      fetch(`${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}`).then(response =>
+      fetch(`${BASE_PATH}/${id}/popular?api_key=${API_KEY}`).then(response =>
         response.json()
       )
     )
@@ -30,7 +30,7 @@ const getGenres = async id => {
 const getMoviesWithGenre = async (id, genreId) => {
   return await (
     await fetch(
-      `${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}&with_genres=${genreId}`
+      `${BASE_PATH}/${id}/popular?api_key=${API_KEY}&with_genres=${genreId}`
     )
   ).json()
 }
@@ -66,7 +66,6 @@ const createCard = data => {
 
 const createModal = (e, data) => {
   const series = document.querySelector('.modal-series')
-  series.style.opacity = 1
   series.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   series.innerHTML = `<img src="${e.target.src}">`
@@ -87,7 +86,6 @@ const createModal = (e, data) => {
       ul.appendChild(li)
     })
   })
-  detail.appendChild(ul)
 
   /* rating */
   let rating = document.createElement('div')
@@ -99,7 +97,8 @@ const createModal = (e, data) => {
   starsInner.classList.add('stars-inner')
   starsOuter.appendChild(starsInner)
   rating.appendChild(starsOuter)
-  detail.appendChild(rating)
+
+  detail.append(ul, rating)
 
   const totalRating = 10
   let starPercentage = (data.vote_average / totalRating) * 100
@@ -108,7 +107,6 @@ const createModal = (e, data) => {
 
   series.querySelector('span').addEventListener('click', () => {
     modal.classList.remove('modal-active')
-    series.style.opacity = 0
   })
 }
 
@@ -146,10 +144,8 @@ getMovies().then(response => {
         li.innerHTML = `<a href="#">${genre.name}</a>`
         li.addEventListener('click', e => {
           e.preventDefault()
-          ul.querySelectorAll('li').forEach(
-            li =>
-              li.classList.contains('active') && li.classList.remove('active')
-          )
+          const activeEl = ul.querySelector('li.active')
+          activeEl && activeEl.classList.remove('active')
           li.classList.add('active')
           getMoviesWithGenre('tv', genre.id).then(data => {
             movies.innerHTML = ''
@@ -166,32 +162,15 @@ const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('svg')
 const input = document.querySelector('input[name="title"]')
 
-let clicked = false
 searchBtn.addEventListener('click', () => {
-  clicked = !clicked
-  if (clicked) {
-    input.style.transform = 'scaleX(1)'
-    searchBtn.style.transform = 'translateX(-190px)'
+  if (search.classList.contains('active')) {
+    search.classList.remove('active')
   } else {
-    input.style.transform = 'scaleX(0)'
-    searchBtn.style.transform = 'translateX(0)'
+    search.classList.add('active')
   }
 })
 
 search.addEventListener('submit', e => {
   e.preventDefault()
-  movies.innerHTML = ''
-
-  const checkTitle = input.value.toLowerCase()
-  if (checkTitle === '') return
-
-  getMovies().then(results => {
-    results.map(movie => {
-      const title = movie.title.toLowerCase()
-      if (title.includes(checkTitle)) {
-        createMovie(movie)
-      }
-    })
-  })
   input.value = ''
 })

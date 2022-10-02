@@ -6,7 +6,7 @@
 }
 
 .items .item a::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -10px;
   left: 0;
@@ -29,26 +29,65 @@
 }
 
 .item a.active {
-  color: var(--white-ligter)
+  color: var(--white-ligter);
 }
 
 .item a.active::after {
   transform: scaleX(1);
 }
 
-.menu{
-  display: none;
+nav#mobile button {
+  --size: 26px;
+  position: relative;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+}
+
+nav#mobile button::after,
+nav#mobile button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+}
+
+nav#mobile button::before {
+  transform: translateY(calc(50% - 4px));
+}
+
+nav#mobile button::after {
+  transform: translateY(calc(50% + 4px));
+}
+
+nav#mobile.open button::before {
+  transform: rotate(45deg);
+}
+
+nav#mobile.open button::after {
+  transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 600px) {
   #no-mobile {
     display: none;
   }
-}
-
-@media screen and (min-width: 601px) {
-  #no-large-screen {
-    display: none;
+  form.search {
+    margin-right: 10px;
   }
 }
 
+@media screen and (min-width: 601px) {
+  #mobile {
+    display: none;
+  }
+}

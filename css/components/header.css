@@ -73,6 +73,14 @@
   transition: transform 0.2s ease-in-out;
 }
 
+form.active .input {
+  transform: scaleX(1);
+}
+
+form.active .search-btn {
+  transform: translateX(-190px);
+}
+
 @keyframes active {
   0% {
     fill-opacity: 1;
