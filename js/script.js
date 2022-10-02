@@ -69,7 +69,7 @@ const createModal = (e, data) => {
   series.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   series.innerHTML = `<img src="${e.target.src}">`
-  series.innerHTML += '<span>&times;</span>'
+  // series.innerHTML += '<span>&times;</span>'
   series.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
 
   let detail = series.querySelector('div')
@@ -104,13 +104,13 @@ const createModal = (e, data) => {
   let starPercentage = (data.vote_average / totalRating) * 100
   starPercentage = Math.round(starPercentage / 10) * 10
   starsInner.style.width = `${starPercentage}%`
-
-  series.querySelector('span').addEventListener('click', () => {
-    modal.classList.remove('modal-active')
-  })
 }
 
 const modal = document.querySelector('.modal')
+modal.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return
+  modal.classList.remove('modal-active')
+})
 
 const createMovie = data => {
   const movie = document.createElement('div')
