@@ -50,7 +50,7 @@ const createBanner = data => {
   const title = banner.querySelector('.title')
   const overview = banner.querySelector('.overview')
 
-  banner.style.backgroundImage = `linear-gradient(to right, #100f0f 20%,  #0002), 
+  banner.style.backgroundImage = `linear-gradient(to right, #100f0f 10%,  #0002), 
     url(${getMovieImage(data.backdrop_path)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
@@ -107,10 +107,6 @@ const createModal = (e, data) => {
 }
 
 const modal = document.querySelector('.modal')
-modal.addEventListener('click', e => {
-  if (e.target !== e.currentTarget) return
-  modal.classList.remove('modal-active')
-})
 
 const createMovie = data => {
   const movie = document.createElement('div')
@@ -131,9 +127,9 @@ getMovies().then(response => {
   const movie = response[0]
   const tv = response[1]
 
-  homePath.classList.contains('active') && createBanner(movie.results[13])
+  homePath.classList.contains('active') && createBanner(movie.results[10])
   if (tvPath.classList.contains('active')) {
-    createBanner(tv.results[13])
+    createBanner(tv.results[15])
     tv.results.map(movie => createMovie(movie))
 
     getGenres('tv').then(({ genres }) => {
@@ -152,6 +148,11 @@ getMovies().then(response => {
             data.results.map(poster => createMovie(poster))
           })
         })
+      })
+
+      modal.addEventListener('click', e => {
+        if (e.target !== e.currentTarget) return
+        modal.classList.remove('modal-active')
       })
     })
   }
