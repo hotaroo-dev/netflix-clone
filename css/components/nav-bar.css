@@ -1,7 +1,7 @@
 .items .item a {
   position: relative;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 40px;
   color: var(--white-darker);
 }
 

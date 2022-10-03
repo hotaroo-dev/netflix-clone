@@ -84,6 +84,7 @@ main {
 
 .card > img {
   max-width: 101%;
+  cursor: pointer;
 }
 
 .card h3 {

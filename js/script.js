@@ -65,14 +65,14 @@ const createCard = data => {
 }
 
 const createModal = (e, data) => {
-  const series = document.querySelector('.modal-series')
-  series.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
+  const poster = document.querySelector('.modal-poster')
+  poster.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
-  series.innerHTML = `<img src="${e.target.src}">`
+  poster.innerHTML = `<img src="${e.target.src}">`
   // series.innerHTML += '<span>&times;</span>'
-  series.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
+  poster.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
 
-  let detail = series.querySelector('div')
+  let detail = poster.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(data).then(data => {
@@ -104,6 +104,10 @@ const createModal = (e, data) => {
   let starPercentage = (data.vote_average / totalRating) * 100
   starPercentage = Math.round(starPercentage / 10) * 10
   starsInner.style.width = `${starPercentage}%`
+
+  poster
+    .querySelector('img')
+    .addEventListener('click', () => saveLocalMovies(data))
 }
 
 const modal = document.querySelector('.modal')
@@ -175,3 +179,18 @@ search.addEventListener('submit', e => {
   e.preventDefault()
   input.value = ''
 })
+
+/* local storage */
+const checkLocalMovies = () => {
+  if (localStorage.getItem('fav-movies') === null) return (favMovies = [])
+  return (favMovies = JSON.parse(localStorage.getItem('fav-movies')))
+}
+
+const saveLocalMovies = movie => {
+  checkLocalMovies()
+  if (favMovies.indexOf(movie) >= 0) return
+
+  console.log(movie.backdrop_path)
+  favMovies.push(movie)
+  localStorage.setItem('fav-movies', JSON.stringify(favMovies))
+}
