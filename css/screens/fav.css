@@ -30,7 +30,7 @@ h1 {
 
 .fall {
   transition: all 0.4s ease;
-  transform: translateY(8rem) rotateZ(20deg);
+  transform: translateY(8rem);
   opacity: 0;
 }
 
