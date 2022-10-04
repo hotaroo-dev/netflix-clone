@@ -27,23 +27,18 @@ const getGenres = async id => {
   ).json()
 }
 
-const getMoviesWithGenre = async (id, genreId) => {
-  return await (
+const getMoviesWithGenre = async (id, genreId) =>
+  await (
     await fetch(
       `${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}&with_genres=${genreId}`
     )
   ).json()
-}
 
-const getMovieImage = (path, format) => {
-  return `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
-}
+const getMovieImage = (path, format) =>
+  `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
-const getDetail = async data => {
-  return await (
-    await fetch(`${BASE_PATH}/tv/${data.id}?api_key=${API_KEY}`)
-  ).json()
-}
+const getDetail = async data =>
+  await (await fetch(`${BASE_PATH}/tv/${data.id}?api_key=${API_KEY}`)).json()
 
 const createBanner = data => {
   const banner = document.querySelector('.banner')
@@ -116,16 +111,17 @@ const createCard = data => {
   document.querySelector('main .wrapper').appendChild(card)
 }
 
+const modal = document.querySelector('.modal')
+
 const createModal = data => {
   const card = document.querySelector('.modal-card')
   paintCard(card, data)
 
-  card
-    .querySelector('img')
-    .addEventListener('click', () => saveLocalMovies(data))
+  card.querySelector('img').addEventListener('click', () => {
+    saveLocalMovies(data)
+    modal.classList.remove('modal-active')
+  })
 }
-
-const modal = document.querySelector('.modal')
 
 const createMovie = data => {
   const movie = document.createElement('div')
