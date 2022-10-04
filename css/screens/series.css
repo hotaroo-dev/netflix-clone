@@ -74,8 +74,6 @@ main {
 }
 
 .card {
-  grid-row: 1;
-  grid-column: 2 / 3;
   width: 100%;
   display: grid;
   box-shadow: 0 4px 8px #0007;
@@ -95,7 +93,6 @@ main {
 
 .card > div {
   display: grid;
-  grid-template-rows: repeat(4, auto) 1fr;
   padding: 0 20px;
 }
 
@@ -111,12 +108,24 @@ main {
 }
 
 .card p {
+  width: 85%;
+  height: 135px;
   line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
   overflow: hidden;
-  padding: 0 20px;
+}
+
+.card p:hover {
+  overflow: auto;
+}
+
+.card ::-webkit-scrollbar {
+  width: 0.4rem;
+  background: transparent;
+}
+
+.card ::-webkit-scrollbar-thumb {
+  background-color: #0007;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 1250px) {

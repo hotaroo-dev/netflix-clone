@@ -16,11 +16,11 @@
   -webkit-backdrop-filter: blur(4px) saturate(140%) contrast(90%);
 }
 
-.modal-active .modal-poster {
+.modal-active .modal-card {
   opacity: 1;
 }
 
-.modal-poster {
+.modal-card {
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
   max-width: 60vw;
@@ -35,7 +35,7 @@
   background-size: cover;
 }
 
-.modal-poster > span {
+.modal-card > span {
   font-size: 30px;
   position: absolute;
   top: 10px;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 
-.modal-poster > div > div {
+.modal-card > div > div {
   grid-row: 3 / 4;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -51,13 +51,15 @@
   margin: 10px 0;
 }
 
-.modal-poster > div > div > span {
+.modal-card > div > div > span {
   grid-column: 2 / 3;
+  transform: translateY(1px);
+  font-size: 1.2rem;
 }
 
 .stars-outer {
   grid-row: 1 / 2;
-  font-size: 24px;
+  font-size: 28px;
   display: inline-block;
   position: relative;
   margin-right: 10px;
@@ -79,12 +81,7 @@
   color: #ffac33;
 }
 
-.modal .modal-poster > div > p {
-  padding: 0;
-  width: 80%;
-}
-
-.modal .modal-poster > img {
+.modal-card > img {
   max-width: 100%;
   border-radius: 8px;
 }

@@ -10,6 +10,7 @@
 
 /* Screens */
 @import 'screens/series.css';
+@import 'screens/fav.css';
 
 html {
   box-sizing: border-box;

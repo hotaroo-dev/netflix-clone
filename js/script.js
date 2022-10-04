@@ -14,7 +14,7 @@ const BASE_PATH = 'https://api.themoviedb.org/3'
 const getMovies = async () => {
   return await Promise.all(
     ['movie', 'tv'].map(id =>
-      fetch(`${BASE_PATH}/${id}/popular?api_key=${API_KEY}`).then(response =>
+      fetch(`${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}`).then(response =>
         response.json()
       )
     )
@@ -30,7 +30,7 @@ const getGenres = async id => {
 const getMoviesWithGenre = async (id, genreId) => {
   return await (
     await fetch(
-      `${BASE_PATH}/${id}/popular?api_key=${API_KEY}&with_genres=${genreId}`
+      `${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}&with_genres=${genreId}`
     )
   ).json()
 }
@@ -56,23 +56,13 @@ const createBanner = data => {
   overview.innerHTML = `<p>${data.overview}</p>`
 }
 
-const createCard = data => {
-  const card = document.createElement('div')
-  document.querySelector('main').appendChild(card)
-  card.classList.add('card')
-  card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
-  card.innerHTML += `<p>${data.overview}</p>`
-}
-
-const createModal = (e, data) => {
-  const poster = document.querySelector('.modal-poster')
-  poster.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
+const paintCard = (card, data) => {
+  card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
-  poster.innerHTML = `<img src="${e.target.src}">`
-  // series.innerHTML += '<span>&times;</span>'
-  poster.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
+  card.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
 
-  let detail = poster.querySelector('div')
+  let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(data).then(data => {
@@ -104,8 +94,33 @@ const createModal = (e, data) => {
   let starPercentage = (data.vote_average / totalRating) * 100
   starPercentage = Math.round(starPercentage / 10) * 10
   starsInner.style.width = `${starPercentage}%`
+}
 
-  poster
+const deleteMovie = (e, data) => {
+  const card = e.target.parentElement.parentElement
+  card.classList.add('fall')
+  card.addEventListener('transitionend', () => card.remove())
+  removeLocalMovie(data)
+}
+
+const createCard = data => {
+  const card = document.createElement('div')
+  card.classList.add('card', 'modal-card', 'active')
+  paintCard(card, data)
+
+  const deleteBtn = document.createElement('i')
+  deleteBtn.classList.add('fas', 'fa-trash')
+  deleteBtn.addEventListener('click', e => deleteMovie(e, data))
+
+  card.querySelector('div').appendChild(deleteBtn)
+  document.querySelector('main .wrapper').appendChild(card)
+}
+
+const createModal = data => {
+  const card = document.querySelector('.modal-card')
+  paintCard(card, data)
+
+  card
     .querySelector('img')
     .addEventListener('click', () => saveLocalMovies(data))
 }
@@ -120,7 +135,7 @@ const createMovie = data => {
 
   movie.addEventListener('click', e => {
     modal.classList.add('modal-active')
-    createModal(e, data)
+    createModal(data)
   })
 }
 
@@ -131,9 +146,9 @@ getMovies().then(response => {
   const movie = response[0]
   const tv = response[1]
 
-  homePath.classList.contains('active') && createBanner(movie.results[10])
+  homePath.classList.contains('active') && createBanner(movie.results[9])
   if (tvPath.classList.contains('active')) {
-    createBanner(tv.results[15])
+    createBanner(tv.results[19])
     tv.results.map(movie => createMovie(movie))
 
     getGenres('tv').then(({ genres }) => {
@@ -162,6 +177,14 @@ getMovies().then(response => {
   }
 })
 
+/* Movie list */
+const favPath = document.querySelector('#fav a')
+if (favPath.classList.contains('active')) {
+  checkLocalMovies()
+
+  movieList.map(movie => createCard(movie))
+}
+
 /* search */
 const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('svg')
@@ -181,16 +204,34 @@ search.addEventListener('submit', e => {
 })
 
 /* local storage */
-const checkLocalMovies = () => {
-  if (localStorage.getItem('fav-movies') === null) return (favMovies = [])
-  return (favMovies = JSON.parse(localStorage.getItem('fav-movies')))
+function checkLocalMovies() {
+  if (localStorage.getItem('movie-list') === null) return (movieList = [])
+  return (movieList = JSON.parse(localStorage.getItem('movie-list')))
 }
 
-const saveLocalMovies = movie => {
-  checkLocalMovies()
-  if (favMovies.indexOf(movie) >= 0) return
+const checkMovie = (movieList, data) =>
+  movieList.some(movie => movie.id === data.id)
 
-  console.log(movie.backdrop_path)
-  favMovies.push(movie)
-  localStorage.setItem('fav-movies', JSON.stringify(favMovies))
+const getIndex = (movieList, data) => {
+  let index
+  movieList.forEach((movie, i) => {
+    if (movie.id === data.id) index = i
+  })
+  return index
+}
+
+function saveLocalMovies(movie) {
+  checkLocalMovies()
+
+  if (checkMovie(movieList, movie)) return
+  movieList.push(movie)
+  localStorage.setItem('movie-list', JSON.stringify(movieList))
+}
+
+function removeLocalMovie(movie) {
+  checkLocalMovies()
+
+  const index = getIndex(movieList, movie)
+  movieList.splice(index, 1)
+  localStorage.setItem('movie-list', JSON.stringify(movieList))
 }

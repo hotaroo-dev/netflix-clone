@@ -5,33 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>movie app</title>
     <link rel="stylesheet" href="css/index.css" />
-    <style>
-      main {
-        height: 100vh;
-        display: grid;
-        place-items: center;
-      }
-      main h1 {
-        color: var(--red);
-        font-size: 50px;
-      }
-    </style>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        const getFavMovies = () => {
-          if (localStorage.getItem('fav-movies') === null) return (movies = [])
-          return (movies = JSON.parse(localStorage.getItem('fav-movies')))
-        }
-        getFavMovies()
-        const main = document.querySelector('main')
-
-        movies.map(movie => {
-          const h1 = document.createElement('h1')
-          main.appendChild(h1)
-          h1.innerText = movie.name
-        })
-      })
-    </script>
+    <script
+      src="https://kit.fontawesome.com/0093b2f54c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -82,6 +60,9 @@
       </div>
     </header>
 
-    <main></main>
+    <main class="fav-movies">
+      <h1>Your Favorite Tv Show</h1>
+      <div class="wrapper"></div>
+    </main>
   </body>
 </html>
