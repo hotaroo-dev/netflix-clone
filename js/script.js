@@ -8,12 +8,14 @@ window.addEventListener('scroll', () => {
   }
 })
 
+/* navbar */
 const toggleMenu = () => {
   const nav = document.querySelector('nav.mobile')
   nav.classList.contains('open')
     ? nav.classList.remove('open')
     : nav.classList.add('open')
 }
+/* end navbar */
 
 /* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'

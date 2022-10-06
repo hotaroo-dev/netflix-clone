@@ -62,7 +62,7 @@ nav.mobile button::before {
 }
 
 nav.mobile button::before {
-  transform: translateY(calc(50% - 4px));
+  transform: translateY(calc(50% - 5px));
 }
 
 nav.mobile button::after {
@@ -75,6 +75,58 @@ nav.mobile.open button::before {
 
 nav.mobile.open button::after {
   transform: rotate(-45deg);
+}
+
+nav.mobile {
+  position: relative;
+}
+
+nav.mobile.open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.dropdown {
+  min-width: 13rem;
+  position: absolute;
+  top: 34px;
+  right: 0;
+  padding: 10px 0;
+  border-radius: 8px;
+  background-color: #202023;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px;
+  border: 1px solid #fff4;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateZ(0px);
+  transform-origin: top right;
+  transition: all 0.1s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.dropdown li {
+  width: 100%;
+  padding: 0.4rem;
+  padding-inline: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.dropdown li:hover {
+  background-color: #fff1;
+}
+
+.dropdown li:hover a {
+  text-decoration: underline;
+}
+
+.dropdown li a {
+  display: flex;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: var(--white-darker);
+  text-underline-offset: 3px;
 }
 
 @media screen and (max-width: 667px) {

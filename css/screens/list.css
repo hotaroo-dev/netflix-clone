@@ -22,7 +22,7 @@ h1 {
   row-gap: 2rem;
 }
 
-.active {
+.wrapper > .active {
   padding: 0;
   opacity: 1;
   top: 0;
@@ -59,7 +59,7 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
     justify-items: center;
   }
-  .active {
+  .wrapper > .active {
     grid-template-columns: 1fr 0;
   }
 }

@@ -35,23 +35,23 @@
   transition: transform 0.2s;
 }
 
-li a {
+.genres li a {
   color: var(--white-darker);
 }
 
-li:hover a {
+.genres li:hover a {
   color: #c21010;
 }
 
-li:hover::after {
+.genres li:hover::after {
   transform: scaleX(1);
 }
 
-li.active a {
+.genres li.active a {
   color: #c21010;
 }
 
-li.active::after {
+.genres li.active::after {
   transform: scaleX(1);
 }
 

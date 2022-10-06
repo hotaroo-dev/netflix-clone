@@ -7,6 +7,7 @@ getMovies().then(res => {
     const ul = document.querySelector('ul.genres')
     genres.splice(1, 8).map(genre => {
       const li = document.createElement('li')
+      ul.appendChild(li)
       li.innerHTML = `<a href="#">${genre.name}</a>`
       li.addEventListener('click', e => {
         e.preventDefault()
@@ -18,8 +19,6 @@ getMovies().then(res => {
           movies.innerHTML = ''
           data.results.map(poster => createMovie(poster))
         })
-
-        ul.appendChild(li)
       })
     })
   })
