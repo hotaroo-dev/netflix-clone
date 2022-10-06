@@ -64,12 +64,3 @@
   background-color: #000a;
   border: 1px solid #fff5;
 }
-
-@media screen and (max-width: 600px) {
-  .banner {
-    padding: 25px;
-  }
-  .banner .overview {
-    width: 100%;
-  }
-}

@@ -36,7 +36,7 @@
   transform: scaleX(1);
 }
 
-nav#mobile button {
+nav.mobile button {
   --size: 26px;
   position: relative;
   border: none;
@@ -49,8 +49,8 @@ nav#mobile button {
   align-items: center;
 }
 
-nav#mobile button::after,
-nav#mobile button::before {
+nav.mobile button::after,
+nav.mobile button::before {
   content: '';
   position: absolute;
   left: 0;
@@ -61,33 +61,33 @@ nav#mobile button::before {
   transition: transform 0.2s ease-in-out;
 }
 
-nav#mobile button::before {
+nav.mobile button::before {
   transform: translateY(calc(50% - 4px));
 }
 
-nav#mobile button::after {
+nav.mobile button::after {
   transform: translateY(calc(50% + 4px));
 }
 
-nav#mobile.open button::before {
+nav.mobile.open button::before {
   transform: rotate(45deg);
 }
 
-nav#mobile.open button::after {
+nav.mobile.open button::after {
   transform: rotate(-45deg);
 }
 
-@media screen and (max-width: 600px) {
-  #no-mobile {
-    display: none;
+@media screen and (max-width: 667px) {
+  .no-mobile {
+    display: none !important;
   }
   form.search {
     margin-right: 10px;
   }
 }
 
-@media screen and (min-width: 601px) {
-  #mobile {
+@media screen and (min-width: 668px) {
+  .mobile {
     display: none;
   }
 }

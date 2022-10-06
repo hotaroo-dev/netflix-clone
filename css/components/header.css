@@ -9,7 +9,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background-color 0.5s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.header.blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .col:last-child {
@@ -93,7 +98,7 @@ form.active .search-btn {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 667px) {
   .header {
     padding: 25px;
   }

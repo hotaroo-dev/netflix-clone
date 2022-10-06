@@ -2,14 +2,23 @@ window.addEventListener('scroll', () => {
   const header = document.querySelector('.header')
   const scrollY = window.scrollY
   if (scrollY > 60) {
-    header.style.backgroundColor = '#100f0f'
+    header.classList.add('blur')
   } else {
-    header.style.backgroundColor = 'rgba(0, 0, 0, 0)'
+    header.classList.remove('blur')
   }
 })
 
+const toggleMenu = () => {
+  const nav = document.querySelector('nav.mobile')
+  nav.classList.contains('open')
+    ? nav.classList.remove('open')
+    : nav.classList.add('open')
+}
+
+/* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
+const id = 7
 
 const getMovies = async () => {
   return await Promise.all(
@@ -30,7 +39,7 @@ const getGenres = async id => {
 const getMoviesWithGenre = async (id, genreId) =>
   await (
     await fetch(
-      `${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}&with_genres=${genreId}`
+      `${BASE_PATH}/${id}/popular?api_key=${API_KEY}&with_genres=${genreId}`
     )
   ).json()
 
@@ -39,14 +48,29 @@ const getMovieImage = (path, format) =>
 
 const getDetail = async data =>
   await (await fetch(`${BASE_PATH}/tv/${data.id}?api_key=${API_KEY}`)).json()
+/* end utils function */
+
+const dynamicBgImage = (poster_path, backdrop_path) => {
+  let bgImage
+  let pos
+  if (innerWidth < 667) {
+    bgImage = poster_path
+    pos = 'to top'
+  } else {
+    bgImage = backdrop_path
+    pos = 'to right'
+  }
+  return { bgImage, pos }
+}
 
 const createBanner = data => {
   const banner = document.querySelector('.banner')
   const title = banner.querySelector('.title')
   const overview = banner.querySelector('.overview')
+  let { bgImage, pos } = dynamicBgImage(data.poster_path, data.backdrop_path)
 
-  banner.style.backgroundImage = `linear-gradient(to right, #100f0f 10%,  #0002), 
-    url(${getMovieImage(data.backdrop_path)})`
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f,  #0002), 
+    url(${getMovieImage(bgImage)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
 }
@@ -84,18 +108,12 @@ const paintCard = (card, data) => {
   rating.appendChild(starsOuter)
 
   detail.append(ul, rating)
+  detail.classList.add('no-mobile')
 
   const totalRating = 10
   let starPercentage = (data.vote_average / totalRating) * 100
   starPercentage = Math.round(starPercentage / 10) * 10
   starsInner.style.width = `${starPercentage}%`
-}
-
-const deleteMovie = (e, data) => {
-  const card = e.target.parentElement.parentElement
-  card.classList.add('fall')
-  card.addEventListener('transitionend', () => card.remove())
-  removeLocalMovie(data)
 }
 
 const createCard = data => {
@@ -107,20 +125,28 @@ const createCard = data => {
   deleteBtn.classList.add('fas', 'fa-trash')
   deleteBtn.addEventListener('click', e => deleteMovie(e, data))
 
-  card.querySelector('div').appendChild(deleteBtn)
+  card.appendChild(deleteBtn)
   document.querySelector('main .wrapper').appendChild(card)
 }
 
 const modal = document.querySelector('.modal')
+modal.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return
+  modal.classList.remove('modal-active')
+})
 
 const createModal = data => {
   const card = document.querySelector('.modal-card')
   paintCard(card, data)
 
-  card.querySelector('img').addEventListener('click', () => {
+  const addBtn = document.createElement('i')
+  addBtn.classList.add('fas', 'fa-plus')
+  addBtn.addEventListener('click', () => {
     saveLocalMovies(data)
     modal.classList.remove('modal-active')
   })
+
+  card.appendChild(addBtn)
 }
 
 const createMovie = data => {
@@ -129,56 +155,17 @@ const createMovie = data => {
   movie.classList.add('movie', 'swiper-slide')
   movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
 
-  movie.addEventListener('click', e => {
+  movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
     createModal(data)
   })
 }
 
-const homePath = document.querySelector('#home a')
-const tvPath = document.querySelector('#series a')
-
-getMovies().then(response => {
-  const movie = response[0]
-  const tv = response[1]
-
-  homePath.classList.contains('active') && createBanner(movie.results[9])
-  if (tvPath.classList.contains('active')) {
-    createBanner(tv.results[19])
-    tv.results.map(movie => createMovie(movie))
-
-    getGenres('tv').then(({ genres }) => {
-      const ul = document.querySelector('ul.genres')
-      genres.splice(1, 8).map(genre => {
-        const li = document.createElement('li')
-        ul.appendChild(li)
-        li.innerHTML = `<a href="#">${genre.name}</a>`
-        li.addEventListener('click', e => {
-          e.preventDefault()
-          const activeEl = ul.querySelector('li.active')
-          activeEl && activeEl.classList.remove('active')
-          li.classList.add('active')
-          getMoviesWithGenre('tv', genre.id).then(data => {
-            movies.innerHTML = ''
-            data.results.map(poster => createMovie(poster))
-          })
-        })
-      })
-
-      modal.addEventListener('click', e => {
-        if (e.target !== e.currentTarget) return
-        modal.classList.remove('modal-active')
-      })
-    })
-  }
-})
-
-/* Movie list */
-const favPath = document.querySelector('#fav a')
-if (favPath.classList.contains('active')) {
-  checkLocalMovies()
-
-  movieList.map(movie => createCard(movie))
+const deleteMovie = (e, data) => {
+  const card = e.target.parentElement
+  card.classList.add('fall')
+  card.addEventListener('transitionend', () => card.remove())
+  removeLocalMovie(data)
 }
 
 /* search */
@@ -198,13 +185,9 @@ search.addEventListener('submit', e => {
   e.preventDefault()
   input.value = ''
 })
+/* end search */
 
 /* local storage */
-function checkLocalMovies() {
-  if (localStorage.getItem('movie-list') === null) return (movieList = [])
-  return (movieList = JSON.parse(localStorage.getItem('movie-list')))
-}
-
 const checkMovie = (movieList, data) =>
   movieList.some(movie => movie.id === data.id)
 
@@ -214,6 +197,11 @@ const getIndex = (movieList, data) => {
     if (movie.id === data.id) index = i
   })
   return index
+}
+
+function checkLocalMovies() {
+  if (localStorage.getItem('movie-list') === null) return (movieList = [])
+  return (movieList = JSON.parse(localStorage.getItem('movie-list')))
 }
 
 function saveLocalMovies(movie) {
@@ -231,3 +219,4 @@ function removeLocalMovie(movie) {
   movieList.splice(index, 1)
   localStorage.setItem('movie-list', JSON.stringify(movieList))
 }
+/* end local storage */
