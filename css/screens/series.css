@@ -165,9 +165,15 @@ main {
   }
 }
 
+@media screen and (min-width: 668px) and (max-width: 809px) {
+  .card > div > div {
+    margin: 5px 0;
+  }
+}
+
 @media screen and (max-width: 810px) {
   .card p {
-    height: 60px;
+    height: 65px;
   }
 }
 

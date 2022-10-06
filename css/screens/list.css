@@ -56,7 +56,7 @@ h1 {
   .wrapper {
     display: grid;
     column-gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     justify-items: center;
   }
   .wrapper .active {
