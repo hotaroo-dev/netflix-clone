@@ -8,24 +8,18 @@ window.addEventListener('scroll', () => {
   }
 })
 
-/* navbar */
-const toggleMenu = () => {
-  const nav = document.querySelector('nav.mobile')
-  nav.classList.contains('open')
-    ? nav.classList.remove('open')
-    : nav.classList.add('open')
-}
-/* end navbar */
+const toggleMenu = () =>
+  document.querySelector('nav.mobile').classList.toggle('open')
 
 /* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
-const id = 7
+const ID = 7
 
-const getMovies = async () => {
+const getMovies = async id => {
   return await Promise.all(
-    ['movie', 'tv'].map(id =>
-      fetch(`${BASE_PATH}/${id}/top_rated?api_key=${API_KEY}`).then(response =>
+    ['top_rated', 'popular'].map(type =>
+      fetch(`${BASE_PATH}/${id}/${type}?api_key=${API_KEY}`).then(response =>
         response.json()
       )
     )
@@ -55,23 +49,29 @@ const getDetail = async data =>
 const dynamicBgImage = (poster_path, backdrop_path) => {
   let bgImage
   let pos
+  let brightness
   if (innerWidth < 667) {
     bgImage = poster_path
     pos = 'to top'
+    brightness = 'rgba(0, 0, 0, 0)'
   } else {
     bgImage = backdrop_path
     pos = 'to right'
+    brightness = '#0002'
   }
-  return { bgImage, pos }
+  return { bgImage, pos, brightness }
 }
 
 const createBanner = data => {
   const banner = document.querySelector('.banner')
   const title = banner.querySelector('.title')
   const overview = banner.querySelector('.overview')
-  let { bgImage, pos } = dynamicBgImage(data.poster_path, data.backdrop_path)
+  let { bgImage, pos, brightness } = dynamicBgImage(
+    data.poster_path,
+    data.backdrop_path
+  )
 
-  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  #0002), 
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  ${brightness}), 
     url(${getMovieImage(bgImage)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
@@ -152,9 +152,9 @@ const createModal = data => {
   card.appendChild(addBtn)
 }
 
-const createMovie = data => {
+const createMovie = (data, row) => {
   const movie = document.createElement('div')
-  movies.appendChild(movie)
+  row.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
   movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
 
@@ -178,11 +178,7 @@ const searchBtn = search.querySelector('svg')
 const input = document.querySelector('input[name="title"]')
 
 searchBtn.addEventListener('click', () => {
-  if (search.classList.contains('active')) {
-    search.classList.remove('active')
-  } else {
-    search.classList.add('active')
-  }
+  search.classList.toggle('active')
 })
 
 search.addEventListener('submit', e => {

@@ -1,6 +1,7 @@
 const homePath = document.querySelector('#home a')
 const tvPath = document.querySelector('#series a')
 
+/*
 window.addEventListener('resize', () => {
   getMovies().then(response => {
     const movie = response[0]
@@ -10,11 +11,12 @@ window.addEventListener('resize', () => {
 
     const poster = moiveBanner.poster_path || tvBanner.poster_path
     const backdrop = moiveBanner.backdrop_path || tvBanner.backdrop_path
-    const { bgImage, pos } = dynamicBgImage(poster, backdrop)
+    const { bgImage, pos, brightness } = dynamicBgImage(poster, backdrop)
 
     document.querySelector(
       '.banner'
-    ).style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  #0002), 
+    ).style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%, ${brightness}), 
     url(${getMovieImage(bgImage)})`
   })
 })
+*/

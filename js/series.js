@@ -1,7 +1,10 @@
-getMovies().then(res => {
-  const tv = res[1]
-  createBanner(tv.results[id])
-  tv.results.map(movie => createMovie(movie))
+getMovies('tv').then(res => {
+  const tv = [...res[0].results, ...res[1].results]
+  createBanner(tv[ID])
+
+  swiperInit(0)
+  const movieRow = document.querySelector('#row0')
+  tv.map(movie => createMovie(movie, movieRow))
 
   getGenres('tv').then(({ genres }) => {
     const ul = document.querySelector('ul.genres')

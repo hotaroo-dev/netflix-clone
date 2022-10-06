@@ -59,6 +59,16 @@ main {
   padding: 30px 60px;
 }
 
+main > div > h1 {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 2;
+}
+
+main > div:first-child {
+  margin-bottom: 1.2rem;
+}
+
 .swiper {
   max-width: 100%;
   cursor: pointer;
@@ -67,10 +77,6 @@ main {
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
   color: red;
-}
-
-.series {
-  padding: 0;
 }
 
 .card {
