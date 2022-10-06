@@ -71,7 +71,7 @@ const createBanner = data => {
   const overview = banner.querySelector('.overview')
   let { bgImage, pos } = dynamicBgImage(data.poster_path, data.backdrop_path)
 
-  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f,  #0002), 
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  #0002), 
     url(${getMovieImage(bgImage)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
@@ -132,10 +132,11 @@ const createCard = data => {
 }
 
 const modal = document.querySelector('.modal')
-modal.addEventListener('click', e => {
-  if (e.target !== e.currentTarget) return
-  modal.classList.remove('modal-active')
-})
+modal &&
+  modal.addEventListener('click', e => {
+    if (e.target !== e.currentTarget) return
+    modal.classList.remove('modal-active')
+  })
 
 const createModal = data => {
   const card = document.querySelector('.modal-card')
@@ -163,8 +164,9 @@ const createMovie = data => {
   })
 }
 
-const deleteMovie = (e, data) => {
+function deleteMovie(e, data) {
   const card = e.target.parentElement
+  console.log(card)
   card.classList.add('fall')
   card.addEventListener('transitionend', () => card.remove())
   removeLocalMovie(data)
@@ -193,7 +195,7 @@ search.addEventListener('submit', e => {
 const checkMovie = (movieList, data) =>
   movieList.some(movie => movie.id === data.id)
 
-const getIndex = (movieList, data) => {
+function getIndex(movieList, data) {
   let index
   movieList.forEach((movie, i) => {
     if (movie.id === data.id) index = i

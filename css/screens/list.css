@@ -22,13 +22,13 @@ h1 {
   row-gap: 2rem;
 }
 
-.wrapper > .active {
+.wrapper .active {
   padding: 0;
   opacity: 1;
   top: 0;
 }
 
-.fall {
+.wrapper .fall {
   transition: all 0.4s ease;
   transform: translateY(8rem);
   opacity: 0;
@@ -59,7 +59,7 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
     justify-items: center;
   }
-  .wrapper > .active {
+  .wrapper .active {
     grid-template-columns: 1fr 0;
   }
 }

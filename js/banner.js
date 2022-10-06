@@ -14,7 +14,7 @@ window.addEventListener('resize', () => {
 
     document.querySelector(
       '.banner'
-    ).style.backgroundImage = `linear-gradient(${pos}, #100f0f,  #0002), 
+    ).style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  #0002), 
     url(${getMovieImage(bgImage)})`
   })
 })
