@@ -14,36 +14,35 @@ const toggleMenu = () =>
 /* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
-const ID = 7
 
-const getMovies = async id => {
+const getMovies = async type => {
   return await Promise.all(
-    ['popular', 'top_rated'].map(type =>
-      fetch(`${BASE_PATH}/${id}/${type}?api_key=${API_KEY}`).then(response =>
-        response.json()
-      )
+    ['popular', 'top_rated'].map(id =>
+      fetch(
+        `${BASE_PATH}/${type}/${id}?api_key=${API_KEY}&with_genres=16`
+      ).then(response => response.json())
     )
   )
 }
 
-const getGenres = async id => {
+const getGenres = async type => {
   return await (
-    await fetch(`${BASE_PATH}/genre/${id}/list?api_key=${API_KEY}`)
+    await fetch(`${BASE_PATH}/genre/${type}/list?api_key=${API_KEY}`)
   ).json()
 }
 
-const getMoviesWithGenre = async (id, genreId) =>
+const getMoviesWithGenre = async (type, genreId) =>
   await (
     await fetch(
-      `${BASE_PATH}/${id}/popular?api_key=${API_KEY}&with_genres=${genreId}`
+      `${BASE_PATH}/${type}/popular?api_key=${API_KEY}&with_genres=${genreId}`
     )
   ).json()
 
 const getMovieImage = (path, format) =>
   `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
-const getDetail = async (data, id) =>
-  await (await fetch(`${BASE_PATH}/${id}/${data.id}?api_key=${API_KEY}`)).json()
+const getDetail = async (type, id) =>
+  await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
 /* end utils function */
 
 const dynamicBgImage = (poster_path, backdrop_path) => {
@@ -77,7 +76,7 @@ const createBanner = data => {
   overview.innerHTML = `<p>${data.overview}</p>`
 }
 
-const paintCard = (card, data) => {
+const paintCard = (card, data, type) => {
   card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
@@ -87,13 +86,12 @@ const paintCard = (card, data) => {
 
   let detail = card.querySelector('div')
 
-  const id = document.querySelector('main').id
-  console.log(id)
   let ul = document.createElement('ul')
-  getDetail(data, id).then(data => {
+  getDetail(type, data.id).then(data => {
     const releaseYear = document.createElement('li')
-    console.log(data)
-    releaseYear.innerText = `${data.release_date.split('-')[0]}`
+    releaseYear.innerText = `${
+      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    }`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {
@@ -126,7 +124,7 @@ const paintCard = (card, data) => {
 const createCard = data => {
   const card = document.createElement('div')
   card.classList.add('card', 'modal-card', 'active')
-  paintCard(card, data)
+  paintCard(card, data, data.type)
 
   const deleteBtn = document.createElement('i')
   deleteBtn.classList.add('fas', 'fa-trash')
@@ -145,12 +143,13 @@ modal &&
 
 const createModal = data => {
   const card = document.querySelector('.modal-card')
-  paintCard(card, data)
+  const type = document.querySelector('main').id
+  paintCard(card, data, type)
 
   const addBtn = document.createElement('i')
   addBtn.classList.add('fas', 'fa-plus')
   addBtn.addEventListener('click', () => {
-    saveLocalMovies(data)
+    saveLocalMovies(data, type)
     modal.classList.remove('modal-active')
   })
 
@@ -209,11 +208,11 @@ function checkLocalMovies() {
   return (movieList = JSON.parse(localStorage.getItem('movie-list')))
 }
 
-function saveLocalMovies(movie) {
+function saveLocalMovies(movie, type) {
   checkLocalMovies()
 
   if (checkMovie(movieList, movie)) return
-  movieList.push(movie)
+  movieList.push({ ...movie, type })
   localStorage.setItem('movie-list', JSON.stringify(movieList))
 }
 

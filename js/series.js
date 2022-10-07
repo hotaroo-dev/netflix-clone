@@ -1,6 +1,6 @@
 getMovies('tv').then(res => {
   const tv = [...res[1].results, ...res[0].results]
-  createBanner(tv[ID])
+  createBanner(tv[tvId])
 
   swiperInit(0)
   const movieRow = document.querySelector('#row0')
