@@ -18,7 +18,7 @@ const ID = 7
 
 const getMovies = async id => {
   return await Promise.all(
-    ['top_rated', 'popular'].map(type =>
+    ['popular', 'top_rated'].map(type =>
       fetch(`${BASE_PATH}/${id}/${type}?api_key=${API_KEY}`).then(response =>
         response.json()
       )
@@ -42,8 +42,8 @@ const getMoviesWithGenre = async (id, genreId) =>
 const getMovieImage = (path, format) =>
   `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
-const getDetail = async data =>
-  await (await fetch(`${BASE_PATH}/tv/${data.id}?api_key=${API_KEY}`)).json()
+const getDetail = async (data, id) =>
+  await (await fetch(`${BASE_PATH}/${id}/${data.id}?api_key=${API_KEY}`)).json()
 /* end utils function */
 
 const dynamicBgImage = (poster_path, backdrop_path) => {
@@ -81,14 +81,19 @@ const paintCard = (card, data) => {
   card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
-  card.innerHTML += `<div><h3>${data.name}</h3><p>${data.overview}</p></div>`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
+    data.overview
+  }</p></div>`
 
   let detail = card.querySelector('div')
 
+  const id = document.querySelector('main').id
+  console.log(id)
   let ul = document.createElement('ul')
-  getDetail(data).then(data => {
+  getDetail(data, id).then(data => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${data.first_air_date.split('-')[0]}`
+    console.log(data)
+    releaseYear.innerText = `${data.release_date.split('-')[0]}`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {

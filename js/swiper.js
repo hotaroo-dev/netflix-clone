@@ -1,17 +1,16 @@
-function swiperInit(id) {
+function swiperInit(index) {
   const swiper = document.createElement('div')
   const swiperWrapper = document.createElement('div')
   swiper.appendChild(swiperWrapper)
-  document.querySelector(`main #id${id}`).appendChild(swiper)
+  document.querySelector(`main #id${index}`).appendChild(swiper)
 
   swiper.classList.add(`swiper`)
-  swiperWrapper.setAttribute('id', `row${id}`)
+  swiperWrapper.setAttribute('id', `row${index}`)
   swiperWrapper.classList.add('swiper-wrapper', 'movies')
 
   return new Swiper(`.swiper`, {
     direction: 'horizontal',
     speed: 350,
-    loop: true,
     breakpoints: {
       320: {
         slidesPerView: 3.5,

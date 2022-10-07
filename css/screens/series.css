@@ -65,8 +65,12 @@ main > div > h1 {
   line-height: 2;
 }
 
-main > div:first-child {
+main > div {
   margin-bottom: 1.2rem;
+}
+
+main > div:last-child {
+  margin-bottom: 0;
 }
 
 .swiper {

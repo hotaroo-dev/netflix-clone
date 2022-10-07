@@ -1,22 +1,21 @@
 const homePath = document.querySelector('#home a')
 const tvPath = document.querySelector('#series a')
 
-/*
 window.addEventListener('resize', () => {
-  getMovies().then(response => {
-    const movie = response[0]
-    const tv = response[1]
-    let moiveBanner = homePath.classList.contains('active') && movie.results[id]
-    let tvBanner = tvPath.classList.contains('active') && tv.results[id]
+  homePath.classList.contains('active') && dynamicBanner('movie')
+  tvPath.classList.contains('active') && dynamicBanner('tv')
+})
 
-    const poster = moiveBanner.poster_path || tvBanner.poster_path
-    const backdrop = moiveBanner.backdrop_path || tvBanner.backdrop_path
-    const { bgImage, pos, brightness } = dynamicBgImage(poster, backdrop)
-
+function dynamicBanner(id) {
+  getMovies(id).then(res => {
+    const banner = res[1].results[ID]
+    const { bgImage, pos, brightness } = dynamicBgImage(
+      banner.poster_path,
+      banner.backdrop_path
+    )
     document.querySelector(
       '.banner'
     ).style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%, ${brightness}), 
-    url(${getMovieImage(bgImage)})`
+      url(${getMovieImage(bgImage)})`
   })
-})
-*/
+}
