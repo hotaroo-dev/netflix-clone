@@ -1,7 +1,7 @@
 const homePath = document.querySelector('#home a')
 const tvPath = document.querySelector('#series a')
 const movieId = 1
-const tvId = 14
+const tvId = 15
 
 window.addEventListener('resize', () => {
   homePath.classList.contains('active') && dynamicBanner('movie', movieId)

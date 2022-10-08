@@ -61,7 +61,7 @@ main {
 
 main > div > h1 {
   font-size: 1.2rem;
-  letter-spacing: 2px;
+  font-weight: 600;
   line-height: 2;
 }
 
@@ -148,7 +148,7 @@ main > div:last-child {
 
 @media screen and (min-width: 375px) and (max-width: 667px) {
   .series-banner {
-    height: 70vh;
+    height: 74vh;
   }
   .series-banner .title {
     font-size: 40px;

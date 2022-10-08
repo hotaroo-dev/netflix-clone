@@ -8,6 +8,15 @@ window.addEventListener('scroll', () => {
   }
 })
 
+const body = document.querySelector('body')
+const theme = localStorage.getItem('theme')
+theme && body.classList.add(theme)
+
+const toggleMode = () => {
+  body.classList.toggle('light')
+  localStorage.setItem('theme', body.classList.value)
+}
+
 const toggleMenu = () =>
   document.querySelector('nav.mobile').classList.toggle('open')
 
@@ -80,18 +89,16 @@ const paintCard = (card, data, type) => {
   card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
 
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(type, data.id).then(data => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {

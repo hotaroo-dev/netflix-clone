@@ -22,8 +22,9 @@
   <body>
     <header class="header">
       <div class="col">
+        <div class="netflix mobile"></div>
         <svg
-          class="logo"
+          class="logo no-mobile"
           xmlns="http://www.w3.org/2000/svg"
           width="1024"
           height="276.742"
@@ -65,13 +66,25 @@
             name="title"
           />
         </form>
+
+        <div class="icons">
+          <button class="icon mobile moon" onclick="toggleMode()">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="icon mobile sun" onclick="toggleMode()">
+            <i class="fas fa-sun"></i>
+          </button>
+        </div>
+
         <nav class="mobile">
-          <button onclick="toggleMenu()" />
+          <button class="icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </button>
           <ul class="dropdown">
             <li id="home"><a href="index.html">Home</a></li>
             <li id="series"><a href="series.html">Series</a></li>
             <li id="list"><a href="list.html">My List</a></li>
-            <li id="list">
+            <li>
               <a href="https://github.com/Rolo-coding/movie-app" target="_blank"
                 >Source code</a
               >

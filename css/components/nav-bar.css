@@ -36,45 +36,13 @@
   transform: scaleX(1);
 }
 
-nav.mobile button {
-  --size: 26px;
-  position: relative;
-  border: none;
-  outline: none;
-  background: transparent;
-  cursor: pointer;
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  align-items: center;
+nav.mobile > button {
+  border: 1px solid #fff4;
+  background-color: transparent;
 }
 
-nav.mobile button::after,
-nav.mobile button::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 4px;
-  transition: transform 0.2s ease-in-out;
-}
-
-nav.mobile button::before {
-  transform: translateY(calc(50% - 5px));
-}
-
-nav.mobile button::after {
-  transform: translateY(calc(50% + 4px));
-}
-
-nav.mobile.open button::before {
-  transform: rotate(45deg);
-}
-
-nav.mobile.open button::after {
-  transform: rotate(-45deg);
+nav.mobile > button:hover {
+  background-color: #fff2;
 }
 
 nav.mobile {
@@ -88,9 +56,9 @@ nav.mobile.open .dropdown {
 }
 
 .dropdown {
-  min-width: 13rem;
+  min-width: 12.5rem;
   position: absolute;
-  top: 34px;
+  top: 50px;
   right: 0;
   padding: 10px 0;
   border-radius: 8px;
@@ -133,13 +101,10 @@ nav.mobile.open .dropdown {
   .no-mobile {
     display: none !important;
   }
-  form.search {
-    margin-right: 10px;
-  }
 }
 
 @media screen and (min-width: 668px) {
   .mobile {
-    display: none;
+    display: none !important;
   }
 }

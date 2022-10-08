@@ -17,6 +17,23 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
+.netflix {
+  height: 2.5rem;
+  width: 1.5rem;
+  border-left: 0.5rem solid var(--red);
+  border-right: 0.5rem solid var(--red);
+}
+
+.netflix::before {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  transform: skewX(21.5deg);
+  background-color: var(--red);
+  box-shadow: 0 0 4px #000;
+}
+
 .col:last-child {
   margin-left: auto;
 }
@@ -71,7 +88,7 @@
   color: var(--white-darker);
 }
 
-.col .search-btn {
+.col svg {
   cursor: pointer;
   color: #fff;
   height: 24px;
@@ -100,7 +117,10 @@ form.active .search-btn {
 
 @media screen and (max-width: 667px) {
   .header {
-    padding: 25px;
+    padding: 16px 20px;
+  }
+  .col:last-child {
+    gap: 8px;
   }
   .col .logo {
     margin-right: 80px;

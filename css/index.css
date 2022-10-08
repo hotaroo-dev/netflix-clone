@@ -7,6 +7,7 @@
 @import 'components/banner.css';
 @import 'components/movies.css';
 @import 'components/modal.css';
+@import 'components/lightTheme.css';
 
 /* Screens */
 @import 'screens/series.css';
@@ -28,4 +29,5 @@ body {
   line-height: 1.2;
   color: #e5e5e5;
   background-color: #202023;
+  transition: all 0.2s ease-in-out;
 }

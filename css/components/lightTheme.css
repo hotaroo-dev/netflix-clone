@@ -1,0 +1,87 @@
+.light {
+  color: #202023;
+  background-color: rgb(240 231 219);
+}
+
+.light svg,
+.light i {
+  color: #191919;
+}
+
+.light i.fa-moon {
+  color: var(--white-darker);
+}
+
+.light nav.mobile > button {
+  border: 1px solid #0005;
+}
+
+.light nav.mobile > button:hover {
+  background-color: #edf2f7;
+}
+
+.light .icon.sun {
+  transform: translateY(2rem);
+  opacity: 0;
+}
+
+.light .icon.moon {
+  transform: none;
+  opacity: 1;
+}
+
+.light .col .input {
+  background-color: #fff8;
+}
+
+.light .input,
+.light .input::placeholder {
+  color: #000;
+}
+
+.icons {
+  position: relative;
+}
+
+.icon {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0;
+  border-radius: 6px;
+  color: #fffa;
+  border: none;
+  background: #f8d38d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon:hover {
+  background-color: #f6ad55;
+}
+
+.icon > i {
+  height: 1rem;
+  width: 1rem;
+  line-height: 1rem;
+}
+
+.icon.moon {
+  position: absolute;
+  top: 0;
+  background-color: #805ad5;
+  opacity: 0;
+  transform: translateY(-2rem);
+}
+
+.icon.moon:hover {
+  background-color: #6b46c1;
+}
+
+.icon .fa-sun {
+  color: #202023;
+}
