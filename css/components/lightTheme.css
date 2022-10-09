@@ -3,21 +3,33 @@
   background-color: rgb(240 231 219);
 }
 
-.light svg,
-.light i {
-  color: #191919;
-}
-
+.light .banner,
+.light .card,
 .light i.fa-moon {
   color: var(--white-darker);
 }
 
-.light nav.mobile > button {
-  border: 1px solid #0005;
+.light svg,
+.light i,
+.light .items a,
+.light .dropdown a {
+  color: #000;
 }
 
-.light nav.mobile > button:hover {
-  background-color: #edf2f7;
+.light .col .input,
+.light .dropdown {
+  background-color: #fff8;
+}
+
+.col .input,
+.dropdown {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.light .input,
+.light .input::placeholder {
+  color: #000;
 }
 
 .light .icon.sun {
@@ -30,16 +42,16 @@
   opacity: 1;
 }
 
-.light .col .input {
-  background-color: #fff8;
+.light nav.mobile > button {
+  border: 1px solid #0005;
 }
 
-.light .input,
-.light .input::placeholder {
-  color: #000;
+.light nav.mobile > button:hover,
+.light .dropdown li:hover {
+  background-color: #edf2f7;
 }
 
-.icons {
+.light .icons {
   position: relative;
 }
 
@@ -57,7 +69,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .icon:hover {

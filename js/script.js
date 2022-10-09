@@ -54,22 +54,6 @@ const getDetail = async (type, id) =>
   await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
 /* end utils function */
 
-const dynamicBgImage = (poster_path, backdrop_path) => {
-  let bgImage
-  let pos
-  let brightness
-  if (innerWidth < 667) {
-    bgImage = poster_path
-    pos = 'to top'
-    brightness = 'rgba(0, 0, 0, 0)'
-  } else {
-    bgImage = backdrop_path
-    pos = 'to right'
-    brightness = '#0002'
-  }
-  return { bgImage, pos, brightness }
-}
-
 const createBanner = data => {
   const banner = document.querySelector('.banner')
   const title = banner.querySelector('.title')
@@ -79,7 +63,7 @@ const createBanner = data => {
     data.backdrop_path
   )
 
-  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f 5%,  ${brightness}), 
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f,  ${brightness}), 
     url(${getMovieImage(bgImage)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
@@ -188,9 +172,7 @@ const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('svg')
 const input = document.querySelector('input[name="title"]')
 
-searchBtn.addEventListener('click', () => {
-  search.classList.toggle('active')
-})
+searchBtn.addEventListener('click', () => search.classList.toggle('active'))
 
 search.addEventListener('submit', e => {
   e.preventDefault()

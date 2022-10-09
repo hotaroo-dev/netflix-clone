@@ -36,6 +36,7 @@
 
 .col:last-child {
   margin-left: auto;
+  gap: 8px;
 }
 
 .header .col,
@@ -118,9 +119,6 @@ form.active .search-btn {
 @media screen and (max-width: 667px) {
   .header {
     padding: 16px 20px;
-  }
-  .col:last-child {
-    gap: 8px;
   }
   .col .logo {
     margin-right: 80px;

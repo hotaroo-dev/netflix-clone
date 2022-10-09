@@ -7,8 +7,9 @@
 .movie img {
   max-width: 100%;
   border-radius: 6px;
-  box-shadow: 0 4px 12px #0005;
   transition: transform 0.2s ease-in-out;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .movie h3 {

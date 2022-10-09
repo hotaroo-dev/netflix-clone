@@ -50,8 +50,8 @@
 
 @media screen and (min-width: 375px) and (max-width: 667px) {
   .movie-list {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .wrapper {
     display: grid;
