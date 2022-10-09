@@ -6,9 +6,3 @@ getMovies('tv').then(res => {
   const movieRow = document.querySelector('#row0')
   tv.map(movie => createMovie(movie, movieRow))
 })
-
-document
-  .querySelector('ul.genres')
-  .addEventListener('click', () =>
-    document.querySelector('.swiper').swiper.slideTo(0)
-  )
