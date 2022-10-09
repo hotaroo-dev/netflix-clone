@@ -40,7 +40,7 @@
 }
 
 .search-movies .wrapper {
-  height: 363px;
+  height: 381.2px;
   grid-template-columns: 1fr;
   gap: 0;
   background-color: #0002;
@@ -55,7 +55,7 @@
 .search-movies .movie {
   padding: 12px;
   display: grid;
-  grid-template-columns: 64px 1fr;
+  grid-template-columns: 68px 1fr;
   border-bottom: 1px solid #fff2;
   transition: background-color 0.2s ease-in-out;
   scroll-snap-align: center;
@@ -70,7 +70,8 @@
 }
 
 .search-movies .movie img {
-  min-height: 96px;
+  min-height: 102px;
+  border-radius: 4px;
 }
 
 .search-movies .movie div {
