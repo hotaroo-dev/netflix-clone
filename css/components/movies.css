@@ -40,10 +40,10 @@
 }
 
 .search-movies .wrapper {
-  height: 365px;
+  height: 363px;
   grid-template-columns: 1fr;
   gap: 0;
-  background-color: transparent;
+  background-color: #0002;
   border: 1px solid #fff2;
   border-radius: 6px;
   opacity: 0;
@@ -69,6 +69,10 @@
   border: none;
 }
 
+.search-movies .movie img {
+  min-height: 96px;
+}
+
 .search-movies .movie div {
   margin-top: 6px;
   margin-left: 20px;
@@ -84,4 +88,22 @@
   margin-top: 10px;
   font-weight: 600;
   opacity: 0.7;
+}
+
+@media screen and (min-width: 668px) {
+  .search-movies {
+    padding: 60px;
+    padding-top: 55px;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .search-movies .wrapper {
+    width: 330px;
+    margin-left: auto;
+  }
+
+  .search-movies .movie h3 {
+    font-size: 1rem;
+  }
 }

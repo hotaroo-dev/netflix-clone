@@ -1,7 +1,7 @@
 const homePath = document.querySelector('#home a')
 const tvPath = document.querySelector('#series a')
 const movieId = 1
-const tvId = 5
+const tvId = 12
 
 window.addEventListener('resize', () => {
   window.innerWidth > 800

@@ -2,6 +2,10 @@ const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('svg')
 const input = document.querySelector('input[name="title"]')
 
+window.innerWidth > 800
+  ? search.classList.add('active')
+  : search.classList.remove('active')
+
 searchBtn.addEventListener('click', () => search.classList.toggle('active'))
 
 const searchMovies = async title =>
@@ -9,9 +13,8 @@ const searchMovies = async title =>
     await fetch(`${BASE_PATH}/search/movie?api_key=${API_KEY}&query=${title}`)
   ).json()
 
-search.addEventListener('submit', e => {
-  e.preventDefault()
-  if (!input.value) return
+input.addEventListener('keyup', e => {
+  if (!e.target.value) return
 
   const movies = document.querySelector('.search-movies .wrapper')
   movies.innerHTML = ''
@@ -28,7 +31,10 @@ search.addEventListener('submit', e => {
     if (e.target !== e.currentTarget) return
     searchWrapper.classList.remove('active')
   })
+})
 
+search.addEventListener('submit', e => {
+  e.preventDefault()
   input.value = ''
 })
 

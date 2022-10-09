@@ -9,7 +9,8 @@
   color: var(--white-darker);
 }
 
-.light i.fa-plus {
+.light i.fa-plus,
+.light i.fa-trash {
   color: aquamarine;
   opacity: 0.8;
 }

@@ -115,7 +115,7 @@ const paintCard = (data, card, type) => {
 const createCard = data => {
   const card = document.createElement('div')
   card.classList.add('card', 'modal-card', 'active')
-  paintCard(data, card, data.type)
+  paintCard(data, card, data.type || 'movie')
 
   const deleteBtn = document.createElement('i')
   deleteBtn.classList.add('fas', 'fa-trash')
@@ -142,6 +142,9 @@ const createModal = data => {
   addBtn.addEventListener('click', () => {
     saveLocalMovies(data, type)
     modal.classList.remove('modal-active')
+
+    document.querySelector('main').classList.contains('movie-list') &&
+      createCard(data)
   })
 
   card.appendChild(addBtn)
@@ -151,7 +154,8 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
+  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) || '../no-icon.jpg'
+    }">`
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
@@ -163,7 +167,6 @@ const createMovie = (data, el) => {
 
 function deleteMovie(e, data) {
   const card = e.target.parentElement
-  console.log(card)
   card.classList.add('fall')
   card.addEventListener('transitionend', () => card.remove())
   removeLocalMovie(data)
