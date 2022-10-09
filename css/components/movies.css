@@ -10,6 +10,7 @@
   transition: transform 0.2s ease-in-out;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  cursor: pointer;
 }
 
 .movie h3 {
@@ -17,4 +18,56 @@
   font-weight: 600;
   color: #000;
   text-align: center;
+}
+
+.search-movies {
+  min-width: 100%;
+  position: absolute;
+  top: 60px;
+}
+
+.search-movies .wrapper {
+  display: flex;
+  gap: 0;
+  flex-direction: column;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #fff2;
+  border-radius: 6px;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.search-movies .movie {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  border-bottom: 1px solid #fff2;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-movies .movie:hover {
+  background-color: #fff2;
+}
+
+.search-movies .movie:last-child {
+  border: none;
+}
+
+.search-movies .movie div {
+  margin-top: 6px;
+  margin-left: 20px;
+}
+
+.search-movies .movie h3 {
+  color: var(--white-darker);
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.search-movies .movie p {
+  margin-top: 10px;
+  font-weight: 600;
+  opacity: 0.7;
 }

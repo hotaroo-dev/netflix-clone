@@ -69,7 +69,7 @@ const createBanner = data => {
   overview.innerHTML = `<p>${data.overview}</p>`
 }
 
-const paintCard = (card, data, type) => {
+const paintCard = (data, card, type) => {
   card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
   card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
@@ -115,14 +115,14 @@ const paintCard = (card, data, type) => {
 const createCard = data => {
   const card = document.createElement('div')
   card.classList.add('card', 'modal-card', 'active')
-  paintCard(card, data, data.type)
+  paintCard(data, card, data.type)
 
   const deleteBtn = document.createElement('i')
   deleteBtn.classList.add('fas', 'fa-trash')
   deleteBtn.addEventListener('click', e => deleteMovie(e, data))
 
   card.appendChild(deleteBtn)
-  document.querySelector('main .wrapper').appendChild(card)
+  document.querySelector('.movie-list .wrapper').appendChild(card)
 }
 
 const modal = document.querySelector('.modal')
@@ -135,7 +135,7 @@ modal &&
 const createModal = data => {
   const card = document.querySelector('.modal-card')
   const type = document.querySelector('main').id
-  paintCard(card, data, type)
+  paintCard(data, card, type)
 
   const addBtn = document.createElement('i')
   addBtn.classList.add('fas', 'fa-plus')
@@ -147,9 +147,9 @@ const createModal = data => {
   card.appendChild(addBtn)
 }
 
-const createMovie = (data, row) => {
+const createMovie = (data, el) => {
   const movie = document.createElement('div')
-  row.appendChild(movie)
+  el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
   movie.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
 
@@ -157,6 +157,8 @@ const createMovie = (data, row) => {
     modal.classList.add('modal-active')
     createModal(data)
   })
+
+  return movie
 }
 
 function deleteMovie(e, data) {
@@ -166,19 +168,6 @@ function deleteMovie(e, data) {
   card.addEventListener('transitionend', () => card.remove())
   removeLocalMovie(data)
 }
-
-/* search */
-const search = document.querySelector('form.search')
-const searchBtn = search.querySelector('svg')
-const input = document.querySelector('input[name="title"]')
-
-searchBtn.addEventListener('click', () => search.classList.toggle('active'))
-
-search.addEventListener('submit', e => {
-  e.preventDefault()
-  input.value = ''
-})
-/* end search */
 
 /* local storage */
 const checkMovie = (movieList, data) =>

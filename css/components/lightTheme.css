@@ -9,6 +9,11 @@
   color: var(--white-darker);
 }
 
+.light i.fa-plus {
+  color: aquamarine;
+  opacity: 0.8;
+}
+
 .light svg,
 .light i,
 .light .items a,
@@ -53,6 +58,23 @@
 
 .light .icons {
   position: relative;
+}
+
+.light .search-movies .wrapper {
+  background-color: #fff8;
+  border: 1px solid #0004;
+}
+
+.light .search-movies .movie {
+  border-bottom: 1px solid #0004;
+}
+
+.light .search-movies .movie:hover {
+  background-color: #edf2f7;
+}
+
+.light .search-movies h3 {
+  color: #191919;
 }
 
 .icon {
