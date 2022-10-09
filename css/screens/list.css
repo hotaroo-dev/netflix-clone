@@ -34,11 +34,11 @@
   opacity: 0;
 }
 
-.active img {
+.wrapper .active img {
   border-radius: 0;
 }
 
-.active > div {
+.wrapper .active > div {
   padding-top: 20px;
 }
 
@@ -57,8 +57,7 @@
   .wrapper {
     display: grid;
     column-gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 182px));
   }
   .wrapper .active {
     grid-template-columns: 1fr 0;

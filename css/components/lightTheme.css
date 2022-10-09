@@ -77,6 +77,11 @@
   color: #191919;
 }
 
+.light .card ::-webkit-scrollbar-thumb,
+.light .wrapper::-webkit-scrollbar-thumb {
+  background-color: #0008;
+}
+
 .icon {
   min-width: 2.5rem;
   height: 2.5rem;

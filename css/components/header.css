@@ -36,7 +36,7 @@
 
 .col:last-child {
   margin-left: auto;
-  gap: 8px;
+  gap: 16px;
 }
 
 .header .col,
@@ -122,5 +122,8 @@ form.active .search-btn {
   }
   .col .logo {
     margin-right: 80px;
+  }
+  .col:last-child {
+    gap: 8px;
   }
 }

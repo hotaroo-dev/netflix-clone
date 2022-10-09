@@ -134,7 +134,7 @@ modal &&
 
 const createModal = data => {
   const card = document.querySelector('.modal-card')
-  const type = document.querySelector('main').id
+  const type = document.querySelector('main').id || 'movie'
   paintCard(data, card, type)
 
   const addBtn = document.createElement('i')

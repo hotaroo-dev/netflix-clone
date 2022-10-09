@@ -129,13 +129,15 @@ main > div:last-child {
   overflow: auto;
 }
 
-.card ::-webkit-scrollbar {
+.card ::-webkit-scrollbar,
+.wrapper::-webkit-scrollbar {
   width: 0.4rem;
   background: transparent;
 }
 
-.card ::-webkit-scrollbar-thumb {
-  background-color: #0007;
+.card ::-webkit-scrollbar-thumb,
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: #fff8;
   border-radius: 10px;
 }
 

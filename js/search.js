@@ -11,20 +11,29 @@ const searchMovies = async title =>
 
 search.addEventListener('submit', e => {
   e.preventDefault()
+  if (!input.value) return
+
   const movies = document.querySelector('.search-movies .wrapper')
   movies.innerHTML = ''
   searchMovies(input.value).then(({ results }) => {
-    results.splice(0, 5).map(movie => {
+    if (!results) return
+    results.map(movie => {
       createSearchMovie(movie, movies)
     })
   })
 
-  movies.style.opacity = 1
+  const searchWrapper = movies.parentElement
+  searchWrapper.classList.add('active')
+  searchWrapper.addEventListener('click', e => {
+    if (e.target !== e.currentTarget) return
+    searchWrapper.classList.remove('active')
+  })
+
   input.value = ''
 })
 
 function createSearchMovie(data, el) {
   const movie = createMovie(data, el)
-  const release = data.release_date.split('-')[0]
+  const release = data.release_date?.split('-')[0] || 'unknown year'
   movie.innerHTML += `<div><h3>${data.title}</h3><p>${release}</p></div>`
 }
