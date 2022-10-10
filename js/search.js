@@ -16,13 +16,13 @@ const searchMovies = async title =>
 input.addEventListener('keyup', e => {
   const movies = document.querySelector('.search-movies .wrapper')
   const searchWrapper = movies.parentElement
+  movies.textContent = ''
 
   if (!e.target.value) {
     searchWrapper.classList.remove('active')
     return
   }
 
-  movies.innerHTML = ''
   searchMovies(input.value).then(({ results }) => {
     if (!results) return
     results.map(movie => {
@@ -32,7 +32,9 @@ input.addEventListener('keyup', e => {
 
   searchWrapper.classList.add('active')
   searchWrapper.addEventListener('click', e => {
+    console.log(e.target, e.currentTarget)
     if (e.target !== e.currentTarget) return
+    movies.textContent = ''
     searchWrapper.classList.remove('active')
   })
 })

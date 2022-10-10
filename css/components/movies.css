@@ -23,7 +23,7 @@
   z-index: -1;
   min-width: 100%;
   height: 100%;
-  padding-top: 55px;
+  margin-top: 55px;
   position: absolute;
   top: 0;
   transition: all 0.15s ease-in-out;
@@ -93,14 +93,13 @@
 
 @media screen and (min-width: 668px) {
   .search-movies {
-    padding: 60px;
-    padding-top: 55px;
+    padding: 0 60px;
   }
 }
 
 @media screen and (min-width: 801px) {
   .search-movies .wrapper {
-    width: 330px;
+    width: 340px;
     margin-left: auto;
   }
 
