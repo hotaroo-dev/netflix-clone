@@ -157,7 +157,7 @@ const createMovie = (data, el) => {
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
   movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) || '../images/no-icon.png'
+    (data.poster_path && getMovieImage(data.poster_path)) || './images/no-icon.png'
   }">`
 
   movie.addEventListener('click', () => {

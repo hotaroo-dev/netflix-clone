@@ -103,6 +103,7 @@
 @media screen and (min-width: 801px) {
   .search-movies .wrapper {
     width: 340px;
+    margin-top: 1.5rem;
     margin-left: auto;
   }
 
