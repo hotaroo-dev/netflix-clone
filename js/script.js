@@ -63,18 +63,21 @@ const paintCard = (data, card, type) => {
     url(${getMovieImage(data.backdrop_path)})`
     : '#191919'
   card.style.backgroundImage = bg
-  card.innerHTML = `<img src="${getMovieImage(data.poster_path) || './images/no-icon.png'
-    }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
-    }</p></div>`
+  card.innerHTML = `<img src="${
+    getMovieImage(data.poster_path) || './images/no-icon.png'
+  }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
+    data.overview
+  }</p></div>`
 
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(type, data.id).then(data => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-      }`
+    releaseYear.innerText = `${
+      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    }`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {
@@ -146,15 +149,10 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-<<<<<<< HEAD
-  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) ||
-    './images/no-icon.png'
-    }">`
-=======
   movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) || './images/no-icon.png'
+    (data.poster_path && getMovieImage(data.poster_path)) ||
+    './images/no-icon.png'
   }">`
->>>>>>> 9fcb218179c5e83501b21e56d84010ea04c40fe0
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
