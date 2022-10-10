@@ -146,9 +146,15 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
+<<<<<<< HEAD
   movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) ||
     './images/no-icon.png'
     }">`
+=======
+  movie.innerHTML = `<img src="${
+    (data.poster_path && getMovieImage(data.poster_path)) || './images/no-icon.png'
+  }">`
+>>>>>>> 9fcb218179c5e83501b21e56d84010ea04c40fe0
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
