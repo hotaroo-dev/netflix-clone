@@ -32,7 +32,6 @@ input.addEventListener('keyup', e => {
 
   searchWrapper.classList.add('active')
   searchWrapper.addEventListener('click', e => {
-    console.log(e.target, e.currentTarget)
     if (e.target !== e.currentTarget) return
     movies.textContent = ''
     searchWrapper.classList.remove('active')
