@@ -149,7 +149,7 @@ main > div:last-child {
   cursor: pointer;
 }
 
-@media screen and (min-width: 375px) and (max-width: 667px) {
+@media screen and (min-width: 320px) and (max-width: 667px) {
   .series-banner {
     height: 74vh;
   }
@@ -174,7 +174,7 @@ main > div:last-child {
     grid-template-columns: 200px 0px;
   }
   .card > div > div {
-    padding: 0 10px;
+    padding-inline: 10px;
   }
 }
 

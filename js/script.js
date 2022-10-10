@@ -24,15 +24,18 @@ const toggleMenu = () =>
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
-const getMovies = async type => {
-  return await Promise.all(
-    ['popular', 'top_rated'].map(id =>
-      fetch(
-        `${BASE_PATH}/${type}/${id}?api_key=${API_KEY}&with_genres=16`
-      ).then(response => response.json())
+const getMovies = async () =>
+  await Promise.all(
+    ['movie', 'tv'].map(type =>
+      Promise.all(
+        ['popular', 'top_rated'].map(id =>
+          fetch(
+            `${BASE_PATH}/${type}/${id}?api_key=${API_KEY}&with_genres=16`
+          ).then(response => response.json())
+        )
+      )
     )
   )
-}
 
 const getGenres = async type => {
   return await (
@@ -54,37 +57,24 @@ const getDetail = async (type, id) =>
   await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
 /* end utils function */
 
-const createBanner = data => {
-  const banner = document.querySelector('.banner')
-  const title = banner.querySelector('.title')
-  const overview = banner.querySelector('.overview')
-  let { bgImage, pos, brightness } = dynamicBgImage(
-    data.poster_path,
-    data.backdrop_path
-  )
-
-  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f,  ${brightness}), 
-    url(${getMovieImage(bgImage)})`
-  title.innerHTML = `<h2>${data.title || data.name}</h2>`
-  overview.innerHTML = `<p>${data.overview}</p>`
-}
-
 const paintCard = (data, card, type) => {
-  card.style.backgroundImage = `linear-gradient(to right, #191919 50%,  #0002),
+  const bg = data.backdrop_path
+    ? `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path)})`
-  card.innerHTML = `<img src="${getMovieImage(data.poster_path)}">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+    : '#191919'
+  card.style.backgroundImage = bg
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path) || './images/no-icon.png'
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
 
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(type, data.id).then(data => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {
@@ -156,9 +146,9 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) || '../no-icon.jpg?'
-  }">`
+  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) ||
+    './images/no-icon.png'
+    }">`
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')

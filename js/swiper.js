@@ -2,10 +2,14 @@ function swiperInit(index) {
   const swiper = document.createElement('div')
   const swiperWrapper = document.createElement('div')
   swiper.appendChild(swiperWrapper)
-  document.querySelector(`main #id${index}`).appendChild(swiper)
+
+  const row = document.createElement('div')
+  row.setAttribute('id', `row${index}`)
+  row.append(swiper)
+  document.querySelector('main').appendChild(row)
 
   swiper.classList.add(`swiper`)
-  swiperWrapper.setAttribute('id', `row${index}`)
+  swiperWrapper.setAttribute('id', `swiper${index}`)
   swiperWrapper.classList.add('swiper-wrapper', 'movies')
 
   return new Swiper(`.swiper`, {

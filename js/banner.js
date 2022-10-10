@@ -1,29 +1,38 @@
 const homePath = document.querySelector('#home a')
 const tvPath = document.querySelector('#series a')
-const movieId = 1
-const tvId = 12
 
-window.addEventListener('resize', () => {
-  window.innerWidth > 800
-    ? search.classList.add('active')
-    : search.classList.remove('active')
+const createBanner = data => {
+  const banner = document.querySelector('.banner')
+  const title = banner.querySelector('.title')
+  const overview = banner.querySelector('.overview')
+  let { bgImage, pos, brightness } = dynamicBgImage(
+    data.poster_path,
+    data.backdrop_path
+  )
 
-  homePath.classList.contains('active') && dynamicBanner('movie', movieId)
-  tvPath.classList.contains('active') && dynamicBanner('tv', tvId)
-})
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f,  ${brightness}), 
+    url(${getMovieImage(bgImage)})`
+  title.innerHTML = `<h2>${data.title || data.name}</h2>`
+  overview.innerHTML = `<p>${data.overview}</p>`
 
-function dynamicBanner(type, id) {
-  getMovies(type).then(res => {
-    const banner = res[1]?.results[id]
-    const { bgImage, pos, brightness } = dynamicBgImage(
-      banner.poster_path,
-      banner.backdrop_path
-    )
-    document.querySelector(
-      '.banner'
-    ).style.backgroundImage = `linear-gradient(${pos}, #100f0f, ${brightness}), 
-      url(${getMovieImage(bgImage)})`
+  window.addEventListener('resize', () => {
+    window.innerWidth > 800
+      ? search.classList.add('active')
+      : search.classList.remove('active')
+
+    homePath.classList.contains('active') && dynamicBanner(data)
   })
+}
+
+function dynamicBanner(data) {
+  const { bgImage, pos, brightness } = dynamicBgImage(
+    data.poster_path,
+    data.backdrop_path
+  )
+  document.querySelector(
+    '.banner'
+  ).style.backgroundImage = `linear-gradient(${pos}, #100f0f, ${brightness}), 
+    url(${getMovieImage(bgImage)})`
 }
 
 function dynamicBgImage(poster_path, backdrop_path) {
