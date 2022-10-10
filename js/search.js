@@ -14,9 +14,14 @@ const searchMovies = async title =>
   ).json()
 
 input.addEventListener('keyup', e => {
-  if (!e.target.value) return
-
   const movies = document.querySelector('.search-movies .wrapper')
+  const searchWrapper = movies.parentElement
+
+  if (!e.target.value) {
+    searchWrapper.classList.remove('active')
+    return
+  }
+
   movies.innerHTML = ''
   searchMovies(input.value).then(({ results }) => {
     if (!results) return
@@ -25,7 +30,6 @@ input.addEventListener('keyup', e => {
     })
   })
 
-  const searchWrapper = movies.parentElement
   searchWrapper.classList.add('active')
   searchWrapper.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
