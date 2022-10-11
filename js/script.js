@@ -51,7 +51,7 @@ const getGenres = async type =>
 const getMovieWithGenres = (type, id) => {
   getGenres(type).then(({ genres }) =>
     Promise.all(
-      genres.splice(0, 7).map(genre => {
+      genres.slice(0, 7).map(genre => {
         fetch(
           `${BASE_PATH}/${type}/popular?api_key=${API_KEY}&with_genres=${genre.id}`
         )
