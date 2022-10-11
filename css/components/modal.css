@@ -36,14 +36,6 @@
   background-size: cover;
 }
 
-.modal-card > span {
-  font-size: 30px;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  cursor: pointer;
-}
-
 .modal-card > div > div {
   grid-row: 3 / 4;
   display: grid;

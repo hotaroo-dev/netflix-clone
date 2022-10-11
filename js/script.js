@@ -143,11 +143,11 @@ const createModal = data => {
   const type = document.querySelector('main').id || 'movie'
   paintCard(data, card, type)
 
-  const addBtn = document.createElement('i')
-  addBtn.classList.add('fas', 'fa-plus')
+  const addBtn = document.createElement('div')
+  addBtn.classList.add('fav')
   addBtn.addEventListener('click', () => {
+    addBtn.classList.toggle('animate')
     saveLocalMovies(data, type)
-    modal.classList.remove('modal-active')
 
     document.querySelector('main').classList.contains('movie-list') &&
       createCard(data)

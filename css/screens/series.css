@@ -143,9 +143,26 @@ main > div:last-child {
 
 .card > i {
   font-size: 1.4rem;
+}
+
+.card .fav {
+  width: 85px;
+  height: 80px;
+  background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png)
+    no-repeat;
+  background-position: 0 0;
+}
+
+.fav.animate {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+
+.card > i,
+.card .fav {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 20px;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -169,6 +186,10 @@ main > div:last-child {
     padding: 0;
     display: grid;
     grid-template-columns: 200px 0px;
+  }
+  .card .fav {
+    bottom: 8px;
+    right: 0;
   }
   .card > div > div {
     padding-inline: 10px;
