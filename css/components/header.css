@@ -116,7 +116,7 @@ form.active .search-btn {
   }
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 712px) {
   .header {
     padding-inline: 20px;
   }

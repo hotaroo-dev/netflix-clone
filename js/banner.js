@@ -17,7 +17,7 @@ const createBanner = data => {
   overview.innerHTML = `<p>${data.overview}</p>`
 
   window.addEventListener('resize', () => {
-    window.innerWidth > 800
+    window.innerWidth > 900
       ? search.classList.add('active')
       : search.classList.remove('active')
 
@@ -42,7 +42,7 @@ function dynamicBgImage(poster_path, backdrop_path) {
   let bgImage
   let pos
   let brightness
-  if (innerWidth < 667) {
+  if (innerWidth < 713) {
     bgImage = poster_path
     pos = 'to top'
     brightness = 'rgba(0, 0, 0, 0)'
