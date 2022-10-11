@@ -110,4 +110,7 @@
 }
 
 @media screen and (min-width: 801px) {
+  .movies img{
+    border-radius: 0;
+  }
 }
