@@ -83,13 +83,14 @@ const paintCard = (data, card, type) => {
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
-  getDetail(type, data.id).then(data => {
+  getDetail(type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
     releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
       }`
     ul.appendChild(releaseYear)
 
-    data.genres.map((genre, i, arr) => {
+    genres = window.innerWidth < 713 && genres.slice(0, 2)
+    genres.map((genre, i, arr) => {
       let li = document.createElement('li')
       li.innerText = arr.length - 1 === i ? `${genre.name}` : `${genre.name},`
       ul.appendChild(li)

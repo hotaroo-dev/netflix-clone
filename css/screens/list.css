@@ -34,10 +34,6 @@
   opacity: 0;
 }
 
-.wrapper .active img {
-  border-radius: 0;
-}
-
 @media screen and (min-width: 1400px) {
   .card.active {
     max-width: 50vw;
@@ -46,7 +42,8 @@
 
 @media screen and (min-width: 375px) and (max-width: 712px) {
   .movie-list,
-  .search-movies {
+  .search-movies,
+  .modal {
     padding-inline: 14px;
   }
   .wrapper {
