@@ -57,9 +57,10 @@ const getMovieWithGenres = (type, id) => {
         )
           .then(response => response.json())
           .then(({ results }) => {
-            genre.name === 'Animation' && createBanner(results[id])
             const row = createRow(genre.id, genre.name)
             results.map(movie => createMovie(movie, row))
+
+            genre.name === 'Animation' && createBanner(results[id])
           })
       })
     )

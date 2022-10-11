@@ -1,2 +1,2 @@
-const movieId = 4
+const movieId = 3
 getMovieWithGenres('movie', movieId)
