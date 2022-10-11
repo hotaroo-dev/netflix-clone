@@ -1,5 +1,5 @@
 .movie-list {
-  padding: 60px;
+  padding: 60px 40px;
 }
 
 .movie-list h1 {
@@ -38,28 +38,18 @@
   border-radius: 0;
 }
 
-.wrapper .active > div {
-  padding-top: 20px;
-}
-
 @media screen and (min-width: 1400px) {
-  .active {
+  .card.active {
     max-width: 50vw;
   }
 }
 
-@media screen and (min-width: 375px) and (max-width: 667px) {
+@media screen and (min-width: 375px) and (max-width: 712px) {
   .movie-list,
   .search-movies {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-inline: 14px;
   }
   .wrapper {
-    display: grid;
-    column-gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 182px));
-  }
-  .wrapper .active {
-    grid-template-columns: 1fr 0;
+    row-gap: 1rem;
   }
 }

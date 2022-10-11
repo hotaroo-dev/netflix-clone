@@ -15,34 +15,31 @@ function swiperInit(index) {
   return new Swiper(`.swiper`, {
     direction: 'horizontal',
     speed: 350,
+    spaceBetween: 10,
     breakpoints: {
       320: {
-        slidesPerView: 3.5,
-        spaceBetween: 10
+        slidesPerView: 3.5
       },
       480: {
-        slidesPerView: 4,
-        spaceBetween: 14
+        slidesPerView: 4.5
       },
-      560: {
-        slidesPerView: 4.5,
-        spaceBetween: 14
+      640: {
+        slidesPerView: 5.5
       },
       812: {
-        slidesPerView: 5,
-        spaceBetween: 20
+        slidesPerView: 6.5
       },
       1024: {
-        slidesPerView: 6,
-        spaceBetween: 20
+        slidesPerView: 7.5
       },
       1100: {
-        slidesPerView: 7,
-        spaceBetween: 20
+        slidesPerView: 8.5
       },
       1250: {
-        slidesPerView: 8,
-        spaceBetween: 25
+        slidesPerView: 9.5
+      },
+      1500: {
+        slidesPerView: 10.5
       }
     }
   })

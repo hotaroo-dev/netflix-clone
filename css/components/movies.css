@@ -19,7 +19,7 @@
 }
 
 .search-movies {
-  z-index: 1;
+  z-index: 2;
   min-width: 100%;
   height: calc(100% - 55px);
   margin-top: 55px;
@@ -40,7 +40,10 @@
 }
 
 .search-movies .wrapper {
+  position: fixed;
   height: 381.2px;
+  left: 20px;
+  right: 20px;
   grid-template-columns: 1fr;
   gap: 0;
   background-color: #0004;
@@ -92,20 +95,19 @@
   opacity: 0.7;
 }
 
-@media screen and (min-width: 668px) {
+@media screen and (min-width: 712px) {
   .search-movies {
-    padding-inline: 60px;
+    padding-inline: 40px;
   }
-}
-
-@media screen and (min-width: 801px) {
   .search-movies .wrapper {
     width: 340px;
     margin-top: 1.5rem;
     margin-left: auto;
   }
-
   .search-movies .movie h3 {
     font-size: 1rem;
   }
+}
+
+@media screen and (min-width: 801px) {
 }

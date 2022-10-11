@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 16px 60px;
+  padding: 16px 40px;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: fixed;
@@ -119,9 +119,6 @@ form.active .search-btn {
 @media screen and (max-width: 712px) {
   .header {
     padding-inline: 20px;
-  }
-  .col .logo {
-    margin-right: 80px;
   }
   .col:last-child {
     gap: 8px;

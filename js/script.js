@@ -75,21 +75,18 @@ const paintCard = (data, card, type) => {
     url(${getMovieImage(data.backdrop_path)})`
     : '#191919'
   card.style.backgroundImage = bg
-  card.innerHTML = `<img src="${
-    getMovieImage(data.poster_path) || './images/no-icon.png'
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path) || './images/no-icon.png'
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
 
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(type, data.id).then(data => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     data.genres.map((genre, i, arr) => {
@@ -111,7 +108,6 @@ const paintCard = (data, card, type) => {
   rating.appendChild(starsOuter)
 
   detail.append(ul, rating)
-  detail.classList.add('no-mobile')
 
   const totalRating = 10
   let starPercentage = (data.vote_average / totalRating) * 100
@@ -150,8 +146,15 @@ const createModal = data => {
     addBtn.classList.toggle('animate')
     saveLocalMovies(data, type)
 
-    document.querySelector('main').classList.contains('movie-list') &&
-      createCard(data)
+    const main = document.querySelector('main')
+    if (main.classList.contains('movie-list')) {
+      let titles = main.querySelectorAll('.card > div > h3')
+      let isMovie = false
+      titles.forEach(title => {
+        if (title.textContent === data.title) isMovie = true
+      })
+      !isMovie && createCard(data)
+    }
   })
 
   card.appendChild(addBtn)
@@ -161,10 +164,9 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) ||
+  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) ||
     './images/no-icon.png'
-  }">`
+    }">`
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
