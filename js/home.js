@@ -2,7 +2,7 @@ const titles = {
   0: 'Top rated Movies',
   1: 'Popular Movies',
   2: 'Top rated Tv Shows',
-  3: 'Popular Tv Show'
+  3: 'Popular Tv Shows'
 }
 
 let homeId = 1
