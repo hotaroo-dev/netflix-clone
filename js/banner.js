@@ -1,5 +1,6 @@
-const homePath = document.querySelector('#home a')
-const tvPath = document.querySelector('#series a')
+const homePath = document.querySelector('#home a.active')
+const moviePath = document.querySelector('#movies a.active')
+const tvPath = document.querySelector('#series a.active')
 
 const createBanner = data => {
   const banner = document.querySelector('.banner')
@@ -20,7 +21,9 @@ const createBanner = data => {
       ? search.classList.add('active')
       : search.classList.remove('active')
 
-    homePath.classList.contains('active') && dynamicBanner(data)
+    homePath && dynamicBanner(data)
+    moviePath && dynamicBanner(data)
+    tvPath && dynamicBanner(data)
   })
 }
 

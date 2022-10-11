@@ -47,3 +47,15 @@ function swiperInit(index) {
     }
   })
 }
+
+function createRow(index, title) {
+  swiperInit(index)
+
+  const row = document.querySelector(`#row${index}`)
+  const titleEl = document.createElement('h1')
+  titleEl.textContent = `${title}`
+
+  row.prepend(titleEl)
+
+  return row.querySelector(`#swiper${index}`)
+}

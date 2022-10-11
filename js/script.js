@@ -24,8 +24,8 @@ const toggleMenu = () =>
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
-const getMovies = async () =>
-  await Promise.all(
+const getMovies = () =>
+  Promise.all(
     ['movie', 'tv'].map(type =>
       Promise.all(
         ['popular', 'top_rated'].map(id =>
@@ -37,24 +37,35 @@ const getMovies = async () =>
     )
   )
 
-const getGenres = async type => {
-  return await (
-    await fetch(`${BASE_PATH}/genre/${type}/list?api_key=${API_KEY}`)
-  ).json()
-}
-
-const getMoviesWithGenre = async (type, genreId) =>
-  await (
-    await fetch(
-      `${BASE_PATH}/${type}/popular?api_key=${API_KEY}&with_genres=${genreId}`
-    )
-  ).json()
-
 const getMovieImage = (path, format) =>
   `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
 const getDetail = async (type, id) =>
   await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
+
+const getGenres = async type =>
+  await (
+    await fetch(`${BASE_PATH}/genre/${type}/list?api_key=${API_KEY}`)
+  ).json()
+
+const getMovieWithGenres = (type, id) => {
+  getGenres(type).then(({ genres }) =>
+    Promise.all(
+      genres.splice(0, 7).map(genre => {
+        fetch(
+          `${BASE_PATH}/${type}/popular?api_key=${API_KEY}&with_genres=${genre.id}`
+        )
+          .then(response => response.json())
+          .then(({ results }) => {
+            genre.name === 'Animation' && createBanner(results[id])
+            const row = createRow(genre.id, genre.name)
+            results.map(movie => createMovie(movie, row))
+          })
+      })
+    )
+  )
+}
+
 /* end utils function */
 
 const paintCard = (data, card, type) => {

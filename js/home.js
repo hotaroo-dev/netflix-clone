@@ -5,32 +5,21 @@ const titles = {
   3: 'Popular Tv Show'
 }
 
+let homeId = 1
 getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
-  let homeId = 1
 
   createBanner(movies[1].results[homeId])
 
   movies.map(({ results }, index) => {
-    const row = createRow(index, titles)
+    const row = createRow(index, titles[index])
     results.map(movie => createMovie(movie, row))
   })
 
   tv.map(({ results }, index) => {
-    const row = createRow(index + 2, titles)
+    index += 2
+    const row = createRow(index, titles[index])
     results.map(tv => createMovie(tv, row))
   })
 })
-
-function createRow(index, titles) {
-  swiperInit(index)
-
-  const row = document.querySelector(`#row${index}`)
-  const title = document.createElement('h1')
-  title.innerHTML = `${titles[index]}`
-
-  row.prepend(title)
-
-  return row.querySelector(`#swiper${index}`)
-}
