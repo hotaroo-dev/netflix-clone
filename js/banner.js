@@ -8,11 +8,12 @@ const createBanner = data => {
   const overview = banner.querySelector('.overview')
   let { bgImage, pos } = dynamicBgImage(data.poster_path, data.backdrop_path)
 
-  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f, rgba(0, 0, 0, 0.0)), 
+  banner.style.backgroundImage = `linear-gradient(${pos}, #100f0f, rgba(0, 0, 0, 0)), 
     url(${getMovieImage(bgImage)})`
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
 
+  window.addEventListener('resize', () => {
     homePath && dynamicBanner(data)
     moviePath && dynamicBanner(data)
     tvPath && dynamicBanner(data)
