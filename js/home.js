@@ -3,7 +3,7 @@ const titles = {
   1: 'Popular Movies',
   2: 'Top Rated Tv Shows',
   3: 'Popular Tv Shows',
-  4: 'Treading Now'
+  4: 'Trending Now'
 }
 
 getTrending('all').then(({ results }) => {

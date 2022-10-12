@@ -1,5 +1,5 @@
 .series {
-  height: 67vh;
+  height: 66vh;
   justify-content: flex-end;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -62,7 +62,7 @@ main {
 
 main > div > h1 {
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
   transform: translateX(-10px);
 }
