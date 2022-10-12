@@ -41,7 +41,7 @@
 
 .search-movies .wrapper {
   position: fixed;
-  height: 381.2px;
+  max-height: 381.2px;
   left: 20px;
   right: 20px;
   grid-template-columns: 1fr;

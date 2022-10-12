@@ -40,7 +40,7 @@
   }
 }
 
-@media screen and (min-width: 375px) and (max-width: 712px) {
+@media screen and (min-width: 320px) and (max-width: 712px) {
   .movie-list,
   .search-movies,
   .modal {
