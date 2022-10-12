@@ -34,24 +34,25 @@
 }
 
 .search-movies.active .wrapper {
+  backdrop-filter: blur(10px) saturate(120%) contrast(95%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%) contrast(95%);
+  max-height: 381.2px;
   opacity: 1;
 }
 
 .search-movies .wrapper {
   position: fixed;
-  max-height: 381.2px;
+  min-height: 128px;
   left: 20px;
   right: 20px;
   grid-template-columns: 1fr;
   gap: 0;
   background-color: #0004;
-  backdrop-filter: blur(10px) saturate(120%) contrast(95%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%) contrast(95%);
   border: 1px solid #fff2;
   border-radius: 6px;
   opacity: 0;
+  overflow-y: scroll;
   transition: all 0.2s ease-in-out;
-  overflow: auto;
   scroll-snap-type: y mandatory;
 }
 

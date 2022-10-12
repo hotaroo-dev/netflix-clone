@@ -1,5 +1,5 @@
 .series {
-  height: 65vh;
+  height: 67vh;
   justify-content: flex-end;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
@@ -56,8 +56,8 @@
 }
 
 main {
-  padding: 30px;
-  padding-right: 0;
+  padding: 20px 0;
+  padding-left: 30px;
 }
 
 main > div > h1 {
