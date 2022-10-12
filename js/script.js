@@ -75,21 +75,18 @@ const paintCard = (data, card, type) => {
     url(${getMovieImage(data.backdrop_path)})`
     : '#191919'
   card.style.backgroundImage = bg
-  card.innerHTML = `<img src="${
-    getMovieImage(data.poster_path) || './images/no-icon.png'
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path) || './images/no-icon.png'
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
 
   let detail = card.querySelector('div')
 
   let ul = document.createElement('ul')
   getDetail(type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     genres = window.innerWidth < 713 ? genres.slice(0, 2) : genres
@@ -136,6 +133,7 @@ const modal = document.querySelector('.modal')
 modal &&
   modal.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
+    modal.children[0].textContent = ''
     modal.classList.remove('modal-active')
   })
 
@@ -168,10 +166,9 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) ||
+  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path)) ||
     './images/no-icon.png'
-  }">`
+    }">`
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
