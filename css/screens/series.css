@@ -95,6 +95,7 @@ main > div:last-child {
 
 .card > img {
   max-width: 100%;
+  border-radius: 6px;
 }
 
 .card h3 {
@@ -182,9 +183,6 @@ main > div:last-child {
     padding: 0.5rem 0 1rem 14px;
   }
   .card {
-    grid-template-columns: 120px 1fr;
-  }
-  .card {
     padding: 0;
     max-width: 560px;
   }
@@ -204,6 +202,9 @@ main > div:last-child {
     bottom: 8px;
     right: 0;
   }
+  .card img {
+    border-radius: 0;
+  }
   .card > div > div {
     display: none;
   }
@@ -213,6 +214,12 @@ main > div:last-child {
   }
   .card ul li:first-child {
     margin-right: 4px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .card {
+    grid-template-columns: 120px 1fr;
   }
 }
 

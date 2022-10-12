@@ -19,7 +19,7 @@
 }
 
 .search-movies {
-  z-index: 2;
+  z-index: 3;
   min-width: 100%;
   height: calc(100% - 55px);
   margin-top: 55px;
@@ -35,8 +35,6 @@
 
 .search-movies.active .wrapper {
   opacity: 1;
-  backdrop-filter: blur(10px) saturate(120%) contrast(95%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%) contrast(95%);
 }
 
 .search-movies .wrapper {
@@ -47,10 +45,12 @@
   grid-template-columns: 1fr;
   gap: 0;
   background-color: #0004;
+  backdrop-filter: blur(10px) saturate(120%) contrast(95%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%) contrast(95%);
   border: 1px solid #fff2;
   border-radius: 6px;
   opacity: 0;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
   overflow: auto;
   scroll-snap-type: y mandatory;
 }
