@@ -1,12 +1,19 @@
 const titles = {
-  0: 'Top rated Movies',
+  0: 'Top Rated Movies',
   1: 'Popular Movies',
-  2: 'Top rated Tv Shows',
-  3: 'Popular Tv Shows'
+  2: 'Top Rated Tv Shows',
+  3: 'Popular Tv Shows',
+  4: 'Treading Now'
 }
+
+getTrending('all').then(({ results }) => {
+  const row = createRow(4, titles[4])
+  results.map(movie => createMovie(movie, row))
+})
 
 let homeId = 1
 getMovies().then(res => {
+  console.log(res)
   const movies = res[0]
   const tv = res[1]
 

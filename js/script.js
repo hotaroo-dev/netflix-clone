@@ -37,6 +37,11 @@ const getMovies = () =>
     )
   )
 
+const getTrending = async type =>
+  await (
+    await fetch(`${BASE_PATH}/trending/${type}/day?api_key=${API_KEY}`)
+  ).json()
+
 const getMovieImage = (path, format) =>
   `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
@@ -53,14 +58,12 @@ const getMovieWithGenres = (type, id) => {
     Promise.all(
       genres.slice(0, 7).map(genre => {
         fetch(
-          `${BASE_PATH}/${type}/popular?api_key=${API_KEY}&with_genres=${genre.id}`
+          `${BASE_PATH}/discover/${type}?api_key=${API_KEY}&with_genres=${genre.id}`
         )
           .then(response => response.json())
           .then(({ results }) => {
             const row = createRow(genre.id, genre.name)
             results.map(movie => createMovie(movie, row))
-
-            genre.name === 'Animation' && createBanner(results[id])
           })
       })
     )

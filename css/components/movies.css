@@ -9,6 +9,11 @@
   border-radius: 6px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie img:hover {
+  transform: scale(1.04) translateY(-10px);
 }
 
 .movie h3 {
@@ -111,7 +116,7 @@
 }
 
 @media screen and (min-width: 801px) {
-  .movies img{
+  .movies img {
     border-radius: 0;
   }
 }

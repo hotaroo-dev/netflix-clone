@@ -56,14 +56,15 @@
 }
 
 main {
-  padding: 30px;
+  padding: 24px 30px;
   padding-right: 0;
 }
 
 main > div > h1 {
   font-size: 1.2rem;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.4;
+  transform: translateX(-10px);
 }
 
 main > div {
@@ -74,9 +75,10 @@ main > div:last-child {
   margin-bottom: 0;
 }
 
-.swiper {
+main .swiper {
   max-width: 100%;
   cursor: pointer;
+  padding-top: 12.5px;
 }
 
 .swiper .swiper-button-prev,
