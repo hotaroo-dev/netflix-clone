@@ -3,6 +3,7 @@
   cursor: pointer;
   margin-right: 40px;
   color: var(--white-darker);
+  transform: color 0.2s ease-in-out;
 }
 
 .items .item a::after {
