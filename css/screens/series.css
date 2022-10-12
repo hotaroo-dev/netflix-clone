@@ -63,8 +63,6 @@ main {
 main > div > h1 {
   font-size: 1.2rem;
   font-weight: 500;
-  line-height: 1.4;
-  transform: translateX(-10px);
 }
 
 main > div {
@@ -78,7 +76,6 @@ main > div:last-child {
 main .swiper {
   max-width: 100%;
   cursor: pointer;
-  padding-top: 12.5px;
 }
 
 .swiper .swiper-button-prev,
@@ -183,6 +180,9 @@ main .swiper {
   }
   main {
     padding: 0.5rem 0 1rem 14px;
+  }
+  main > div > h1 {
+    line-height: 1.5;
   }
   .card {
     padding: 0;
