@@ -13,11 +13,6 @@ const createBanner = data => {
   title.innerHTML = `<h2>${data.title || data.name}</h2>`
   overview.innerHTML = `<p>${data.overview}</p>`
 
-  window.addEventListener('resize', () => {
-    window.innerWidth > 860
-      ? search.classList.add('active')
-      : search.classList.remove('active')
-
     homePath && dynamicBanner(data)
     moviePath && dynamicBanner(data)
     tvPath && dynamicBanner(data)

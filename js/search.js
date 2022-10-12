@@ -2,10 +2,6 @@ const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('svg')
 const input = document.querySelector('input[name="title"]')
 
-window.innerWidth > 860
-  ? search.classList.add('active')
-  : search.classList.remove('active')
-
 searchBtn.addEventListener('click', () => search.classList.toggle('active'))
 
 const searchMovies = async title =>
@@ -16,6 +12,8 @@ const searchMovies = async title =>
 input.addEventListener('keyup', e => {
   const movies = document.querySelector('.search-movies .wrapper')
   const searchWrapper = movies.parentElement
+  searchWrapper.classList.add('active')
+
   movies.textContent = ''
 
   if (!e.target.value) {
@@ -30,7 +28,6 @@ input.addEventListener('keyup', e => {
     })
   })
 
-  searchWrapper.classList.add('active')
   searchWrapper.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
     movies.textContent = ''
