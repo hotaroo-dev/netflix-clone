@@ -1,4 +1,4 @@
-const movieId = 19
+const movieId = 6
 
 getTrending('movie').then(({ results }) => {
   const row = createRow(0, 'Trending Movies')

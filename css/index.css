@@ -23,9 +23,16 @@ html {
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: 'Netflix-Sans';
+  src: url('../Netflix-Sans.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   height: 100vh;
-  font-family: 'Netflix Sans', sans-serif;
+  font-family: 'Netflix-Sans';
   line-height: 1.2;
   color: #e5e5e5;
   background-color: #202023;
