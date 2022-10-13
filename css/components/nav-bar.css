@@ -1,4 +1,4 @@
-.items .item a {
+.item a {
   position: relative;
   cursor: pointer;
   margin-right: 40px;
@@ -6,7 +6,7 @@
   transform: color 0.2s ease-in-out;
 }
 
-.items .item a::after {
+.item a::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -21,18 +21,12 @@
   transition: transform 0.2s;
 }
 
-.item a:hover {
-  color: var(--white-ligter);
-}
-
-.item a:hover::after {
-  transform: scaleX(1);
-}
-
+.item a:hover,
 .item a.active {
   color: var(--white-ligter);
 }
 
+.item a:hover::after,
 .item a.active::after {
   transform: scaleX(1);
 }

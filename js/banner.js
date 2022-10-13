@@ -2,15 +2,16 @@ const homePath = document.querySelector('#home a.active')
 const moviePath = document.querySelector('#movies a.active')
 const tvPath = document.querySelector('#series a.active')
 
+const banner = document.querySelector('.banner')
+const title = banner.querySelector('.title')
+const overview = banner.querySelector('.overview')
+
 const createBanner = data => {
-  const banner = document.querySelector('.banner')
-  const title = banner.querySelector('.title')
-  const overview = banner.querySelector('.overview')
   dynamicBgImage(data.poster_path, data.backdrop_path)
 
   banner.style.backgroundImage = bgImage
-  title.innerHTML = `<h2>${data.title || data.name}</h2>`
-  overview.innerHTML = `<p>${data.overview}</p>`
+  title.textContent = `${data.title || data.name}`
+  overview.textContent = `${data.overview}`
 
   window.addEventListener('resize', () => {
     homePath && dynamicBanner(data)

@@ -8,16 +8,21 @@
   background-size: cover;
 }
 
+.banner .text-wrapper {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
 .banner .title {
   letter-spacing: 5px;
-  font-size: 60px;
+  font-size: 64px;
   color: var(--red);
+  text-shadow: 8px 6px 2px #000a;
 }
 
 .banner .overview {
   width: 70%;
-  font-size: 24px;
-  padding: 20px 0 30px 0;
+  font-size: 1.3rem;
+  padding: 10px 0 30px 0;
 }
 
 .overview p {
@@ -63,4 +68,15 @@
 .info {
   background-color: #000a;
   border: 1px solid #fff5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

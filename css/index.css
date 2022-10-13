@@ -10,6 +10,7 @@
 @import 'components/lightTheme.css';
 
 /* Screens */
+@import 'screens/home.css';
 @import 'screens/series.css';
 @import 'screens/list.css';
 

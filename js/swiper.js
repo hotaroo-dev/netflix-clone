@@ -17,6 +17,9 @@ function swiperInit(index) {
     speed: 800,
     spaceBetween: 10,
     breakpoints: {
+      220: {
+        slidesPerView: 2.5
+      },
       320: {
         slidesPerView: 3.5
       },

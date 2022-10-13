@@ -4,10 +4,14 @@ const input = document.querySelector('input[name="title"]')
 
 searchBtn.addEventListener('click', () => search.classList.toggle('active'))
 
-const searchMovies = async title =>
-  await (
-    await fetch(`${BASE_PATH}/search/movie?api_key=${API_KEY}&query=${title}`)
-  ).json()
+const searchUtils = (types, title) =>
+  Promise.all(
+    types.map(type =>
+      fetch(
+        `${BASE_PATH}/search/${type}?api_key=${API_KEY}&query=${title}`
+      ).then(res => res.json())
+    )
+  )
 
 input.addEventListener('keyup', e => {
   const movies = document.querySelector('.search-movies .wrapper')
@@ -21,10 +25,12 @@ input.addEventListener('keyup', e => {
     return
   }
 
-  searchMovies(input.value).then(({ results }) => {
-    if (!results) return
-    results.map(movie => {
-      createSearchMovie(movie, movies)
+  searchUtils(types, input.value).then(res => {
+    if (!res) return
+    res.map(({ results }) => {
+      results.map(movie => {
+        createSearchMovie(movie, movies)
+      })
     })
   })
 
@@ -42,6 +48,9 @@ search.addEventListener('submit', e => {
 
 function createSearchMovie(data, el) {
   const movie = createMovie(data, el)
-  const release = data.release_date?.split('-')[0] || 'unknown year'
-  movie.innerHTML += `<div><h3>${data.title}</h3><p>${release}</p></div>`
+  const release =
+    data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+  movie.classList.remove('swiper-slide')
+  movie.innerHTML += `<div><h3>${data.title || data.name
+    }</h3><p>${release}</p></div>`
 }

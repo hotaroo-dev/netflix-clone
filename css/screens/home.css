@@ -1,0 +1,34 @@
+.home .title {
+  color: #fff;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.white .item a {
+  color: var(--white-darker);
+}
+.white .item a:hover,
+.white .item a.active {
+  color: var(--white-lighter);
+}
+
+.home .btn-wrapper {
+  padding: 15px 0 20px 0;
+}
+
+.home .overview {
+  padding: 0;
+}
+
+.home .btn {
+  min-width: 120px;
+  background-color: #fff6;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.btn a {
+  color: #181818;
+}

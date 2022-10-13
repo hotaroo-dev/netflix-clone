@@ -106,7 +106,7 @@
     border-radius: 0;
     transition: transform 0.2s ease-in-out;
   }
-  .movie img:hover {
+  .movie.swiper-slide img:hover {
     transform: scale(1.03) translateY(-6px);
   }
   main .swiper {

@@ -4,9 +4,12 @@
 }
 
 .light .banner,
-.light .card,
-.light i.fa-moon {
+.light .card {
   color: var(--white-darker);
+}
+
+.light .fa-moon {
+  color: #fff;
 }
 
 .light i.fa-plus,
@@ -17,8 +20,13 @@
 
 .light svg,
 .light i,
-.light .items a,
+.light a,
 .light .dropdown a {
+  color: #191919;
+}
+
+.light a:hover,
+.light a.active {
   color: #000;
 }
 
@@ -81,6 +89,14 @@
 .light .card ::-webkit-scrollbar-thumb,
 .light .wrapper::-webkit-scrollbar-thumb {
   background-color: #0008;
+}
+
+.light .home .btn {
+  background-color: #0006;
+}
+
+.light .btn a {
+  color: #fff;
 }
 
 .icon {

@@ -6,27 +6,23 @@ const titles = {
   4: 'Trending Now'
 }
 
+let id = 1
+const types = ['movie', 'tv']
+
 getTrending('all').then(({ results }) => {
   const row = createRow(4, titles[4])
   results.map(movie => createMovie(movie, row))
 })
 
-let homeId = 1
 getMovies().then(res => {
-  console.log(res)
   const movies = res[0]
   const tv = res[1]
+  const all = [...movies, ...tv]
 
-  createBanner(movies[1].results[homeId])
+  createBanner(movies[1].results[id])
 
-  movies.map(({ results }, index) => {
+  all.map(({ results }, index) => {
     const row = createRow(index, titles[index])
     results.map(movie => createMovie(movie, row))
-  })
-
-  tv.map(({ results }, index) => {
-    index += 2
-    const row = createRow(index, titles[index])
-    results.map(tv => createMovie(tv, row))
   })
 })

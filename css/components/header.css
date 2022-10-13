@@ -12,9 +12,14 @@
   transition: all 0.15s ease-in-out;
 }
 
-.header.blur {
+.light .header.blur {
+  background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.header.blur {
+  background-color: #000;
 }
 
 .netflix {
@@ -67,7 +72,7 @@
   position: relative;
 }
 
-.col .input {
+.search .input {
   max-width: 220px;
   z-index: -1;
   position: absolute;
@@ -85,7 +90,7 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.col .input::placeholder {
+.search .input::placeholder {
   color: var(--white-darker);
 }
 
@@ -113,6 +118,15 @@ form.active .search-btn {
   }
   100% {
     fill-opacity: 1;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .search .input {
+    max-width: 180px;
+  }
+  form.active .search-btn {
+    transform: translateX(-150px);
   }
 }
 
