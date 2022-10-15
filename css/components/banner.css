@@ -1,11 +1,11 @@
 .banner {
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: flex-end;
   padding: 40px;
   background-position: center;
   background-size: cover;
+  transition: all 0.2s ease-in-out;
 }
 
 .banner .text-wrapper {
@@ -14,14 +14,17 @@
 
 .banner .title {
   letter-spacing: 5px;
-  font-size: 64px;
+  font-size: 56px;
   color: var(--red);
-  text-shadow: 8px 6px 2px #000a;
+  text-shadow: 2px 1px 0 #000, 4px 2px 0 #000, 6px 3px 0 #000, 8px 4px 0 #000,
+    10px 5px 0 #000a, 12px 6px 0 transparent, 14px 7px 0 transparent,
+    16px 8px 0 transparent, 18px 9px 0 transparent,
+    10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 .banner .overview {
   width: 70%;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: 10px 0 30px 0;
 }
 

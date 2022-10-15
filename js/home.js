@@ -22,7 +22,11 @@ getMovies().then(res => {
   createBanner(movies[1].results[id])
 
   all.map(({ results }, index) => {
+    const type = index < 2 ? types[0] : types[1]
     const row = createRow(index, titles[index])
-    results.map(movie => createMovie(movie, row))
+    results.map(movie => {
+      movie = { ...movie, type }
+      createMovie(movie, row)
+    })
   })
 })

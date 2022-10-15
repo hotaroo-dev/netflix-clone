@@ -27,8 +27,10 @@
   justify-content: center;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  transition: background-color 0.2s ease-in-out;
 }
 
 .btn a {
   color: #181818;
+  transition: color 0.2s ease-in-out;
 }

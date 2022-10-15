@@ -22,12 +22,6 @@
   row-gap: 2rem;
 }
 
-.wrapper .active {
-  padding: 0;
-  opacity: 1;
-  top: 0;
-}
-
 .wrapper .fall {
   transition: all 0.4s ease;
   transform: translateY(8rem);
@@ -40,10 +34,9 @@
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 712px) {
+@media screen and (min-width: 380px) and (max-width: 712px) {
   .movie-list,
-  .search-movies,
-  .modal {
+  .search-movies {
     padding-inline: 14px;
   }
   .wrapper {

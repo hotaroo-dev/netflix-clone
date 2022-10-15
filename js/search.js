@@ -27,8 +27,9 @@ input.addEventListener('keyup', e => {
 
   searchUtils(types, input.value).then(res => {
     if (!res) return
-    res.map(({ results }) => {
+    res.map(({ results }, index) => {
       results.map(movie => {
+        movie = { ...movie, type: types[index] }
         createSearchMovie(movie, movies)
       })
     })

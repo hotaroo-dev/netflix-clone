@@ -63,7 +63,10 @@ const getMovieWithGenres = (type, id) => {
           .then(response => response.json())
           .then(({ results }) => {
             const row = createRow(genre.id, genre.name)
-            results.map(movie => createMovie(movie, row))
+            results.map(movie => {
+              movie = { ...movie, type }
+              createMovie(movie, row)
+            })
           })
       })
     )
@@ -72,60 +75,84 @@ const getMovieWithGenres = (type, id) => {
 
 /* end utils function */
 
-const paintCard = (data, card, type) => {
-  const bg = data.backdrop_path
-    ? `linear-gradient(to right, #191919 50%,  #0002),
-    url(${getMovieImage(data.backdrop_path)})`
-    : '#191919'
-  card.style.backgroundImage = bg
-  card.innerHTML = `<img src="${
-    getMovieImage(data.poster_path) || './images/no-icon.png'
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+const totalRating = 10
 
-  let detail = card.querySelector('div')
+const starRating = vote => {
+  const starPercentage = (vote / totalRating) * 100
+  const starPercentageRounded = Math.round(starPercentage / 10) * 10
 
-  let ul = document.createElement('ul')
-  getDetail(type, data.id).then(({ genres }) => {
-    const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
-    ul.appendChild(releaseYear)
-
-    genres = window.innerWidth < 713 ? genres.slice(0, 2) : genres
-    genres.map((genre, i, arr) => {
-      let li = document.createElement('li')
-      li.innerText = arr.length - 1 === i ? `${genre.name}` : `${genre.name},`
-      ul.appendChild(li)
-    })
-  })
-
-  /* rating */
   let rating = document.createElement('div')
-  rating.innerHTML += `<span>${data.vote_average}/10</span>`
+  rating.innerHTML += `<span>${vote}/10</span>`
+  rating.classList.add('no-mobile')
 
   let starsOuter = document.createElement('div')
   let starsInner = document.createElement('div')
   starsOuter.classList.add('stars-outer')
   starsInner.classList.add('stars-inner')
   starsOuter.appendChild(starsInner)
+  starsInner.style.width = `${starPercentageRounded}%`
   rating.appendChild(starsOuter)
 
-  detail.append(ul, rating)
+  return rating
+}
 
-  const totalRating = 10
-  let starPercentage = (data.vote_average / totalRating) * 100
-  starPercentage = Math.round(starPercentage / 10) * 10
-  starsInner.style.width = `${starPercentage}%`
+const ringRating = vote => {
+  const ringPercentage = Math.round((vote / totalRating) * 100)
+
+  let rating = document.createElement('div')
+  let svg = document.createElement('svg')
+  const circle = '<circle cx="15" cy="15" r="15"></circle>'
+
+  rating.innerHTML = `<svg>${circle}${circle}</svg>`
+  rating.innerHTML += `<span>${ringPercentage}</span>`
+  rating.classList.add('percent', 'mobile')
+
+  const strokeOffset = 93 - (93 * ringPercentage) / 100
+  rating
+    .querySelector('svg circle:last-child')
+    .style.setProperty('--percent', strokeOffset)
+
+  return rating
+}
+
+const paintCard = (data, card, type) => {
+  const vote = data.vote_average
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path, 'w500') || './images/no-icon.png'
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
+
+  card.append(ringRating(vote))
+  let detail = card.querySelector('div')
+
+  let ul = document.createElement('ul')
+  getDetail(data.media_type || type, data.id).then(({ genres }) => {
+    const releaseYear = document.createElement('li')
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
+    ul.appendChild(releaseYear)
+
+    genres = window.innerWidth < 540 ? genres.slice(0, 2) : genres
+    genres.map((genre, i, arr) => {
+      let li = document.createElement('li')
+      const name = genre.name.split(' & ')[0]
+      li.innerText = `${name}`
+      ul.appendChild(li)
+    })
+  })
+
+  detail.append(ul, starRating(vote))
 }
 
 const createCard = data => {
   const card = document.createElement('div')
-  card.classList.add('card', 'modal-card', 'active')
-  paintCard(data, card, data.type || 'movie')
+  const bg = data.backdrop_path
+    ? `linear-gradient(to right, #191919 50%,  #0002),
+    url(${getMovieImage(data.backdrop_path)})`
+    : '#202023'
+  card.style.backgroundImage = bg
+  card.classList.add('card')
+  paintCard(data, card, data.type)
 
   const deleteBtn = document.createElement('i')
   deleteBtn.classList.add('fas', 'fa-trash')
@@ -143,16 +170,35 @@ modal &&
     modal.classList.remove('modal-active')
   })
 
+const dynamicBg = (card, backdrop) => {
+  if (window.innerWidth < 540) {
+    card.style.backgroundColor = '#181818'
+    card.style.backgroundImage = 'none'
+  } else {
+    card.style.backgroundImage = backdrop
+      ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
+        backdrop
+      )})`
+      : '#202023'
+  }
+
+  return card
+}
+
 const createModal = data => {
   const card = document.querySelector('.modal .modal-card')
-  const type = document.querySelector('main').id || 'movie'
-  paintCard(data, card, type)
+  dynamicBg(card, data.backdrop_path)
+  paintCard(data, card, data.type)
+
+  window.addEventListener('resize', () => {
+    dynamicBg(card, data.backdrop_path)
+  })
 
   const addBtn = document.createElement('div')
   addBtn.classList.add('fav')
   addBtn.addEventListener('click', () => {
     addBtn.classList.toggle('animate')
-    saveLocalMovies(data, type)
+    saveLocalMovies(data)
 
     const main = document.querySelector('main')
     if (main.classList.contains('movie-list')) {
@@ -172,10 +218,9 @@ const createMovie = (data, el) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    (data.poster_path && getMovieImage(data.poster_path)) ||
+  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path, 'w500')) ||
     './images/no-icon.png'
-  }">`
+    }">`
 
   movie.addEventListener('click', () => {
     modal.classList.add('modal-active')
@@ -213,7 +258,7 @@ function saveLocalMovies(movie, type) {
   checkLocalMovies()
 
   if (checkMovie(movieList, movie)) return
-  movieList.push({ ...movie, type })
+  movieList.push(movie)
   localStorage.setItem('movie-list', JSON.stringify(movieList))
 }
 

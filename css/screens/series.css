@@ -1,6 +1,5 @@
 .series {
   height: 67vh;
-  justify-content: flex-end;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -85,11 +84,17 @@ main .swiper {
 
 .card {
   width: 100%;
+  max-width: 60vw;
   display: grid;
-  overflow: hidden;
+  grid-template-columns: 0.5fr 1.5fr;
+  align-items: start;
   position: relative;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: all 0.15s linear;
+  border-radius: 8px;
+  background-position: center;
+  background-size: cover;
 }
 
 .card > img {
@@ -103,16 +108,32 @@ main .swiper {
   color: var(--red);
 }
 
-.card > div {
+.card > div:first-of-type {
   display: grid;
   padding-top: 10px;
   padding-inline: 20px;
+  cursor: pointer;
+}
+
+.card > div > div {
+  grid-row: 3 / 4;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.card > div > div > span {
+  grid-column: 2 / 3;
+  transform: translateY(1px);
+  font-size: 1.2rem;
 }
 
 .card ul {
   grid-row: 2 / 3;
   color: #fffa;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -120,11 +141,20 @@ main .swiper {
   margin-right: 10px;
 }
 
+.card ul li:not(:first-child) {
+  padding: 4px 10px;
+  background-color: #0006;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 5px;
+}
+
 .card p {
   width: 85%;
   height: 110px;
   line-height: 1.4;
   overflow: hidden;
+  cursor: auto;
 }
 
 .card p:hover {
@@ -186,7 +216,7 @@ main .swiper {
   }
   .card {
     padding: 0;
-    max-width: 560px;
+    max-width: 540px;
   }
   .card h3 {
     font-size: 1.2rem;
@@ -195,7 +225,7 @@ main .swiper {
     line-height: 1.1;
     height: 70px;
   }
-  .card > div {
+  .card > div:first-of-type {
     padding: 0;
     padding-inline: 10px;
     margin-top: 10px;
@@ -206,20 +236,46 @@ main .swiper {
   }
   .card img {
     border-radius: 0;
-  }
-  .card > div > div {
-    display: none;
+    border-bottom-left-radius: 6px;
   }
   .card > div > ul {
     margin-bottom: 10px;
     gap: 5px;
   }
-  .card ul li:first-child {
+  .card li:first-child {
     margin-right: 4px;
   }
 }
 
-@media screen and (min-width: 320px) and (max-width: 480px) {
+@media screen and (min-width: 220px) and (max-width: 540px) {
+  .modal {
+    padding-inline: 40px;
+  }
+  .modal .modal-card {
+    padding: 40px 0;
+    padding-inline: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr min-content;
+    justify-items: center;
+    top: -10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  .modal-card > div:first-of-type {
+    justify-items: center;
+  }
+  .modal-card > div > ul {
+    margin: 1rem 0;
+  }
+  .modal-card img {
+    max-width: 200px;
+    border-radius: 8px;
+  }
+  .modal-card .fav {
+    bottom: 0;
+    right: 0;
+  }
   .card {
     grid-template-columns: 120px 1fr;
   }
