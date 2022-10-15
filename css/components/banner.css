@@ -9,12 +9,12 @@
 }
 
 .banner .text-wrapper {
-  animation: fadeIn 0.8s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .banner .title {
   letter-spacing: 5px;
-  font-size: 56px;
+  font-size: 60px;
   color: var(--red);
   text-shadow: 2px 1px 0 #000, 4px 2px 0 #000, 6px 3px 0 #000, 8px 4px 0 #000,
     10px 5px 0 #000a, 12px 6px 0 transparent, 14px 7px 0 transparent,

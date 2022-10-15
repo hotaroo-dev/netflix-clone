@@ -23,7 +23,7 @@
 }
 
 .wrapper .fall {
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
   transform: translateY(8rem);
   opacity: 0;
 }
@@ -40,6 +40,6 @@
     padding-inline: 14px;
   }
   .wrapper {
-    row-gap: 1rem;
+    row-gap: 1.1rem;
   }
 }
