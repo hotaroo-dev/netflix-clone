@@ -13,12 +13,12 @@
 }
 
 .banner .title {
-  letter-spacing: 5px;
+  letter-spacing: 6px;
   font-size: 60px;
   color: var(--red);
-  text-shadow: 2px 1px 0 #000, 4px 2px 0 #000, 6px 3px 0 #000, 8px 4px 0 #000,
-    10px 5px 0 #000a, 12px 6px 0 transparent, 14px 7px 0 transparent,
-    16px 8px 0 transparent, 18px 9px 0 transparent,
+  text-shadow: 1px 1px 2px #000, 2px 2px 2px #000, 3px 3px 2px #000, 4px 4px 2px #000,
+    5px 5px 2px #000a, 0 6px 0 transparent, 0 7px 0 transparent,
+    0 8px 0 transparent, 0 9px 0 transparent,
     10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
