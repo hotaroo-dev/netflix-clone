@@ -12,7 +12,7 @@
 }
 
 .search-movies {
-  z-index: 3;
+  z-index: 2;
   min-width: 100%;
   height: calc(100% - 55px);
   margin-top: 55px;
@@ -38,6 +38,7 @@
   min-height: 128px;
   left: 20px;
   right: 20px;
+  margin-top: 1.2rem;
   grid-template-columns: 1fr;
   gap: 0;
   background-color: #0004;
@@ -95,9 +96,14 @@
   }
   .search-movies .wrapper {
     width: 340px;
-    margin-top: 1.5rem;
     margin-left: auto;
     right: 40px;
+  }
+  .search-movies.active .wrapper {
+    max-height: 508.2px;
+  }
+  .search-movies .movie {
+    scroll-snap-align: start;
   }
   .search-movies .movie h3 {
     font-size: 1rem;

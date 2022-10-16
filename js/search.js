@@ -14,6 +14,8 @@ const searchUtils = (types, title) =>
   )
 
 input.addEventListener('keyup', e => {
+  e.preventDefault()
+
   const movies = document.querySelector('.search-movies .wrapper')
   const searchWrapper = movies.parentElement
   searchWrapper.classList.add('active')
