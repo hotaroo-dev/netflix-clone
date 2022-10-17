@@ -1,5 +1,5 @@
 const search = document.querySelector('form.search')
-const searchBtn = search.querySelector('svg')
+const searchBtn = search.querySelector('form svg')
 const input = document.querySelector('input[name="title"]')
 
 searchBtn.addEventListener('click', () => search.classList.toggle('active'))
@@ -46,7 +46,6 @@ input.addEventListener('keyup', e => {
 
 search.addEventListener('submit', e => {
   e.preventDefault()
-  input.value = ''
 })
 
 function createSearchMovie(data, el) {
@@ -54,6 +53,7 @@ function createSearchMovie(data, el) {
   const release =
     data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
   movie.classList.remove('swiper-slide')
-  movie.innerHTML += `<div><h3>${data.title || data.name
-    }</h3><p>${release}</p></div>`
+  movie.innerHTML += `<div><h3>${
+    data.title || data.name
+  }</h3><p>${release}</p></div>`
 }

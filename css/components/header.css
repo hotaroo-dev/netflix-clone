@@ -94,19 +94,18 @@
   color: var(--white-darker);
 }
 
-.col svg {
-  cursor: pointer;
-  color: #fff;
-  height: 24px;
-  transition: transform 0.2s ease-in-out;
-}
-
 form.active .input {
   transform: scaleX(1);
 }
 
 form.active .search-btn {
   transform: translateX(-190px);
+}
+
+svg.search-btn {
+  width: 24px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 @keyframes active {

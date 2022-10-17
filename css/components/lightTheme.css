@@ -8,18 +8,7 @@
   color: var(--white-darker);
 }
 
-.light .fa-moon {
-  color: #fff;
-}
-
-.light i.fa-plus,
-.light i.fa-trash {
-  color: aquamarine;
-  opacity: 0.8;
-}
-
 .light svg,
-.light i,
 .light a,
 .light .dropdown a {
   color: #191919;
@@ -47,7 +36,7 @@
 }
 
 .light .icon.sun {
-  transform: translateY(2rem);
+  transform: translateY(3rem);
   opacity: 0;
 }
 
@@ -113,31 +102,34 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .icon:hover {
   background-color: #f6ad55;
 }
 
-.icon > i {
+.icon > img,
+.icon > svg {
   height: 1rem;
   width: 1rem;
   line-height: 1rem;
 }
 
+.icon.sun img {
+  width: 1.15rem;
+  height: 1.15rem;
+  line-height: 1.15rem;
+}
+
 .icon.moon {
   position: absolute;
   top: 0;
-  background-color: #805ad5;
   opacity: 0;
-  transform: translateY(-2rem);
+  background-color: #805ad5;
+  transform: translateY(-3rem);
 }
 
 .icon.moon:hover {
   background-color: #6b46c1;
-}
-
-.icon .fa-sun {
-  color: #202023;
 }

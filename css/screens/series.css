@@ -90,7 +90,8 @@ main .swiper {
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   transition: all 0.15s linear;
   border-radius: 8px;
   background-position: center;
@@ -178,8 +179,13 @@ main .swiper {
   border-radius: 10px;
 }
 
-.card > i {
-  font-size: 1.4rem;
+.light .card > svg {
+  color: #ccc;
+}
+
+.card > svg {
+  width: 1.4rem;
+  height: 1.4rem;
 }
 
 .card .fav {
@@ -195,7 +201,7 @@ main .swiper {
   transition: background 1s steps(28);
 }
 
-.card > i,
+.card > svg,
 .card .fav {
   position: absolute;
   bottom: 20px;

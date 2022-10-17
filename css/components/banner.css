@@ -16,9 +16,9 @@
   letter-spacing: 6px;
   font-size: 60px;
   color: var(--red);
-  text-shadow: 1px 1px 2px #000, 2px 2px 2px #000, 3px 3px 2px #000, 4px 4px 2px #000,
-    5px 5px 2px #000a, 0 6px 0 transparent, 0 7px 0 transparent,
-    0 8px 0 transparent, 0 9px 0 transparent,
+  text-shadow: 2px 1px 2px #000, 3px 2px 2px #000, 4px 3px 2px #000,
+    5px 4px 2px #000, 6px 5px 2px #000a, 0 6px 0 transparent,
+    0 7px 0 transparent, 0px 8px 0 transparent, 0 9px 0 transparent,
     10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -50,10 +50,9 @@
   cursor: pointer;
 }
 
-.btn svg {
+.btn img {
+  width: 25px;
   margin-right: 14px;
-  height: 25px;
-  fill: var(--white-darker);
 }
 
 .btn .btn-text {

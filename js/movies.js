@@ -1,3 +1,3 @@
-const id = 9
+const id = 6
 const types = ['movie']
 const text = 'Trending Movies'
