@@ -30,7 +30,7 @@ main .swiper {
 
 .card {
   width: 100%;
-  max-width: 60vw;
+  max-width: 800px;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
@@ -167,14 +167,11 @@ main .swiper {
   .series {
     height: 74vh;
   }
-  .series .title {
-    font-size: 40px;
-  }
-  .series .btn-wrapper {
-    display: none;
+  .banner {
+    padding-inline: 0px;
   }
   main {
-    padding: 0.5rem 0 1rem 10px;
+    padding: 0.5rem 0 1rem 0.5rem;
   }
   main > div > h1 {
     line-height: 1.5;
@@ -207,13 +204,8 @@ main .swiper {
     --gap: 5px;
     margin-bottom: 10px;
   }
-  .card li {
+  .card li:not(:first-child, :nth-child(2), :nth-child(3)) {
     display: none;
-  }
-  .card li:first-child,
-  .card li:nth-child(2),
-  .card li:nth-child(3) {
-    display: flex;
   }
   .card li:first-child {
     margin-right: 4px;

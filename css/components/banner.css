@@ -72,6 +72,57 @@
   border: 1px solid #fff5;
 }
 
+ul.btn-wrapper {
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+  padding: 2rem 2.5rem;
+}
+
+.btn-wrapper li {
+  cursor: pointer;
+  width: 33%;
+  display: flex;
+}
+
+.btn-wrapper li:nth-child(2) {
+  justify-content: center;
+}
+
+.btn-wrapper li:last-child {
+  justify-content: flex-end;
+}
+
+.btn-wrapper li a {
+  color: #fff;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.btn-wrapper a img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.my-list a,
+.info-btn a {
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-btn {
+  padding: 0.35rem 1.2rem;
+  background-color: #fff;
+  border-radius: 3px;
+  gap: 4px;
+}
+
+li.play-btn a {
+  color: #000;
+  align-items: center;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
