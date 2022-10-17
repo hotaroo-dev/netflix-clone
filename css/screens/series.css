@@ -4,73 +4,18 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.genres {
-  display: flex;
-  gap: 25px;
-  padding: 20px 40px;
-  margin: 0 60px;
-  border-bottom: 4px solid #000a;
-}
-
-.genres li {
-  font-size: 18px;
-  padding: 0 15px;
-  position: relative;
-  transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.genres li::after {
-  content: '';
-  position: absolute;
-  bottom: -25px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 65px;
-  height: 6px;
-  background-color: red;
-  transform: scaleX(0);
-  transition: transform 0.2s;
-}
-
-.genres li a {
-  color: var(--white-darker);
-}
-
-.genres li:hover a {
-  color: #c21010;
-}
-
-.genres li:hover::after {
-  transform: scaleX(1);
-}
-
-.genres li.active a {
-  color: #c21010;
-}
-
-.genres li.active::after {
-  transform: scaleX(1);
-}
-
 main {
   padding: 25px 30px;
   padding-right: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 main > div > h1 {
   font-size: 1.2rem;
   font-weight: 500;
-}
-
-main > div {
-  margin-bottom: 0.8rem;
-}
-
-main > div:last-child {
-  margin-bottom: 0;
 }
 
 main .swiper {
@@ -109,7 +54,7 @@ main .swiper {
 }
 
 .card h3 {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin-top: 5px;
   color: var(--red);
 }
@@ -136,11 +81,13 @@ main .swiper {
 }
 
 .card ul {
+  --gap: 10px;
+
   grid-row: 2 / 3;
   color: #fffa;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--gap);
 }
 
 .card ul li:first-child {
@@ -158,6 +105,7 @@ main .swiper {
 .card p {
   width: 85%;
   height: 110px;
+  padding-right: 10px;
   line-height: 1.4;
   overflow: hidden;
   cursor: auto;
@@ -179,13 +127,19 @@ main .swiper {
   border-radius: 10px;
 }
 
-.light .card > svg {
+.light .card > button > svg {
   color: #ccc;
 }
 
-.card > svg {
-  width: 1.4rem;
-  height: 1.4rem;
+.card > button > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fff;
+}
+
+.card > button {
+  border: none;
+  background-color: transparent;
 }
 
 .card .fav {
@@ -201,7 +155,7 @@ main .swiper {
   transition: background 1s steps(28);
 }
 
-.card > svg,
+.card > button,
 .card .fav {
   position: absolute;
   bottom: 20px;
@@ -209,7 +163,7 @@ main .swiper {
   cursor: pointer;
 }
 
-@media screen and (min-width: 220px) and (max-width: 712px) {
+@media screen and (max-width: 44.5rem) {
   .series {
     height: 74vh;
   }
@@ -249,16 +203,28 @@ main .swiper {
     border-radius: 0;
     border-bottom-left-radius: 6px;
   }
-  .card > div > ul {
+  .card ul {
+    --gap: 5px;
     margin-bottom: 10px;
-    gap: 5px;
+  }
+  .card li {
+    display: none;
+  }
+  .card li:first-child,
+  .card li:nth-child(2),
+  .card li:nth-child(3) {
+    display: flex;
   }
   .card li:first-child {
     margin-right: 4px;
   }
+  .card > button {
+    right: 5px;
+    bottom: 8px;
+  }
 }
 
-@media screen and (min-width: 220px) and (max-width: 540px) {
+@media screen and (max-width: 35rem) {
   .modal {
     padding-inline: 40px;
   }

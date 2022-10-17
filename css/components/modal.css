@@ -95,6 +95,7 @@ circle:first-child {
 
 circle:last-child {
   --percent: 0;
+
   stroke: #21d07a;
   stroke-dashoffset: var(--percent);
   animation: percent 1.2s linear;

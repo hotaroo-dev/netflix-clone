@@ -34,13 +34,14 @@
 }
 
 .search-movies .wrapper {
+  --gap: 0;
+
   position: fixed;
   min-height: 128px;
   left: 20px;
   right: 20px;
   margin-top: 1.2rem;
   grid-template-columns: 1fr;
-  gap: 0;
   background-color: #0004;
   border: 1px solid #fff2;
   border-radius: 6px;
