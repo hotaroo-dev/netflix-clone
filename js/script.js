@@ -114,18 +114,9 @@ const ringRating = vote => {
   return rating
 }
 
-const paintCard = (data, card, type) => {
-  const vote = data.vote_average
-  card.innerHTML = `<img src="${getMovieImage(data.poster_path, 'w500') || './images/no-icon.png'
-    }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
-    }</p></div>`
-
-  card.append(ringRating(vote))
-  let detail = card.querySelector('div')
-
+const paintGenres = (data) => {
   let ul = document.createElement('ul')
-  getDetail(data.media_type || type, data.id).then(({ genres }) => {
+  getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
     releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
       }`
@@ -139,7 +130,20 @@ const paintCard = (data, card, type) => {
     })
   })
 
-  detail.append(ul, starRating(vote))
+  return ul
+}
+
+const paintCard = (data, card, type) => {
+  const vote = data.vote_average
+  card.innerHTML = `<img src="${getMovieImage(data.poster_path, 'w500') || './images/no-icon.png'
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
+
+  card.append(ringRating(vote))
+  let detail = card.querySelector('div')
+
+  detail.append(paintGenres(data), starRating(vote))
 }
 
 const createCard = data => {
@@ -208,7 +212,6 @@ const createModal = data => {
         const title = data.title || data.name
         if (t.textContent === title) isMovie = true
       })
-      console.log(isMovie)
       !isMovie && createCard(data)
     }
   })

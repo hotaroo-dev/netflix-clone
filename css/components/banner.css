@@ -72,11 +72,34 @@
   border: 1px solid #fff5;
 }
 
+.banner-genres,
+.banner-genres ul {
+  width: 100%;
+}
+
+.banner-genres {
+  margin-bottom: 1.25rem;
+}
+
+.banner-genres ul {
+  justify-content: center;
+}
+
+.banner .banner-genres ul li:not(:first-child) {
+  color: #191919;
+  background-color: #fffa;
+  border-radius: 10rem;
+}
+
+.banner-genres ul li:first-child {
+  display: none;
+}
+
 ul.btn-wrapper {
   width: 100%;
   justify-content: center;
   align-items: start;
-  padding: 2rem 2.5rem;
+  padding-inline: 2.5rem;
 }
 
 .btn-wrapper li {
@@ -112,6 +135,7 @@ ul.btn-wrapper {
 }
 
 .play-btn {
+  margin-inline: 5vh;
   padding: 0.35rem 1.2rem;
   background-color: #fff;
   border-radius: 3px;
