@@ -31,7 +31,7 @@ function dynamicBanner(data) {
 function dynamicBgImage(poster_path, backdrop_path) {
   return (bgImage =
     window.innerWidth < 713
-      ? `linear-gradient(to top, #100f0f 9%, rgba(0, 0, 0, 0) 56%), url(${getMovieImage(poster_path)})`
+      ? `linear-gradient(to top, #100f0f 8%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(poster_path)})`
       : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`)
 }

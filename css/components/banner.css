@@ -89,6 +89,7 @@
   color: #191919;
   background-color: #fffa;
   border-radius: 10rem;
+  padding-inline: 1.2rem;
 }
 
 .banner-genres ul li:first-child {
