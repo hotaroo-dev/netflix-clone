@@ -1,8 +1,11 @@
+ .items {
+   gap: 2.2rem;
+ }
+
 .item a {
   position: relative;
   cursor: pointer;
   line-height: 1.5;
-  margin-right: 2.4rem;
   color: var(--white-darker);
   transform: color 0.2s ease-in-out;
 }
@@ -99,13 +102,13 @@ nav.mobile.open .dropdown {
   text-underline-offset: 3px;
 }
 
-@media screen and (max-width: 712px) {
+@media screen and (max-width: 713px) {
   .no-mobile {
     display: none !important;
   }
 }
 
-@media screen and (min-width: 713px) {
+@media screen and (min-width: 714px) {
   .mobile {
     display: none !important;
   }

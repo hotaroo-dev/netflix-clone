@@ -91,7 +91,7 @@
   opacity: 0.7;
 }
 
-@media screen and (min-width: 713px) {
+@media screen and (min-width: 714px) {
   .search-movies {
     padding-inline: 40px;
   }

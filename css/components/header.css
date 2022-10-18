@@ -51,7 +51,7 @@
 }
 
 .col .logo {
-  margin-right: 50px;
+  margin-right: 2.9rem;
   width: 95px;
   height: 25px;
   fill: var(--red);
@@ -128,7 +128,7 @@ svg.search-btn {
   }
 }
 
-@media screen and (max-width: 712px) {
+@media screen and (max-width: 713px) {
   .header {
     padding-inline: 20px;
   }

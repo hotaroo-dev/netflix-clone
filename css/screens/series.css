@@ -166,7 +166,7 @@ main .swiper {
   cursor: pointer;
 }
 
-@media screen and (max-width: 44.5rem) {
+@media screen and (max-width: 713px) {
   .series {
     height: 74vh;
   }
@@ -256,7 +256,7 @@ main .swiper {
   }
 }
 
-@media screen and (min-width: 713px) and (max-width: 1107px) {
+@media screen and (min-width: 714px) and (max-width: 1107px) {
   .card {
     max-width: 699px;
   }

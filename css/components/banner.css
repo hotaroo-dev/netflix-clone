@@ -25,10 +25,10 @@
 .banner .overview {
   width: 70%;
   font-size: 1.1rem;
-  padding: 10px 0 30px 0;
+  margin: 10px 0 30px 0;
 }
 
-.overview p {
+p.overview {
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -81,18 +81,25 @@
   margin-bottom: 1.25rem;
 }
 
-.banner-genres ul {
+.banner .banner-genres ul {
+  --gap: 1rem;
+  padding-inline: 3.4rem;
+}
+
+.banner-genres ul li {
+  display: flex;
   justify-content: center;
+  width: 33%;
 }
 
 .banner .banner-genres ul li:not(:first-child) {
   color: #191919;
   background-color: #fffa;
   border-radius: 10rem;
-  padding-inline: 1.2rem;
 }
 
-.banner-genres ul li:first-child {
+.banner-genres ul li:first-child,
+.banner-genres ul li:not(:nth-child(2), :nth-child(3), :nth-child(4)){
   display: none;
 }
 

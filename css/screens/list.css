@@ -37,7 +37,7 @@
   }
 }
 
-@media screen and (min-width: 380px) and (max-width: 712px) {
+@media screen and (min-width: 380px) and (max-width: 713px) {
   .movie-list,
   .search-movies {
     padding-inline: 14px;
