@@ -93,13 +93,14 @@ p.overview {
 }
 
 .banner .banner-genres ul li:not(:first-child) {
-  color: #191919;
-  background-color: #fffa;
+  color: #e5e5e5;
+  background-color: #000a;
+  border: 1px solid #fff3;
   border-radius: 10rem;
 }
 
 .banner-genres ul li:first-child,
-.banner-genres ul li:not(:nth-child(2), :nth-child(3), :nth-child(4)){
+.banner-genres ul li:not(:nth-child(2), :nth-child(3), :nth-child(4)) {
   display: none;
 }
 

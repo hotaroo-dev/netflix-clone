@@ -7,11 +7,9 @@ setInterval(() => {
   if (!scrolled) return
 
   scrolled = false
-  if (window.scrollY > 60) {
-    header.classList.add('blur')
-  } else {
-    header.classList.remove('blur')
-  }
+  window.scrollY > 60
+    ? header.classList.add('blur')
+    : header.classList.remove('blur')
 }, 250)
 
 const body = document.querySelector('body')
@@ -64,7 +62,7 @@ const getGenres = async type =>
     await fetch(`${BASE_PATH}/genre/${type}/list?api_key=${API_KEY}`)
   ).json()
 
-const getMovieWithGenres = (type, id) => {
+const getMovieWithGenres = type => {
   getGenres(type).then(({ genres }) =>
     Promise.all(
       genres.slice(0, 7).map(genre => {
@@ -110,7 +108,6 @@ const ringRating = vote => {
   const ringPercentage = Math.round((vote / totalRating) * 100)
 
   let rating = document.createElement('div')
-  let svg = document.createElement('svg')
   const circle = '<circle cx="15" cy="15" r="15"></circle>'
 
   rating.innerHTML = `<svg>${circle}${circle}</svg>`
@@ -134,7 +131,7 @@ const paintGenres = data => {
     }`
     ul.appendChild(releaseYear)
 
-    genres.map((genre, arr) => {
+    genres.map(genre => {
       let li = document.createElement('li')
       const name = genre.name.split(' & ')[0]
       li.innerText = `${name}`
@@ -145,18 +142,18 @@ const paintGenres = data => {
   return ul
 }
 
-const paintCard = (data, card, type) => {
+const paintCard = (data, card) => {
   const vote = data.vote_average
   card.innerHTML = `<img src="${
-    getMovieImage(data.poster_path, 'w500') || './images/no-icon.png'
+    (data.poster_path && getMovieImage(data.poster_path, 'w500')) ||
+    './images/no-icon.png'
   }">`
   card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
     data.overview
   }</p></div>`
-
   card.append(ringRating(vote))
-  let detail = card.querySelector('div')
 
+  let detail = card.querySelector('div')
   detail.append(paintGenres(data), starRating(vote))
 }
 
@@ -274,7 +271,7 @@ function checkLocalMovies() {
   return (movieList = JSON.parse(localStorage.getItem('movie-list')))
 }
 
-function saveLocalMovies(movie, type) {
+function saveLocalMovies(movie) {
   checkLocalMovies()
 
   if (checkMovie(movieList, movie)) return
