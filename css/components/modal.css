@@ -52,6 +52,7 @@ iframe {
 .video-active.iframe-wrapper {
   visibility: visible;
   backdrop-filter: blur(4px) grayscale(0.8);
+  -webkit-backdrop-filter: blur(4px) grayscale(0.8);
 }
 
 .video-active iframe {
