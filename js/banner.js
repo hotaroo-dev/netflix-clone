@@ -13,7 +13,8 @@ const createBanner = data => {
   title.textContent = `${data.title || data.name}`
   overview.textContent = `${data.overview}`
 
-  !homePath && document.querySelector('.banner-genres').append(paintGenres(data))
+  !homePath &&
+    document.querySelector('.banner-genres').append(paintGenres(data))
 
   const mediaQuery = window.matchMedia('(min-width: 714px)')
   mediaQuery.addEventListener('change', () => {
@@ -32,7 +33,24 @@ function dynamicBanner(data) {
 function dynamicBgImage(poster_path, backdrop_path) {
   return (bgImage =
     window.innerWidth < 714
-      ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(poster_path)})`
+      ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
+        poster_path
+      )})`
       : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`)
 }
+
+const createVideo = (type, id, videoId) => {
+  getVideo(type, id).then(({ results }) => {
+    const video = document.querySelector('iframe#trailer')
+    video.parentElement.classList.add('video-active')
+    video.src = `https://youtube.com/embed/${results[videoId].key}`
+  })
+}
+
+const iframeWrapper = document.querySelector('.iframe-wrapper')
+iframeWrapper.addEventListener('click', () => {
+  iframeWrapper.classList.remove('video-active')
+  const video = iframeWrapper.children[0]
+  video.setAttribute('src', '')
+})

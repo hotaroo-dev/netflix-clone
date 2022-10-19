@@ -1,13 +1,13 @@
-.modal {
-  z-index: 5;
+.overlay {
+  z-index: 6;
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
-  transition: all 0.2s ease-in-out;
   display: grid;
   place-items: center;
   visibility: hidden;
+  transition: all 0.2s ease-in-out;
 }
 
 .modal-active.modal {
@@ -25,17 +25,6 @@
   opacity: 0;
   top: -75px;
   padding: 25px;
-}
-
-.iframe-wrapper {
-  z-index: 6;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  display: grid;
-  place-items: center;
-  visibility: hidden;
 }
 
 iframe {

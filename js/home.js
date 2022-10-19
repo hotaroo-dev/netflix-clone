@@ -18,8 +18,11 @@ getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
   const all = [...movies, ...tv]
+  const banner = movies[1].results[id]
+  createBanner(banner)
 
-  createBanner(movies[1].results[id])
+  const playBtn = document.querySelector('.btn-wrapper .play')
+  playBtn.addEventListener('click', () => createVideo('movie', banner.id, 2))
 
   all.map(({ results }, index) => {
     const type = index < 2 ? types[0] : types[1]
