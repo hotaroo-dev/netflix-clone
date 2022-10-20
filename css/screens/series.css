@@ -30,14 +30,13 @@ main .swiper {
 
 .card {
   width: 100%;
-  max-width: 800px;
+  max-width: 820px;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
   position: relative;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  transition: all 0.15s linear;
   border-radius: 8px;
   background-position: center;
   background-size: cover;
@@ -96,8 +95,8 @@ main .swiper {
 }
 
 .card ul li:not(:first-child),
-.banner-genres ul li:not(:first-child){
-  padding: 4px .8rem;
+.banner-genres ul li:not(:first-child) {
+  padding: 4px 0.8rem;
   background-color: #0006;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -219,6 +218,9 @@ main .swiper {
   .card > button {
     right: 5px;
     bottom: 8px;
+  }
+  iframe {
+    min-height: 250px;
   }
 }
 

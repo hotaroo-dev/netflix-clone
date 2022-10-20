@@ -22,7 +22,7 @@ const toggleMode = () => {
 }
 
 const toggleMenu = () =>
-  document.querySelector('nav.mobile').classList.toggle('open')
+  document.querySelector('nav#dropdown').classList.toggle('open')
 
 /* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'
@@ -126,8 +126,9 @@ const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-      }`
+    releaseYear.innerText = `${
+      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    }`
     ul.appendChild(releaseYear)
 
     genres.map(genre => {
@@ -143,11 +144,12 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path, 'w500')) ||
-    './images/no-icon.png'
-    }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
-    }</p></div>`
+  card.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, 'w300')
+  }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
+    data.overview
+  }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -178,33 +180,36 @@ const modal = document.querySelector('.modal')
 modal &&
   modal.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
-    modal.children[0].textContent = ''
+    const card = modal.children[0]
+    card.textContent = ''
+    card.style.backgroundImage = 'none'
     modal.classList.remove('modal-active')
   })
 
 const dynamicBg = (card, backdrop) => {
-  if (window.innerWidth < 540) {
-    card.style.backgroundColor = '#181818'
+  if (window.innerWidth < 561) {
     card.style.backgroundImage = 'none'
+    card.style.backgroundColor = '#181818'
   } else {
-    card.style.backgroundImage = backdrop
-      ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-        backdrop
-      )})`
-      : '#202023'
+    card.style.backgroundImage = `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
+      backdrop
+    )})`
   }
 
   return card
 }
 
 const createModal = data => {
+  modal.classList.add('modal-active')
+
   const card = document.querySelector('.modal .modal-card')
   dynamicBg(card, data.backdrop_path)
   paintCard(data, card, data.type)
 
-  window.addEventListener('resize', () => {
+  const mediaQuery = window.matchMedia('(max-width: 560px)')
+  mediaQuery.addEventListener('change', () =>
     dynamicBg(card, data.backdrop_path)
-  })
+  )
 
   const addBtn = document.createElement('div')
   addBtn.classList.add('fav')
@@ -228,17 +233,16 @@ const createModal = data => {
 }
 
 const createMovie = (data, el) => {
+  if (!data.poster_path) return
+
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${(data.poster_path && getMovieImage(data.poster_path, 'w500')) ||
-    './images/no-icon.png'
-    }">`
+  movie.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, 'w300')
+  }">`
 
-  movie.addEventListener('click', () => {
-    modal.classList.add('modal-active')
-    createModal(data)
-  })
+  movie.addEventListener('click', () => createModal(data))
 
   return movie
 }

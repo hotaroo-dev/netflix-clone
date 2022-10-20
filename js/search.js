@@ -13,14 +13,12 @@ const searchUtils = (types, title) =>
     )
   )
 
-input.addEventListener('keyup', e => {
-  e.preventDefault()
-
+input.addEventListener('input', e => {
   const movies = document.querySelector('.search-movies .wrapper')
   const searchWrapper = movies.parentElement
-  searchWrapper.classList.add('active')
 
   movies.textContent = ''
+  searchWrapper.classList.add('active')
 
   if (!e.target.value) {
     searchWrapper.classList.remove('active')
@@ -30,6 +28,7 @@ input.addEventListener('keyup', e => {
   searchUtils(types, input.value).then(res => {
     if (!res) return
     res.map(({ results }, index) => {
+      results = results.slice(0, 20) || results
       results.map(movie => {
         movie = { ...movie, type: types[index] }
         createSearchMovie(movie, movies)
@@ -50,6 +49,8 @@ search.addEventListener('submit', e => {
 
 function createSearchMovie(data, el) {
   const movie = createMovie(data, el)
+  if (!movie) return
+
   const release =
     data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
   movie.classList.remove('swiper-slide')

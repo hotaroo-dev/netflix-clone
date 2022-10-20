@@ -33,7 +33,7 @@
           />
         </svg>
 
-        <nav class="no-mobile">
+        <nav id="no-dropdown">
           <ul class="items white">
             <li id="home" class="item"><a href="index.html">Home</a></li>
             <li id="series" class="item"><a href="series.html">Series</a></li>
@@ -94,7 +94,7 @@
           </button>
         </div>
 
-        <nav class="mobile">
+        <nav id="dropdown">
           <button class="icon" onclick="toggleMenu()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,12 @@
     </section>
 
     <div class="iframe-wrapper overlay">
-      <iframe id="trailer" allow="autoplay" allowfullscreen></iframe>
+      <iframe
+        title="trailer"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
     </div>
   </body>
 </html>

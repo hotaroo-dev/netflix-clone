@@ -1,6 +1,6 @@
- .items {
-   gap: 2.2rem;
- }
+.items {
+  gap: 2.2rem;
+}
 
 .item a {
   position: relative;
@@ -40,20 +40,20 @@
   transform: scaleX(1);
 }
 
-nav.mobile > button {
+nav#dropdown > button {
   border: 1px solid #fff4;
   background-color: transparent;
 }
 
-nav.mobile > button:hover {
+nav#dropdown > button:hover {
   background-color: #fff2;
 }
 
-nav.mobile {
+nav#dropdown {
   position: relative;
 }
 
-nav.mobile.open .dropdown {
+nav#dropdown.open .dropdown {
   opacity: 1;
   visibility: visible;
   transform: none;
@@ -100,6 +100,18 @@ nav.mobile.open .dropdown {
   font-size: 1rem;
   color: var(--white-darker);
   text-underline-offset: 3px;
+}
+
+@media screen and (max-width: 935px) {
+  #no-dropdown {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 936px) {
+  #dropdown {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 713px) {

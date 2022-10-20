@@ -14,8 +14,8 @@
   color: #191919;
 }
 
-.light a:hover,
-.light a.active {
+.light .item a:hover,
+.light .item a.active {
   color: #000;
 }
 
