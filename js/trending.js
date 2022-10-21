@@ -7,8 +7,9 @@ const info = document.querySelector('.btn-wrapper .info-btn')
 getTrending(types[0]).then(({ results }) => {
   const banner = results[id]
   const row = createRow(0, `${text}`)
-  results.map(movie => createMovie(movie, row))
+
   createBanner(banner)
+  results.map(movie => createMovie(movie, row, 'w300'))
 
   watchBtn.addEventListener('click', () =>
     createVideo(types[0], banner.id, videoId)

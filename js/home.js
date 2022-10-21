@@ -11,7 +11,7 @@ const types = ['movie', 'tv']
 
 getTrending('all').then(({ results }) => {
   const row = createRow(4, titles[4])
-  results.map(movie => createMovie(movie, row))
+  results.map(movie => createMovie(movie, row, 'w300'))
 })
 
 getMovies().then(res => {
@@ -29,7 +29,7 @@ getMovies().then(res => {
     const row = createRow(index, titles[index])
     results.map(movie => {
       movie = { ...movie, type }
-      createMovie(movie, row)
+      createMovie(movie, row, 'w300')
     })
   })
 })

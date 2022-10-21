@@ -18,17 +18,21 @@
   visibility: visible;
 }
 
-.modal-active .modal-card,
+.modal-active.modal .modal-card,
 .video-active iframe {
   transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
   transform: none;
   opacity: 1;
 }
 
-.modal-card {
+.modal .modal-card {
   opacity: 0;
   top: -75px;
   padding: 25px;
+}
+
+.modal .modal-card img {
+  border-radius: 6px;
 }
 
 .iframe-wrapper {

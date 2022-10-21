@@ -30,7 +30,7 @@ main .swiper {
 
 .card {
   width: 100%;
-  max-width: 820px;
+  max-width: 60vw;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
@@ -40,6 +40,7 @@ main .swiper {
   border-radius: 8px;
   background-position: center;
   background-size: cover;
+  transition: all 0.2s ease-in-out;
 }
 
 .light .card {
@@ -49,7 +50,8 @@ main .swiper {
 
 .card > img {
   max-width: 100%;
-  border-radius: 6px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .card h3 {
@@ -261,5 +263,11 @@ main .swiper {
 @media screen and (min-width: 714px) and (max-width: 1107px) {
   .card {
     max-width: 699px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .card {
+    max-width: 50vw;
   }
 }

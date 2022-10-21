@@ -74,7 +74,7 @@ const getMovieWithGenres = type => {
             const row = createRow(genre.id, genre.name)
             results.map(movie => {
               movie = { ...movie, type }
-              createMovie(movie, row)
+              createMovie(movie, row, 'w300')
             })
           })
       })
@@ -126,9 +126,8 @@ const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     genres.map(genre => {
@@ -144,12 +143,10 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, 'w300')
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, 'w500')
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -160,7 +157,7 @@ const createCard = data => {
   const card = document.createElement('div')
   const bg = data.backdrop_path
     ? `linear-gradient(to right, #191919 50%,  #0002),
-    url(${getMovieImage(data.backdrop_path)})`
+    url(${getMovieImage(data.backdrop_path, 'w1280')})`
     : '#202023'
   card.style.backgroundImage = bg
   card.classList.add('card')
@@ -192,7 +189,8 @@ const dynamicBg = (card, backdrop) => {
     card.style.backgroundColor = '#181818'
   } else {
     card.style.backgroundImage = `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-      backdrop
+      backdrop,
+      'w1280'
     )})`
   }
 
@@ -232,15 +230,14 @@ const createModal = data => {
   card.appendChild(addBtn)
 }
 
-const createMovie = (data, el) => {
+const createMovie = (data, el, format) => {
   if (!data.poster_path) return
 
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, 'w300')
-  }">`
+  movie.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, format)
+    }">`
 
   movie.addEventListener('click', () => createModal(data))
 

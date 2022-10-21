@@ -26,9 +26,10 @@ input.addEventListener('input', e => {
   }
 
   searchUtils(types, input.value).then(res => {
-    if (!res) return
+    movies.textContent = ''
+    if (res[0].results.length === 0) return
     res.map(({ results }, index) => {
-      results = results.slice(0, 20) || results
+      results = results.slice(0, 18) || results
       results.map(movie => {
         movie = { ...movie, type: types[index] }
         createSearchMovie(movie, movies)
@@ -48,13 +49,12 @@ search.addEventListener('submit', e => {
 })
 
 function createSearchMovie(data, el) {
-  const movie = createMovie(data, el)
+  const movie = createMovie(data, el, 'w154')
   if (!movie) return
 
   const release =
     data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
   movie.classList.remove('swiper-slide')
-  movie.innerHTML += `<div><h3>${
-    data.title || data.name
-  }</h3><p>${release}</p></div>`
+  movie.innerHTML += `<div><h3>${data.title || data.name
+    }</h3><p>${release}</p></div>`
 }
