@@ -14,8 +14,7 @@
 .search-movies {
   z-index: 2;
   min-width: 100%;
-  height: calc(100% - 55px);
-  margin-top: 55px;
+  margin-top: 68px;
   position: absolute;
   top: 0;
   transition: all 0.15s ease-in-out;
@@ -40,7 +39,7 @@
   min-height: 128px;
   left: 20px;
   right: 20px;
-  margin-top: 1.2rem;
+  margin-top: 0;
   grid-template-columns: 1fr;
   background-color: #0004;
   border: 1px solid #fff2;
@@ -93,6 +92,7 @@
 
 @media screen and (min-width: 714px) {
   .search-movies {
+    margin-top: 74px;
     padding-inline: 40px;
   }
   .search-movies .wrapper {
@@ -113,7 +113,7 @@
   main .swiper {
     padding-top: 8px;
   }
-  main > div > h1 {
+  .poster h1 {
     transform: translateX(-10px);
   }
 }
