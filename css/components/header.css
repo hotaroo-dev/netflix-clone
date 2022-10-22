@@ -102,10 +102,25 @@ form.active .search-btn {
   transform: translateX(-190px);
 }
 
-svg.search-btn {
+svg.search-btn,
+svg.close-btn {
   width: 24px;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
+}
+
+svg.close-btn {
+  width: 1.2rem;
+  position: absolute;
+  right: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+svg.close-btn.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 @keyframes active {
@@ -130,6 +145,7 @@ svg.search-btn {
 
 @media screen and (max-width: 713px) {
   .header {
+    padding: 0.8rem;
     padding-inline: 20px;
   }
   .col:last-child {

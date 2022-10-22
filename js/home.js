@@ -11,7 +11,7 @@ const types = ['movie', 'tv']
 
 getTrending('all').then(({ results }) => {
   const row = createRow(4, titles[4])
-  results.map(movie => createMovie(movie, row, 'w300'))
+  results.forEach(movie => createMovie(movie, row, 'w300'))
 })
 
 getMovies().then(res => {
@@ -24,10 +24,10 @@ getMovies().then(res => {
   const playBtn = document.querySelector('.btn-wrapper .play')
   playBtn.addEventListener('click', () => createVideo('movie', banner.id, 2))
 
-  all.map(({ results }, index) => {
+  all.forEach(({ results }, index) => {
     const type = index < 2 ? types[0] : types[1]
     const row = createRow(index, titles[index])
-    results.map(movie => {
+    results.forEach(movie => {
       movie = { ...movie, type }
       createMovie(movie, row, 'w300')
     })

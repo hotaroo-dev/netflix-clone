@@ -16,21 +16,31 @@ const searchUtils = (types, title) =>
 input.addEventListener('input', e => {
   const movies = document.querySelector('.search-movies .wrapper')
   const searchWrapper = movies.parentElement
+  const closeBtn = document.querySelector('svg.close-btn')
 
   movies.textContent = ''
   searchWrapper.classList.add('active')
 
   if (!e.target.value) {
     searchWrapper.classList.remove('active')
+    closeBtn.classList.remove('active')
     return
   }
 
+  closeBtn.classList.add('active')
+  closeBtn.addEventListener('click', () => {
+    e.target.value = ''
+    searchWrapper.classList.remove('active')
+    closeBtn.classList.remove('active')
+  })
+
   searchUtils(types, input.value).then(res => {
     movies.textContent = ''
-    if (res[0].results.length === 0) return
-    res.map(({ results }, index) => {
+    res.forEach(({ results }, index) => {
+      if (results.length === 0) return
+
       results = results.slice(0, 18) || results
-      results.map(movie => {
+      results.forEach(movie => {
         movie = { ...movie, type: types[index] }
         createSearchMovie(movie, movies)
       })
@@ -53,7 +63,9 @@ function createSearchMovie(data, el) {
   if (!movie) return
 
   const release =
-    data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    data.release_date?.split('-')[0] ||
+    data.first_air_date?.split('-')[0] ||
+    'unknown year'
   movie.classList.remove('swiper-slide')
   movie.innerHTML += `<div><h3>${data.title || data.name
     }</h3><p>${release}</p></div>`

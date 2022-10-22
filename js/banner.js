@@ -33,8 +33,8 @@ function dynamicBgImage(poster_path, backdrop_path) {
   return (bgImage =
     window.innerWidth < 714
       ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
-          poster_path
-        )})`
+        poster_path
+      )})`
       : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`)
 }

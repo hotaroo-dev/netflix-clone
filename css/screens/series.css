@@ -7,20 +7,23 @@
 main {
   padding: 25px 30px;
   padding-right: 0;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-main > div > h1 {
-  font-size: 1.2rem;
-  font-weight: 500;
 }
 
 main .swiper {
   max-width: 100%;
   cursor: pointer;
+}
+
+.poster {
+  --gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.poster h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .swiper .swiper-button-prev,
@@ -122,7 +125,7 @@ main .swiper {
 .card ::-webkit-scrollbar,
 .wrapper::-webkit-scrollbar {
   width: 0.4rem;
-  background: transparent;
+  background-color: transparent;
 }
 
 .card ::-webkit-scrollbar-thumb,
@@ -180,7 +183,10 @@ main .swiper {
   main {
     padding: 0.5rem 0 1rem 0.5rem;
   }
-  main > div > h1 {
+  .poster {
+    --gap: 0.4rem;
+  }
+  .poster h1 {
     line-height: 1.5;
   }
   .card {

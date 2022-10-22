@@ -12,10 +12,6 @@ setInterval(() => {
     : header.classList.remove('blur')
 }, 250)
 
-const body = document.querySelector('body')
-const theme = localStorage.getItem('theme')
-theme && body.classList.add(theme)
-
 const toggleMode = () => {
   body.classList.toggle('light')
   localStorage.setItem('theme', body.classList.value)
@@ -65,14 +61,15 @@ const getGenres = async type =>
 const getMovieWithGenres = type => {
   getGenres(type).then(({ genres }) =>
     Promise.all(
-      genres.slice(0, 7).map(genre => {
+      genres.slice(0, 8).map(genre => {
         fetch(
           `${BASE_PATH}/discover/${type}?api_key=${API_KEY}&with_genres=${genre.id}`
         )
-          .then(response => response.json())
+          .then(response => response.ok && response.json())
           .then(({ results }) => {
+            if (!results) return
             const row = createRow(genre.id, genre.name)
-            results.map(movie => {
+            results.forEach(movie => {
               movie = { ...movie, type }
               createMovie(movie, row, 'w300')
             })
@@ -130,7 +127,7 @@ const paintGenres = data => {
       }`
     ul.appendChild(releaseYear)
 
-    genres.map(genre => {
+    genres.forEach(genre => {
       let li = document.createElement('li')
       const name = genre.name.split(' & ')[0]
       li.innerText = `${name}`

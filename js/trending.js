@@ -9,7 +9,7 @@ getTrending(types[0]).then(({ results }) => {
   const row = createRow(0, `${text}`)
 
   createBanner(banner)
-  results.map(movie => createMovie(movie, row, 'w300'))
+  results.forEach(movie => createMovie(movie, row, 'w300'))
 
   watchBtn.addEventListener('click', () =>
     createVideo(types[0], banner.id, videoId)

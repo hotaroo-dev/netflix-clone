@@ -29,7 +29,6 @@
 .search-movies.active .wrapper {
   backdrop-filter: blur(10px) saturate(120%) contrast(95%);
   -webkit-backdrop-filter: blur(10px) saturate(120%) contrast(95%);
-  max-height: 381.2px;
   opacity: 1;
 }
 
@@ -37,6 +36,7 @@
   --gap: 0;
 
   position: fixed;
+  max-height: 381.2px;
   min-height: 128px;
   left: 20px;
   right: 20px;

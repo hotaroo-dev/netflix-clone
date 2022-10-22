@@ -6,7 +6,7 @@ function swiperInit(index) {
   const row = document.createElement('div')
   row.setAttribute('id', `row${index}`)
   row.append(swiper)
-  document.querySelector('main').appendChild(row)
+  document.querySelector('main > div').appendChild(row)
 
   swiper.classList.add(`swiper`)
   swiperWrapper.setAttribute('id', `swiper${index}`)
