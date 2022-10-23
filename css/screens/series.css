@@ -173,7 +173,7 @@ main .swiper {
 
 @media screen and (max-width: 713px) {
   .series {
-    height: 74vh;
+    height: 72vh;
   }
   .banner {
     padding-inline: 0;
@@ -182,7 +182,7 @@ main .swiper {
     justify-content: flex-end;
   }
   main {
-    padding: 0.8rem 0 1.2rem 0.6rem;
+    padding: 0.7rem 0 1.2rem 0.6rem;
   }
   .poster h1 {
     line-height: 1.5;
