@@ -34,7 +34,7 @@ main .swiper {
 
 .card {
   width: 100%;
-  max-width: 60vw;
+  max-width: 58vw;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
@@ -98,6 +98,10 @@ main .swiper {
 
 .card ul li:first-child {
   margin-right: 10px;
+}
+
+.card ul li:nth-child(6) {
+  display: none;
 }
 
 .card ul li:not(:first-child),
@@ -275,11 +279,5 @@ main .swiper {
 @media screen and (min-width: 714px) and (max-width: 1107px) {
   .card {
     max-width: 699px;
-  }
-}
-
-@media screen and (min-width: 1400px) {
-  .card {
-    max-width: 50vw;
   }
 }
