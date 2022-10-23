@@ -44,7 +44,7 @@ main .swiper {
   border-radius: 8px;
   background-position: center;
   background-size: cover;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .light .card {

@@ -46,7 +46,6 @@ p.overview {
   align-items: center;
   padding: 8px 24px;
   border-radius: 5px;
-  box-shadow: 0 5px 8px #000a;
   cursor: pointer;
 }
 
@@ -68,8 +67,14 @@ p.overview {
 }
 
 .info {
-  background-color: #000a;
+  background-color: #0005;
   border: 1px solid #fff5;
+  box-shadow: inset 0 0 0 0 #000a;
+  transition: all 0.4s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.info:hover {
+  box-shadow: inset 215px 0 0 0 #000a;
 }
 
 .banner-genres,
@@ -148,9 +153,14 @@ ul.btn-wrapper {
 .play-btn {
   margin-inline: 5vh;
   padding: 0.35rem 1.2rem;
-  background-color: #fff;
+  background-color: var(--white-darker);
   border-radius: 3px;
   gap: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.play-btn:hover {
+  background-color: var(--white-lighter);
 }
 
 li.play-btn a {

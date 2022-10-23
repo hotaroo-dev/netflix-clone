@@ -3,6 +3,7 @@ const infoBtn = document.querySelector('.btn-wrapper .info')
 
 const play = document.querySelector('.btn-wrapper .play-btn')
 const info = document.querySelector('.btn-wrapper .info-btn')
+const add = document.querySelector('.btn-wrapper .my-list')
 
 getTrending(types[0]).then(({ results }) => {
   const banner = results[id]
@@ -20,6 +21,8 @@ getTrending(types[0]).then(({ results }) => {
 
   infoBtn.addEventListener('click', () => createModal(banner))
   info.addEventListener('click', () => createModal(banner))
+
+  add.addEventListener('click', () => saveLocalMovies(banner))
 })
 
 getMovieWithGenres(types[0], id)

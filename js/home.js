@@ -14,6 +14,9 @@ getTrending('all').then(({ results }) => {
   results.forEach(movie => createMovie(movie, row, 'w300'))
 })
 
+const playBtn = document.querySelector('.btn-wrapper .play')
+const addBtn = document.querySelector('.btn-wrapper .list')
+
 getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
@@ -21,8 +24,8 @@ getMovies().then(res => {
   const banner = movies[1].results[id]
   createBanner(banner)
 
-  const playBtn = document.querySelector('.btn-wrapper .play')
   playBtn.addEventListener('click', () => createVideo('movie', banner.id, 2))
+  addBtn.addEventListener('click', () => saveLocalMovies(banner))
 
   all.forEach(({ results }, index) => {
     const type = index < 2 ? types[0] : types[1]
