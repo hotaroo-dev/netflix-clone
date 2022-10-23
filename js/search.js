@@ -13,9 +13,14 @@ const searchUtils = (types, title) =>
     )
   )
 
+const movies = document.querySelector('.search-movies .wrapper')
+const searchWrapper = movies.parentElement
+
+input.addEventListener('focus', () => {
+  movies.firstChild && searchWrapper.classList.add('active')
+})
+
 input.addEventListener('input', e => {
-  const movies = document.querySelector('.search-movies .wrapper')
-  const searchWrapper = movies.parentElement
   const closeBtn = document.querySelector('svg.close-btn')
 
   movies.textContent = ''
@@ -50,7 +55,6 @@ input.addEventListener('input', e => {
 
   searchWrapper.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
-    movies.textContent = ''
     searchWrapper.classList.remove('active')
   })
 })

@@ -157,7 +157,6 @@ const noBgImage = 'linear-gradient(#181818 100%, #000a)'
 
 const createCard = data => {
   const card = document.createElement('div')
-  console.log(data.backdrop_path)
   const bg = data.backdrop_path
     ? `linear-gradient(to right, #191919 50%,  #0002),
     url(${getMovieImage(data.backdrop_path, 'w1280')})`
