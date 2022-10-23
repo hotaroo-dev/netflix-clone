@@ -30,6 +30,7 @@ input.addEventListener('input', e => {
   closeBtn.classList.add('active')
   closeBtn.addEventListener('click', () => {
     e.target.value = ''
+    movies.textContent = ''
     searchWrapper.classList.remove('active')
     closeBtn.classList.remove('active')
   })
@@ -67,6 +68,7 @@ function createSearchMovie(data, el) {
     data.first_air_date?.split('-')[0] ||
     'unknown year'
   movie.classList.remove('swiper-slide')
-  movie.innerHTML += `<div><h3>${data.title || data.name
-    }</h3><p>${release}</p></div>`
+  movie.innerHTML += `<div><h3>${
+    data.title || data.name
+  }</h3><p>${release}</p></div>`
 }

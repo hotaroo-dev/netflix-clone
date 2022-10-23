@@ -38,3 +38,19 @@
   color: #181818;
   transition: color 0.2s ease-in-out;
 }
+
+.copyright {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1.2rem;
+  opacity: 0.5;
+}
+
+.bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
