@@ -31,6 +31,10 @@
   opacity: 0;
 }
 
+.wrapper .card:last-child {
+  margin-bottom: 1.2rem;
+}
+
 @media screen and (min-width: 1400px) {
   .card.active {
     max-width: 50vw;
@@ -43,6 +47,6 @@
     padding-inline: 14px;
   }
   .wrapper {
-    --gap: 1.1rem;
+    --gap: 1.2rem;
   }
 }

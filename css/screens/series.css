@@ -182,17 +182,14 @@ main .swiper {
     justify-content: flex-end;
   }
   main {
-    padding: 0.8rem 0 1rem 0.6rem;
-  }
-  .poster {
-    --gap: 0.4rem;
+    padding: 0.8rem 0 1.2rem 0.6rem;
   }
   .poster h1 {
     line-height: 1.5;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     padding: 0.25rem 0;
     padding-left: 0.6rem;
-    margin-left: 0.5rem;
+    margin-left: 0.56rem;
     border-left: 0.4rem solid var(--red);
   }
   .copyright {

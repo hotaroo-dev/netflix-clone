@@ -48,9 +48,10 @@
 }
 
 .bottom {
+  z-index: -1;
   width: 100%;
-  position: absolute;
-  bottom: 1rem;
+  position: fixed;
+  bottom: 1.2rem;
   display: flex;
   justify-content: center;
 }
