@@ -34,7 +34,7 @@ main .swiper {
 
 .card {
   width: 100%;
-  max-width: 58vw;
+  max-width: 720px;
   display: grid;
   grid-template-columns: 0.5fr 1.5fr;
   align-items: start;
@@ -67,7 +67,7 @@ main .swiper {
 .card > div:first-of-type {
   display: grid;
   padding-top: 10px;
-  padding-inline: 20px;
+  padding-left: 20px;
   cursor: pointer;
 }
 
@@ -94,6 +94,7 @@ main .swiper {
   display: flex;
   align-items: center;
   gap: var(--gap);
+  margin-top: 1px;
 }
 
 .card ul li:first-child {
@@ -273,11 +274,5 @@ main .swiper {
   }
   .card {
     grid-template-columns: 120px 1fr;
-  }
-}
-
-@media screen and (min-width: 714px) and (max-width: 1107px) {
-  .card {
-    max-width: 730px;
   }
 }
