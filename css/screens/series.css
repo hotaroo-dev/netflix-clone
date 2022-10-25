@@ -276,3 +276,9 @@ main .swiper {
     grid-template-columns: 120px 1fr;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .card {
+    max-width: 55vw;
+  }
+}
