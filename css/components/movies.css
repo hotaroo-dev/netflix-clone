@@ -16,7 +16,7 @@
   min-width: 100%;
   height: calc(100% - 50px);
   margin-top: 50px;
-  position: absolute;
+  position: fixed;
   top: 0;
   transition: all 0.15s ease-in-out;
   visibility: hidden;

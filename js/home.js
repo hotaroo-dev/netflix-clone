@@ -25,7 +25,9 @@ getMovies().then(res => {
   createBanner(banner)
 
   playBtn.addEventListener('click', () => createVideo('movie', banner.id, 2))
-  addBtn.addEventListener('click', () => saveLocalMovies(banner))
+  addBtn.addEventListener('click', () =>
+    saveLocalMovies({ ...banner, type: 'movie' })
+  )
 
   all.forEach(({ results }, index) => {
     const type = index < 2 ? types[0] : types[1]
