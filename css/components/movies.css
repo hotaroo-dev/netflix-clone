@@ -7,8 +7,8 @@
 .movie img {
   max-width: 100%;
   border-radius: 5px;
-  box-shadow: #000a 0px 1px 2px 0px, 
-    #0004 0px 1px 3px 1px;
+  box-shadow: #0004 0px 1px 2px 0px, 
+    #0002 0px 1px 3px 1px;
 }
 
 .light .movie img {
