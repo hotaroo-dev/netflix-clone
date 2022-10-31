@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>movie app</title>
+    <title>Netflix</title>
     <link rel="icon" type="image/svg+xml" href="images/logo.svg" size="any" />
+    <link rel="apple-touch-icon" type="image/svg+xml" href="images/logo.svg" size="any" />
     <link rel="stylesheet" href="css/index.css" />
     <link
       rel="stylesheet"
@@ -141,12 +142,35 @@
     <div class="banner home">
       <div class="text-wrapper no-mobile">
         <h2 class="title"></h2>
-        <div class="btn-wrapper">
+        <div class="btn-wrapper large">
           <div class="btn play"><a href="#">Play</a></div>
           <div class="btn list"><a href="list.html">My List</a></div>
         </div>
         <p class="overview"></p>
       </div>
+
+      <div class="banner-genres mobile"></div>
+
+      <ul class="btn-wrapper mobile">
+        <li class="my-list">
+          <a href="list.html">
+            <img src="images/add.svg" alt="add btn" />
+            My List</a
+          >
+        </li>
+        <li class="play-btn">
+          <a href="#">
+            <img src="images/play.svg" alt="play btn" />
+            Play
+          </a>
+        </li>
+        <li class="info-btn">
+          <a href="#">
+            <img src="images/phone-info.svg" alt="info btn" />
+            Info</a
+          >
+        </li>
+      </ul>
     </div>
 
     <main>

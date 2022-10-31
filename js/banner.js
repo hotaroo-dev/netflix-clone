@@ -6,6 +6,10 @@ const banner = document.querySelector('.banner')
 const title = banner.querySelector('.title')
 const overview = banner.querySelector('.overview')
 
+const play = document.querySelector('.btn-wrapper .play-btn')
+const info = document.querySelector('.btn-wrapper .info-btn')
+const add = document.querySelector('.btn-wrapper .my-list')
+
 const createBanner = data => {
   dynamicBgImage(data.poster_path, data.backdrop_path)
 
@@ -13,8 +17,11 @@ const createBanner = data => {
   title.textContent = `${data.title || data.name}`
   overview.textContent = `${data.overview}`
 
-  !homePath &&
-    document.querySelector('.banner-genres').append(paintGenres(data))
+  document.querySelector('.banner-genres').append(paintGenres(data))
+
+  play.addEventListener('click', () => createVideo(types[0], data.id, videoId))
+  info.addEventListener('click', () => createModal(data))
+  add.addEventListener('click', () => saveLocalMovies(data))
 
   const mediaQuery = window.matchMedia('(min-width: 714px)')
   mediaQuery.addEventListener('change', () => {

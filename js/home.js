@@ -6,7 +6,8 @@ const titles = {
   4: 'Trending Now'
 }
 
-let id = 1
+const id = 1
+const videoId = 2
 const types = ['movie', 'tv']
 
 getTrending('all').then(({ results }) => {
@@ -21,13 +22,12 @@ getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
   const all = [...movies, ...tv]
-  const banner = movies[1].results[id]
+  const banner = { ...movies[1].results[id], type: 'movie' }
+
   createBanner(banner)
 
-  playBtn.addEventListener('click', () => createVideo('movie', banner.id, 2))
-  addBtn.addEventListener('click', () =>
-    saveLocalMovies({ ...banner, type: 'movie' })
-  )
+  playBtn.addEventListener('click', () => createVideo('movie', banner.id, videoId))
+  addBtn.addEventListener('click', () => saveLocalMovies(banner))
 
   all.forEach(({ results }, index) => {
     const type = index < 2 ? types[0] : types[1]

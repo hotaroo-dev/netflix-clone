@@ -194,8 +194,8 @@ main .swiper {
     margin-bottom: 0.6rem;
     padding: 0.25rem 0;
     padding-left: 0.6rem;
-    margin-left: 0.56rem;
-    border-left: 0.4rem solid var(--red);
+    margin-left: 0.6rem;
+    border-left: 0.35rem solid var(--red);
   }
   .copyright {
     margin-top: 0.9rem;
