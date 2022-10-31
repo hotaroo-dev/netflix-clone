@@ -6,6 +6,9 @@ const banner = document.querySelector('.banner')
 const title = banner.querySelector('.title')
 const overview = banner.querySelector('.overview')
 
+const playBtn =
+  document.querySelector('.btn-wrapper .play') ||
+  document.querySelector('.btn-wrapper .watch')
 const play = document.querySelector('.btn-wrapper .play-btn')
 const info = document.querySelector('.btn-wrapper .info-btn')
 const add = document.querySelector('.btn-wrapper .my-list')
@@ -19,8 +22,18 @@ const createBanner = data => {
 
   document.querySelector('.banner-genres').append(paintGenres(data))
 
-  play.addEventListener('click', () => createVideo(types[0], data.id, videoId))
-  info.addEventListener('click', () => createModal(data))
+  playBtn.addEventListener('click', e => {
+    e.preventDefault()
+    createVideo(types[0], data.id, videoId)
+  })
+  play.addEventListener('click', e => {
+    e.preventDefault()
+    createVideo(types[0], data.id, videoId)
+  })
+  info.addEventListener('click', e => {
+    e.preventDefault()
+    createModal(data)
+  })
   add.addEventListener('click', () => saveLocalMovies(data))
 
   const mediaQuery = window.matchMedia('(min-width: 714px)')
@@ -40,8 +53,8 @@ function dynamicBgImage(poster_path, backdrop_path) {
   return (bgImage =
     window.innerWidth < 714
       ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
-        poster_path
-      )})`
+          poster_path
+        )})`
       : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`)
 }
