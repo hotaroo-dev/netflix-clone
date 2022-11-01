@@ -107,6 +107,7 @@ main .swiper {
 
 .card ul li:not(:first-child),
 .banner-genres ul li:not(:first-child) {
+  text-align: center;
   padding: 4px 0.8rem;
   background-color: #0006;
   backdrop-filter: blur(5px);
@@ -208,8 +209,8 @@ main .swiper {
     font-size: 1.2rem;
   }
   .card p {
-    line-height: 1.1;
-    height: 70px;
+    line-height: 1.24;
+    height: 78px;
   }
   .card > div:first-of-type {
     padding: 0;
@@ -225,14 +226,13 @@ main .swiper {
     border-bottom-left-radius: 6px;
   }
   .card ul {
-    --gap: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 0.4rem;
+  }
+  .card ul li:first-child {
+    margin-right: 4px;
   }
   .card li:not(:first-child, :nth-child(2), :nth-child(3)) {
     display: none;
-  }
-  .card li:first-child {
-    margin-right: 4px;
   }
   .card > button {
     right: 5px;
