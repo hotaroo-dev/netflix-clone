@@ -239,6 +239,7 @@ main .swiper {
     bottom: 8px;
   }
   iframe {
+    margin-bottom: 10vh;
     min-height: 250px;
   }
 }

@@ -62,6 +62,7 @@ function dynamicBgImage(poster_path, backdrop_path) {
 const video = document.querySelector('iframe')
 const createVideo = (type, id, videoId) => {
   getVideo(type, id).then(({ results }) => {
+    console.log(results)
     body.classList.add('video-active')
     video.src = `https://youtube.com/embed/${results[videoId].key}?autoplay=1`
   })
