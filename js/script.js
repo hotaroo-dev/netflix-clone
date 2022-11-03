@@ -12,6 +12,13 @@ setInterval(() => {
     : header.classList.remove('blur')
 }, 250)
 
+const logo = document.querySelectorAll('#logo')
+logo.forEach(l =>
+  l.addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  )
+)
+
 const toggleMode = () => {
   body.classList.toggle('light')
   localStorage.setItem('theme', body.classList.value)

@@ -6,12 +6,9 @@ const banner = document.querySelector('.banner')
 const title = banner.querySelector('.title')
 const overview = banner.querySelector('.overview')
 
-const playBtn =
-  document.querySelector('.btn-wrapper .play') ||
-  document.querySelector('.btn-wrapper .watch')
-const play = document.querySelector('.btn-wrapper .play-btn')
-const info = document.querySelector('.btn-wrapper .info-btn')
-const add = document.querySelector('.btn-wrapper .my-list')
+const playBtn = document.querySelectorAll('#playBtn')
+const infoBtn = document.querySelectorAll('#infoBtn')
+const addBtn = document.querySelectorAll('#addBtn')
 
 const createBanner = data => {
   dynamicBgImage(data.poster_path, data.backdrop_path)
@@ -22,19 +19,23 @@ const createBanner = data => {
 
   document.querySelector('.banner-genres').append(paintGenres(data))
 
-  playBtn.addEventListener('click', e => {
-    e.preventDefault()
-    createVideo(types[0], data.id, videoId)
-  })
-  play.addEventListener('click', e => {
-    e.preventDefault()
-    createVideo(types[0], data.id, videoId)
-  })
-  info.addEventListener('click', e => {
-    e.preventDefault()
-    createModal(data)
-  })
-  add.addEventListener('click', () => saveLocalMovies(data))
+  infoBtn.forEach(info =>
+    info.addEventListener('click', e => {
+      e.preventDefault()
+      createModal(data)
+    })
+  )
+
+  playBtn.forEach(play =>
+    play.addEventListener('click', e => {
+      e.preventDefault()
+      createVideo(types[0], data.id, videoId)
+    })
+  )
+
+  addBtn.forEach(add =>
+    add.addEventListener('click', () => saveLocalMovies(data))
+  )
 
   const mediaQuery = window.matchMedia('(min-width: 714px)')
   mediaQuery.addEventListener('change', () => {
@@ -64,7 +65,7 @@ const createVideo = (type, id, videoId) => {
   getVideo(type, id).then(({ results }) => {
     console.log(results)
     body.classList.add('video-active')
-    video.src = `https://youtube.com/embed/${results[videoId].key}?autoplay=1`
+    video.src = `https://youtube.com/embed/${results[videoId].key}?autoplay=1&mute=1`
   })
 }
 

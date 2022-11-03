@@ -50,20 +50,14 @@
   align-items: center;
 }
 
+#logo {
+  cursor: pointer;
+}
+
 .col .logo {
   margin-right: 2.9rem;
   width: 95px;
   height: 25px;
-  fill: var(--red);
-}
-
-.col .logo:hover {
-  animation: active 0.8s ease infinite;
-}
-
-.col .logo path {
-  stroke-width: 2px;
-  stroke: #fffa;
 }
 
 .col .search {
@@ -123,17 +117,6 @@ svg.close-btn.active {
   visibility: visible;
 }
 
-@keyframes active {
-  0% {
-    fill-opacity: 1;
-  }
-  50% {
-    fill-opacity: 0;
-  }
-  100% {
-    fill-opacity: 1;
-  }
-}
 @media screen and (max-width: 390px) {
   .search .input {
     max-width: 180px;
