@@ -3,8 +3,8 @@
 </p>
 <h2 align="center">Netflix Clone</h2>
 
-<h4 align="center"><span style="border-bottom: 1px solid #000">Ingredients<span></h4>
-<p align="center" style="display: flex; gap: 0.6rem; align-items: center;">
+<p align="center">Ingredients</p>
+<p align="center">
   <img width="20px" src="images/markdown/html.svg"/>
   <img width="20px" src="images/markdown/css.svg"/>
   <img width="22px" src="images/markdown/javascript.svg"/>
