@@ -6,7 +6,7 @@ const titles = {
   4: 'Trending Now'
 }
 
-const videoId = 2
+const trailer = 2
 const types = ['movie', 'tv']
 
 getTrending('all').then(({ results }) => {

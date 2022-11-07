@@ -13,7 +13,7 @@
 }
 
 .light .header.blur {
-  background-color: #fff1;
+  background-color: #fff2;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }

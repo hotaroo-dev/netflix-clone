@@ -29,7 +29,7 @@ const createBanner = data => {
   playBtn.forEach(play =>
     play.addEventListener('click', e => {
       e.preventDefault()
-      createVideo(types[0], data.id, videoId)
+      createVideo(data.id)
     })
   )
 
@@ -54,16 +54,16 @@ function dynamicBgImage(poster_path, backdrop_path) {
   return (bgImage =
     window.innerWidth < 714
       ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
-          poster_path
-        )})`
+        poster_path
+      )})`
       : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`)
 }
 
 const video = document.querySelector('iframe')
-const createVideo = (type, id, videoId) => {
-  getVideo(type, id).then(({ results }) => {
-    console.log(results)
+const createVideo = (id) => {
+  getVideo(types[0], id).then(({ results }) => {
+    const videoId = trailer || results.findIndex(v => v.name.includes('Trailer'))
     body.classList.add('video-active')
     video.src = `https://youtube.com/embed/${results[videoId].key}?autoplay=1&mute=1`
   })

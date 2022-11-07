@@ -22,13 +22,14 @@
 .video-active iframe {
   transform: none;
   opacity: 1;
-  transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .modal .modal-card {
   opacity: 0;
   top: -50px;
-  padding: 25px;
+  padding: 24px;
+  padding-right: 0;
 }
 
 .modal .modal-card img {
@@ -41,13 +42,11 @@
 
 iframe {
   width: 100%;
-  max-width: 560px;
-  min-height: 315px;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;
   margin-bottom: 15vh;
   border-radius: 10px;
   border: 1px solid #0004;
-  transform: scale(0.65) translateZ(0);
-  transform-origin: bottom left;
   opacity: 0;
 }
 

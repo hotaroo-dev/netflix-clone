@@ -44,6 +44,8 @@ main .swiper {
   border-radius: 8px;
   background-position: center;
   background-size: cover;
+  transform: scale(0.99) translateZ(0);
+  transform-origin: bottom left;
   transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
 
@@ -101,10 +103,6 @@ main .swiper {
   margin-right: 10px;
 }
 
-.card ul li:nth-child(6) {
-  display: none;
-}
-
 .card ul li:not(:first-child),
 .banner-genres ul li:not(:first-child) {
   text-align: center;
@@ -114,6 +112,11 @@ main .swiper {
   -webkit-backdrop-filter: blur(5px);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.card ul li:nth-child(6),
+.card ul li:nth-child(7){
+  display: none;
 }
 
 .card p {
@@ -240,7 +243,6 @@ main .swiper {
   }
   iframe {
     margin-bottom: 10vh;
-    min-height: 250px;
   }
 }
 
@@ -280,6 +282,6 @@ main .swiper {
 
 @media screen and (min-width: 1440px) {
   .card {
-    max-width: 55vw;
+    max-width: 56vw;
   }
 }

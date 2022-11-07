@@ -130,9 +130,8 @@ const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     genres.forEach(genre => {
@@ -148,12 +147,10 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, 'w500')
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, 'w342')
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -198,9 +195,9 @@ const dynamicBg = (card, backdrop) => {
   } else {
     card.style.backgroundImage = backdrop
       ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-          backdrop,
-          'w1280'
-        )})`
+        backdrop,
+        'w1280'
+      )})`
       : noBgImage
   }
 
@@ -246,9 +243,8 @@ const createMovie = (data, el, format) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, format)
-  }">`
+  movie.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, format)
+    }">`
 
   movie.addEventListener('click', () => createModal(data))
 
@@ -263,17 +259,6 @@ function deleteMovie(e, data) {
 }
 
 /* local storage */
-const checkMovie = (movieList, data) =>
-  movieList.some(movie => movie.id === data.id)
-
-function getIndex(movieList, data) {
-  let index
-  movieList.forEach((movie, i) => {
-    if (movie.id === data.id) index = i
-  })
-  return index
-}
-
 function checkLocalMovies() {
   if (localStorage.getItem('movie-list') === null) return (movieList = [])
   return (movieList = JSON.parse(localStorage.getItem('movie-list')))
@@ -282,7 +267,9 @@ function checkLocalMovies() {
 function saveLocalMovies(movie) {
   checkLocalMovies()
 
-  if (checkMovie(movieList, movie)) return
+  // check if movie is in movieList
+  if (movieList.some(m => m.id === movie.id)) return
+
   movieList.push(movie)
   localStorage.setItem('movie-list', JSON.stringify(movieList))
 }
@@ -290,7 +277,8 @@ function saveLocalMovies(movie) {
 function removeLocalMovie(movie) {
   checkLocalMovies()
 
-  const index = getIndex(movieList, movie)
+  // get index of movie to remove using splice function
+  const index = movieList.findIndex(m => m.id === movie.id)
   movieList.splice(index, 1)
   localStorage.setItem('movie-list', JSON.stringify(movieList))
 }
