@@ -1,7 +1,7 @@
 .banner {
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   padding: 40px;
   background-position: center;
   background-size: cover;
