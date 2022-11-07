@@ -135,9 +135,8 @@ const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${
-      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-    }`
+    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+      }`
     ul.appendChild(releaseYear)
 
     genres.forEach(genre => {
@@ -153,12 +152,10 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, 'w342')
-  }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
-    data.overview
-  }</p></div>`
+  card.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, 'w342')
+    }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
+    }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -175,7 +172,7 @@ const createCard = data => {
     : noBgImage
   card.style.backgroundImage = bg
   card.classList.add('card')
-  paintCard(data, card, data.type)
+  paintCard(data, card)
 
   const deleteBtn = document.createElement('button')
   deleteBtn.innerHTML =
@@ -188,14 +185,10 @@ const createCard = data => {
 }
 
 const modal = document.querySelector('.modal')
-modal &&
-  modal.addEventListener('click', e => {
-    if (e.target !== e.currentTarget) return
-    const card = modal.children[0]
-    card.textContent = ''
-    card.style.backgroundImage = 'none'
-    modal.classList.remove('modal-active')
-  })
+modal.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return
+  modal.classList.remove('modal-active')
+})
 
 const dynamicBg = (card, backdrop) => {
   if (window.innerWidth < 561) {
@@ -203,9 +196,9 @@ const dynamicBg = (card, backdrop) => {
   } else {
     card.style.backgroundImage = backdrop
       ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-          backdrop,
-          'w1280'
-        )})`
+        backdrop,
+        'w1280'
+      )})`
       : noBgImage
   }
 
@@ -213,11 +206,9 @@ const dynamicBg = (card, backdrop) => {
 }
 
 const createModal = data => {
-  modal.classList.add('modal-active')
-
   const card = document.querySelector('.modal .modal-card')
   dynamicBg(card, data.backdrop_path)
-  paintCard(data, card, data.type)
+  paintCard(data, card,)
 
   const mediaQuery = window.matchMedia('(max-width: 560px)')
   mediaQuery.addEventListener('change', () =>
@@ -243,6 +234,8 @@ const createModal = data => {
   })
 
   card.appendChild(addBtn)
+  modal.classList.add('modal-active')
+
 }
 
 const createMovie = (data, el, format) => {
@@ -251,9 +244,8 @@ const createMovie = (data, el, format) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${
-    data.poster_path && getMovieImage(data.poster_path, format)
-  }">`
+  movie.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, format)
+    }">`
 
   movie.addEventListener('click', () => createModal(data))
 
