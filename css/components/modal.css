@@ -29,7 +29,6 @@
   opacity: 0;
   top: -50px;
   padding: 24px;
-  padding-right: 0;
 }
 
 .modal .modal-card img {
@@ -42,7 +41,7 @@
 
 iframe {
   width: 100%;
-  max-width: 600px;
+  max-width: 580px;
   aspect-ratio: 16 / 9;
   margin-bottom: 15vh;
   border-radius: 10px;

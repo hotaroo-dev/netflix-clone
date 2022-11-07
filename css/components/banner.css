@@ -99,11 +99,17 @@ p.overview {
   text-align: center;
 }
 
-.banner .banner-genres ul li:not(:first-child) {
+.light .banner .banner-genres ul li:not(:first-child) {
   color: #e5e5e5;
   background-color: #000a;
-  border: 1px solid #fff3;
+  border-color: #fff3;
+}
+.banner .banner-genres ul li:not(:first-child) {
+  color: #202023;
+  background-color: #fff8;
+  border: 1px solid #000a;
   border-radius: 10rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .banner-genres ul li:first-child,

@@ -12,7 +12,7 @@ function swiperInit(index) {
   swiperWrapper.setAttribute('id', `swiper${index}`)
   swiperWrapper.classList.add('swiper-wrapper', 'movies')
 
-  return new Swiper(`.swiper`, {
+  new Swiper(`.swiper`, {
     direction: 'horizontal',
     speed: 800,
     spaceBetween: 10,
@@ -46,15 +46,14 @@ function swiperInit(index) {
       }
     }
   })
+  return row
 }
 
 function createRow(index, title) {
-  swiperInit(index)
+  const row = swiperInit(index)
 
-  const row = document.querySelector(`#row${index}`)
   const titleEl = document.createElement('h1')
   titleEl.textContent = `${title}`
-
   row.prepend(titleEl)
 
   return row.querySelector(`#swiper${index}`)

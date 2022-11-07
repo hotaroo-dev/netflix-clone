@@ -3,7 +3,7 @@
 </p>
 <h2 align="center">Netflix Clone</h2>
 
-<p align="center">Ingredients</p>
+<p align="center"><b>Ingredients</b></p>
 <p align="center">
   <img width="20px" src="images/markdown/html.svg"/>
   <img width="20px" src="images/markdown/css.svg"/>

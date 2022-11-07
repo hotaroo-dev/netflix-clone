@@ -49,6 +49,11 @@ const getTrending = async type =>
     await fetch(`${BASE_PATH}/trending/${type}/day?api_key=${API_KEY}`)
   ).json()
 
+const getUpcoming = async () =>
+  await (
+    await fetch(`${BASE_PATH}/movie/upcoming?api_key=${API_KEY}&with_genres=16`)
+  ).json()
+
 const getMovieImage = (path, format) =>
   `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
 
@@ -130,8 +135,9 @@ const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-      }`
+    releaseYear.innerText = `${
+      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    }`
     ul.appendChild(releaseYear)
 
     genres.forEach(genre => {
@@ -147,10 +153,12 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, 'w342')
-    }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
-    }</p></div>`
+  card.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, 'w342')
+  }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
+    data.overview
+  }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -195,9 +203,9 @@ const dynamicBg = (card, backdrop) => {
   } else {
     card.style.backgroundImage = backdrop
       ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-        backdrop,
-        'w1280'
-      )})`
+          backdrop,
+          'w1280'
+        )})`
       : noBgImage
   }
 
@@ -243,8 +251,9 @@ const createMovie = (data, el, format) => {
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, format)
-    }">`
+  movie.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, format)
+  }">`
 
   movie.addEventListener('click', () => createModal(data))
 
