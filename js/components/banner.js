@@ -1,3 +1,11 @@
+import {
+  getMovieImage,
+  getTrailerVideo,
+  paintGenres,
+  createModal,
+  saveLocalMovies
+} from './utils.js'
+
 const homePath = document.querySelector('#home a.active')
 const moviePath = document.querySelector('#movies a.active')
 const tvPath = document.querySelector('#series a.active')
@@ -10,8 +18,8 @@ const playBtn = document.querySelectorAll('#playBtn')
 const infoBtn = document.querySelectorAll('#infoBtn')
 const addBtn = document.querySelectorAll('#addBtn')
 
-const createBanner = data => {
-  dynamicBgImage(data.poster_path, data.backdrop_path)
+export default function createBanner(data) {
+  const bgImage = dynamicBgImage(data.poster_path, data.backdrop_path)
 
   banner.style.backgroundImage = bgImage
   title.textContent = `${data.title || data.name}`
@@ -46,24 +54,24 @@ const createBanner = data => {
 }
 
 function dynamicBanner(data) {
-  dynamicBgImage(data.poster_path, data.backdrop_path)
+  const bgImage = dynamicBgImage(data.poster_path, data.backdrop_path)
   document.querySelector('.banner').style.backgroundImage = bgImage
 }
 
 function dynamicBgImage(poster_path, backdrop_path) {
-  return (bgImage =
-    window.innerWidth < 714
-      ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
+  return window.innerWidth < 714
+    ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
         poster_path
       )})`
-      : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
-    url(${getMovieImage(backdrop_path)})`)
+    : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
+    url(${getMovieImage(backdrop_path)})`
 }
 
 const video = document.querySelector('iframe')
-const createVideo = (id) => {
-  getVideo(types[0], id).then(({ results }) => {
-    const videoId = trailer || results.findIndex(v => v.name.includes('Trailer'))
+const createVideo = id => {
+  getTrailerVideo(types[0], id).then(({ results }) => {
+    const videoId =
+      trailer || results.findIndex(v => v.name.includes('Trailer'))
     body.classList.add('video-active')
     video.src = `https://youtube.com/embed/${results[videoId].key}?autoplay=1&mute=1`
   })

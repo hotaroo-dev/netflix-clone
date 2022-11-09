@@ -1,3 +1,12 @@
+import {
+  getTrending,
+  getMovies,
+  getUpcoming,
+  createMovie
+} from './components/utils.js'
+import createBanner from './components/banner.js'
+import createRow from './components/swiper.js'
+
 const titles = {
   0: 'Top Rated Movies',
   1: 'Popular Movies',
@@ -6,9 +15,6 @@ const titles = {
   4: 'Upcoming',
   5: 'Trending Now'
 }
-
-const trailer = 2
-const types = ['movie', 'tv']
 
 getTrending('all').then(({ results }) => {
   const row = createRow(5, titles[5])

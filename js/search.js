@@ -1,3 +1,5 @@
+import { searchAPI, createMovie } from './components/utils.js'
+
 const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('form svg')
 const input = document.querySelector('input[name="title"]')
@@ -6,11 +8,7 @@ searchBtn.addEventListener('click', () => search.classList.toggle('active'))
 
 const searchUtils = (types, title) =>
   Promise.all(
-    types.map(type =>
-      fetch(
-        `${BASE_PATH}/search/${type}?api_key=${API_KEY}&query=${title}`
-      ).then(res => res.json())
-    )
+    types.map(type => fetch(searchAPI(type, title)).then(res => res.json()))
   )
 
 const movies = document.querySelector('.search-movies .wrapper')

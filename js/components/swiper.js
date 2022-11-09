@@ -50,7 +50,7 @@ function swiperInit(index) {
   return row
 }
 
-function createRow(index, title) {
+export default function createRow(index, title) {
   const row = swiperInit(index)
 
   const titleEl = document.createElement('h1')

@@ -1,4 +1,4 @@
-const types = ['movie', 'tv']
+import { checkLocalMovies, createCard } from './components/utils.js'
 
-checkLocalMovies()
+const movieList = checkLocalMovies()
 movieList.map(movie => createCard(movie))

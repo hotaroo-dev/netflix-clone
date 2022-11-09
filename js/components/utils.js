@@ -1,37 +1,8 @@
-let scrolled = false
-const header = document.querySelector('.header')
-
-window.addEventListener('scroll', () => (scrolled = true))
-
-setInterval(() => {
-  if (!scrolled) return
-
-  scrolled = false
-  window.scrollY > 60
-    ? header.classList.add('blur')
-    : header.classList.remove('blur')
-}, 250)
-
-const logo = document.querySelectorAll('#logo')
-logo.forEach(l =>
-  l.addEventListener('click', () =>
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  )
-)
-
-const toggleMode = () => {
-  body.classList.toggle('light')
-  localStorage.setItem('theme', body.classList.value)
-}
-
-const toggleMenu = () =>
-  document.querySelector('nav#dropdown').classList.toggle('open')
-
-/* utils function */
 const API_KEY = '86783762237ff3e97be67f3473685c59'
 const BASE_PATH = 'https://api.themoviedb.org/3'
 
-const getMovies = () =>
+/* utils function */
+export const getMovies = () =>
   Promise.all(
     ['movie', 'tv'].map(type =>
       Promise.all(
@@ -44,52 +15,37 @@ const getMovies = () =>
     )
   )
 
-const getTrending = async type =>
+export const getTrending = async type =>
   await (
     await fetch(`${BASE_PATH}/trending/${type}/day?api_key=${API_KEY}`)
   ).json()
 
-const getUpcoming = async () =>
+export const getUpcoming = async () =>
   await (
     await fetch(`${BASE_PATH}/movie/upcoming?api_key=${API_KEY}&with_genres=16`)
   ).json()
 
-const getMovieImage = (path, format) =>
-  `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
-
-const getDetail = async (type, id) =>
-  await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
-
-const getVideo = async (type, id) =>
+export const getTrailerVideo = async (type, id) =>
   await (
     await fetch(`${BASE_PATH}/${type}/${id}/videos?api_key=${API_KEY}`)
   ).json()
 
-const getGenres = async type =>
+export const getMovieImage = (path, format) =>
+  `https://image.tmdb.org/t/p/${format ? format : 'original'}${path}`
+
+export const getGenres = async type =>
   await (
     await fetch(`${BASE_PATH}/genre/${type}/list?api_key=${API_KEY}`)
   ).json()
 
-const getMovieWithGenres = type => {
-  getGenres(type).then(({ genres }) =>
-    Promise.all(
-      genres.slice(0, 6).map(genre => {
-        fetch(
-          `${BASE_PATH}/discover/${type}?api_key=${API_KEY}&with_genres=${genre.id}`
-        )
-          .then(response => response.ok && response.json())
-          .then(({ results }) => {
-            if (!results) return
-            const row = createRow(genre.id, genre.name)
-            results.forEach(movie => {
-              movie = { ...movie, type }
-              createMovie(movie, row, 'w300')
-            })
-          })
-      })
-    )
-  )
-}
+export const searchAPI = (type, title) =>
+  `${BASE_PATH}/search/${type}?api_key=${API_KEY}&query=${title}`
+
+export const posterAPI = (type, id) =>
+  `${BASE_PATH}/discover/${type}?api_key=${API_KEY}&with_genres=${id}`
+
+const getDetail = async (type, id) =>
+  await (await fetch(`${BASE_PATH}/${type}/${id}?api_key=${API_KEY}`)).json()
 /* end utils function */
 
 const totalRating = 10
@@ -131,12 +87,13 @@ const ringRating = vote => {
   return rating
 }
 
-const paintGenres = data => {
+export const paintGenres = data => {
   let ul = document.createElement('ul')
   getDetail(data.media_type || data.type, data.id).then(({ genres }) => {
     const releaseYear = document.createElement('li')
-    releaseYear.innerText = `${data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
-      }`
+    releaseYear.innerText = `${
+      data.release_date?.split('-')[0] || data.first_air_date?.split('-')[0]
+    }`
     ul.appendChild(releaseYear)
 
     genres.forEach(genre => {
@@ -152,10 +109,12 @@ const paintGenres = data => {
 
 const paintCard = (data, card) => {
   const vote = data.vote_average
-  card.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, 'w342')
-    }">`
-  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${data.overview
-    }</p></div>`
+  card.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, 'w342')
+  }">`
+  card.innerHTML += `<div><h3>${data.title || data.name}</h3><p>${
+    data.overview
+  }</p></div>`
   card.append(ringRating(vote))
 
   let detail = card.querySelector('div')
@@ -164,7 +123,7 @@ const paintCard = (data, card) => {
 
 const noBgImage = 'linear-gradient(#181818 100%, #000a)'
 
-const createCard = data => {
+export const createCard = data => {
   const card = document.createElement('div')
   const bg = data.backdrop_path
     ? `linear-gradient(to right, #191919 50%,  #0002),
@@ -177,38 +136,37 @@ const createCard = data => {
   const deleteBtn = document.createElement('button')
   deleteBtn.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>'
+  deleteBtn.addEventListener('click', e => deleteMovie(e, data))
 
   card.append(deleteBtn)
-  card.lastChild.addEventListener('click', e => deleteMovie(e, data))
-
   document.querySelector('.movie-list .wrapper').appendChild(card)
 }
 
-const modal = document.querySelector('.modal')
+export const modal = document.querySelector('.modal')
 modal.addEventListener('click', e => {
   if (e.target !== e.currentTarget) return
   modal.classList.remove('modal-active')
 })
 
-const dynamicBg = (card, backdrop) => {
+export const dynamicBg = (card, backdrop) => {
   if (window.innerWidth < 561) {
     card.style.backgroundImage = noBgImage
   } else {
     card.style.backgroundImage = backdrop
       ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-        backdrop,
-        'w1280'
-      )})`
+          backdrop,
+          'w1280'
+        )})`
       : noBgImage
   }
 
   return card
 }
 
-const createModal = data => {
+export const createModal = data => {
   const card = document.querySelector('.modal .modal-card')
   dynamicBg(card, data.backdrop_path)
-  paintCard(data, card,)
+  paintCard(data, card)
 
   const mediaQuery = window.matchMedia('(max-width: 560px)')
   mediaQuery.addEventListener('change', () =>
@@ -235,17 +193,17 @@ const createModal = data => {
 
   card.appendChild(addBtn)
   modal.classList.add('modal-active')
-
 }
 
-const createMovie = (data, el, format) => {
+export const createMovie = (data, el, format) => {
   if (!data.poster_path) return
 
   const movie = document.createElement('div')
   el.appendChild(movie)
   movie.classList.add('movie', 'swiper-slide')
-  movie.innerHTML = `<img src="${data.poster_path && getMovieImage(data.poster_path, format)
-    }">`
+  movie.innerHTML = `<img src="${
+    data.poster_path && getMovieImage(data.poster_path, format)
+  }">`
 
   movie.addEventListener('click', () => createModal(data))
 
@@ -260,13 +218,13 @@ function deleteMovie(e, data) {
 }
 
 /* local storage */
-function checkLocalMovies() {
-  if (localStorage.getItem('movie-list') === null) return (movieList = [])
-  return (movieList = JSON.parse(localStorage.getItem('movie-list')))
+export function checkLocalMovies() {
+  if (localStorage.getItem('movie-list') === null) return []
+  return JSON.parse(localStorage.getItem('movie-list'))
 }
 
-function saveLocalMovies(movie) {
-  checkLocalMovies()
+export function saveLocalMovies(movie) {
+  const movieList = checkLocalMovies()
 
   // check if movie is in movieList
   if (movieList.some(m => m.id === movie.id)) return
@@ -276,7 +234,7 @@ function saveLocalMovies(movie) {
 }
 
 function removeLocalMovie(movie) {
-  checkLocalMovies()
+  const movieList = checkLocalMovies()
 
   // get index of movie to remove using splice function
   const index = movieList.findIndex(m => m.id === movie.id)
