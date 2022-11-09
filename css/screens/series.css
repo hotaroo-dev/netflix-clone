@@ -23,12 +23,10 @@ main .swiper {
 .poster h1 {
   font-size: 1.2rem;
   font-weight: 500;
+  padding: 0.25rem 0;
+  padding-left: 0.6rem;
+  border-left: 0.35rem solid var(--red);
   transition: all 0.1s linear;
-}
-
-.swiper .swiper-button-prev,
-.swiper .swiper-button-next {
-  color: red;
 }
 
 .card {
@@ -195,10 +193,7 @@ main .swiper {
   .poster h1 {
     line-height: 1.5;
     margin-bottom: 0.6rem;
-    padding: 0.25rem 0;
-    padding-left: 0.6rem;
     margin-left: 0.6rem;
-    border-left: 0.35rem solid var(--red);
   }
   .copyright {
     margin-top: 0.9rem;
