@@ -106,6 +106,24 @@ input.addEventListener('input', e => {
 
 <br/>
 
+## ⚙️ Before Started
+
+#### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat&color=b2f5ea"> By starting the server locally, you can easily change and check code
+
+You can test Html, CSS, JS. in real time by starting a web server locally. To do this, you need to install `node.js` and `npm`. After that, you can install the live server by using the command below.
+
+```
+npm install -g live-server
+```
+
+start the server by running the command below.
+
+```
+live-server .
+```
+
+<br/>
+
 ## 👏🏼 Contributing
 
 Can't spell thank you without `YOU`.
