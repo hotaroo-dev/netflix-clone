@@ -6,22 +6,18 @@ import {
   saveLocalMovies
 } from './utils.js'
 
-const homePath = document.querySelector('#home a.active')
-const moviePath = document.querySelector('#movies a.active')
-const tvPath = document.querySelector('#series a.active')
-
 const banner = document.querySelector('.banner')
 const title = banner.querySelector('.title')
 const overview = banner.querySelector('.overview')
-
 const playBtn = document.querySelectorAll('#playBtn')
 const infoBtn = document.querySelectorAll('#infoBtn')
 const addBtn = document.querySelectorAll('#addBtn')
 
 export default function createBanner(data) {
-  const bgImage = dynamicBgImage(data.poster_path, data.backdrop_path)
-
-  banner.style.backgroundImage = bgImage
+  banner.style.backgroundImage = dynamicBgImage(
+    data.poster_path,
+    data.backdrop_path
+  )
   title.textContent = `${data.title || data.name}`
   overview.textContent = `${data.overview}`
 
@@ -46,16 +42,14 @@ export default function createBanner(data) {
   )
 
   const mediaQuery = window.matchMedia('(min-width: 714px)')
-  mediaQuery.addEventListener('change', () => {
-    homePath && dynamicBanner(data)
-    moviePath && dynamicBanner(data)
-    tvPath && dynamicBanner(data)
-  })
-}
-
-function dynamicBanner(data) {
-  const bgImage = dynamicBgImage(data.poster_path, data.backdrop_path)
-  document.querySelector('.banner').style.backgroundImage = bgImage
+  mediaQuery.addEventListener(
+    'change',
+    () =>
+      (banner.style.backgroundImage = dynamicBgImage(
+        data.poster_path,
+        data.backdrop_path
+      ))
+  )
 }
 
 function dynamicBgImage(poster_path, backdrop_path) {
