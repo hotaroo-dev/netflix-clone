@@ -14,6 +14,7 @@ function swiperInit(index) {
 
   new Swiper(`.swiper`, {
     direction: 'horizontal',
+    grabCursor: true,
     speed: 300,
     spaceBetween: 10,
     breakpoints: {
