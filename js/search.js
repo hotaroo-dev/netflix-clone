@@ -1,4 +1,4 @@
-import { searchAPI, createMovie } from './components/utils.js'
+import { searchAPI, createMovie } from './modules/utils.js'
 
 const search = document.querySelector('form.search')
 const searchBtn = search.querySelector('form svg')

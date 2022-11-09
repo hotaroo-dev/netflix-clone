@@ -3,9 +3,9 @@ import {
   getGenres,
   posterAPI,
   createMovie
-} from './components/utils.js'
-import createBanner from './components/banner.js'
-import createRow from './components/swiper.js'
+} from './modules/utils.js'
+import createBanner from './modules/banner.js'
+import createRow from './modules/swiper.js'
 
 getTrending(types[0]).then(({ results }) => {
   const banner = results[id]

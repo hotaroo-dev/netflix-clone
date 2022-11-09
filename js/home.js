@@ -3,9 +3,9 @@ import {
   getMovies,
   getUpcoming,
   createMovie
-} from './components/utils.js'
-import createBanner from './components/banner.js'
-import createRow from './components/swiper.js'
+} from './modules/utils.js'
+import createBanner from './modules/banner.js'
+import createRow from './modules/swiper.js'
 
 const titles = {
   0: 'Top Rated Movies',
