@@ -4,7 +4,7 @@ import {
   paintGenres,
   createModal,
   saveLocalMovies
-} from './utils.js';
+} from './utils.js'
 
 const banner = document.querySelector('.banner')
 const title = banner.querySelector('.title')
@@ -45,18 +45,18 @@ export default function createBanner(data) {
   mediaQuery.addEventListener(
     'change',
     () =>
-    (banner.style.backgroundImage = dynamicBgImage(
-      data.poster_path,
-      data.backdrop_path
-    ))
+      (banner.style.backgroundImage = dynamicBgImage(
+        data.poster_path,
+        data.backdrop_path
+      ))
   )
 }
 
 function dynamicBgImage(poster_path, backdrop_path) {
   return window.innerWidth < 714
     ? `linear-gradient(to top, #100f0f 10%, rgba(0, 0, 0, 0) 50%), url(${getMovieImage(
-      poster_path
-    )})`
+        poster_path
+      )})`
     : `linear-gradient(to right, #100f0f 5%, rgba(0, 0, 0, 0) 90%), 
     url(${getMovieImage(backdrop_path)})`
 }
