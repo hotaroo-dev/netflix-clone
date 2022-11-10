@@ -25,7 +25,7 @@ getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
   const all = [...movies, ...tv]
-  const banner = { ...movies[0].results[4], type: 'movie' }
+  const banner = { ...movies[0].results[3], type: 'movie' }
 
   createBanner(banner)
 
