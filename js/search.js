@@ -40,12 +40,12 @@ input.addEventListener('input', e => {
 
   searchUtils(types, input.value).then(res => {
     movies.textContent = ''
-    res.forEach(({ results }, index) => {
+    res.forEach(({ results }, i) => {
       if (results.length === 0) return
 
-      results = results.slice(0, 18) || results
+      results = results.slice(0, 20)
       results.forEach(movie => {
-        movie = { ...movie, type: types[index] }
+        movie = { ...movie, type: types[i] }
         createSearchMovie(movie, movies)
       })
     })
