@@ -25,24 +25,19 @@ getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
   const all = [...movies, ...tv]
-  const banner = { ...movies[0].results[3], type: 'movie' }
 
-  createBanner(banner)
+  createBanner({ ...movies[0].results[2], type: 'movie' })
 
   all.forEach(({ results }, i) => {
-    const type = i < 2 ? types[0] : types[1]
     const row = createRow(i, titles[i])
-    results.forEach(movie => {
-      movie = { ...movie, type }
-      createMovie(movie, row, 'w300')
-    })
+    const type = i < 2 ? types[0] : types[1]
+    results.forEach(movie => createMovie({ ...movie, type }, row, 'w300'))
   })
 })
 
 getUpcoming().then(({ results }) => {
   const row = createRow(4, titles[4])
-  results.forEach(movie => {
-    movie = { ...movie, type: types[0] }
-    createMovie(movie, row, 'w300')
-  })
+  results.forEach(movie =>
+    createMovie({ ...movie, type: 'movie' }, row, 'w300')
+  )
 })

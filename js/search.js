@@ -43,10 +43,8 @@ input.addEventListener('input', e => {
     res.forEach(({ results }, i) => {
       if (results.length === 0) return
 
-      results = results.slice(0, 20)
-      results.forEach(movie => {
-        movie = { ...movie, type: types[i] }
-        createSearchMovie(movie, movies)
+      results.slice(0, 20).forEach(movie => {
+        createSearchMovie({ ...movie, type: types[i] }, movies)
       })
     })
   })

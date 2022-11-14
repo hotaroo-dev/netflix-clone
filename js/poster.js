@@ -8,10 +8,9 @@ import createBanner from './modules/banner.js'
 import createRow from './modules/swiper.js'
 
 getTrending(types[0]).then(({ results }) => {
-  const banner = results[id]
   const row = createRow(0, `${text}`)
 
-  createBanner(banner)
+  createBanner(results[id])
   results.forEach(movie => createMovie(movie, row, 'w300'))
 })
 
@@ -23,11 +22,11 @@ const getPosterWithGenres = type => {
           .then(response => response.ok && response.json())
           .then(({ results }) => {
             if (!results) return
+
             const row = createRow(genre.id, genre.name)
-            results.forEach(movie => {
-              movie = { ...movie, type }
-              createMovie(movie, row, 'w300')
-            })
+            results.forEach(movie =>
+              createMovie({ ...movie, type }, row, 'w300')
+            )
           })
       })
     )

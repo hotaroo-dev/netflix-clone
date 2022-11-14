@@ -276,6 +276,6 @@ main .swiper {
 
 @media screen and (min-width: 1440px) {
   .card {
-    max-width: 56vw;
+    max-width: 55vw;
   }
 }

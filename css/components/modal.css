@@ -29,6 +29,7 @@
   opacity: 0;
   top: -50px;
   padding: 24px;
+  aspect-ratio: 10 / 3;
 }
 
 .modal .modal-card img {
