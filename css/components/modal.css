@@ -30,6 +30,8 @@
   top: -50px;
   padding: 24px;
   aspect-ratio: 10 / 3;
+  transform: scale(0.98) translateZ(0);
+  transform-origin: bottom left;
 }
 
 .modal .modal-card img {
@@ -141,5 +143,11 @@ circle:last-child {
   0% {
     stroke-width: 0;
     stroke-dashoffset: 0;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .modal-card {
+    background-image: linear-gradient(#181818 100%, #000a) !important;
   }
 }

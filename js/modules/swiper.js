@@ -21,7 +21,7 @@ function swiperInit(index) {
       220: {
         slidesPerView: 2.5
       },
-      320: {
+      365: {
         slidesPerView: 3.5
       },
       480: {

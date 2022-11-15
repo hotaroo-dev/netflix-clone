@@ -148,30 +148,16 @@ modal.addEventListener('click', e => {
   modal.classList.remove('modal-active')
 })
 
-export const dynamicBg = (card, backdrop) => {
-  if (window.innerWidth < 561) {
-    card.style.backgroundImage = noBgImage
-  } else {
-    card.style.backgroundImage = backdrop
-      ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
-          backdrop,
-          'w1280'
-        )})`
-      : noBgImage
-  }
-
-  return card
-}
-
 export const createModal = data => {
   const card = document.querySelector('.modal .modal-card')
-  dynamicBg(card, data.backdrop_path)
-  paintCard(data, card)
+  card.style.backgroundImage = data.backdrop_path
+    ? `linear-gradient(to right, #191919 50%, #0002), url(${getMovieImage(
+        data.backdrop_path,
+        'w1280'
+      )})`
+    : noBgImage
 
-  const mediaQuery = window.matchMedia('(max-width: 560px)')
-  mediaQuery.addEventListener('change', () =>
-    dynamicBg(card, data.backdrop_path)
-  )
+  paintCard(data, card)
 
   const addBtn = document.createElement('div')
   addBtn.classList.add('fav')

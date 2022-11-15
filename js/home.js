@@ -26,7 +26,7 @@ getMovies().then(res => {
   const tv = res[1]
   const all = [...movies, ...tv]
 
-  createBanner({ ...movies[0].results[2], type: 'movie' })
+  createBanner({ ...movies[0].results[0], type: 'movie' })
 
   all.forEach(({ results }, i) => {
     const row = createRow(i, titles[i])

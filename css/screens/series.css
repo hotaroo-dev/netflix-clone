@@ -41,8 +41,6 @@ main .swiper {
   border-radius: 8px;
   background-position: center;
   background-size: cover;
-  transform: scale(0.98) translateZ(0);
-  transform-origin: bottom left;
   transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
 }
 
@@ -276,6 +274,6 @@ main .swiper {
 
 @media screen and (min-width: 1440px) {
   .card {
-    max-width: 55vw;
+    max-width: 55.8vw;
   }
 }
