@@ -1,3 +1,5 @@
+import { createMovie } from './utils.js'
+
 function swiperInit(index) {
   const swiper = document.createElement('div')
   const swiperWrapper = document.createElement('div')
@@ -50,7 +52,7 @@ function swiperInit(index) {
   return row
 }
 
-export default function createRow(index, title) {
+function createRow(index, title) {
   const row = swiperInit(index)
 
   const titleEl = document.createElement('h1')
@@ -58,4 +60,11 @@ export default function createRow(index, title) {
   row.prepend(titleEl)
 
   return row.querySelector(`#swiper${index}`)
+}
+
+export const pushMovie = (movies, rNum, type, title) => {
+  const row = createRow(rNum, title)
+  movies.forEach(movie =>
+    createMovie(type ? { ...movie, type } : movie, row, 'w300')
+  )
 }

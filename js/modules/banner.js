@@ -33,7 +33,7 @@ export default function createBanner(data) {
   playBtn.forEach(play =>
     play.addEventListener('click', e => {
       e.preventDefault()
-      createVideo(data.id)
+      createVideo(data.id, data.type || data.media_type)
     })
   )
 
@@ -62,8 +62,8 @@ function dynamicBgImage(poster_path, backdrop_path) {
 }
 
 const video = document.querySelector('iframe')
-const createVideo = id => {
-  getTrailerVideo(types[0], id).then(({ results }) => {
+const createVideo = (id, type) => {
+  getTrailerVideo(type, id).then(({ results }) => {
     const videoId =
       trailer || results.findIndex(v => v.name.includes('Trailer'))
     body.classList.add('video-active')

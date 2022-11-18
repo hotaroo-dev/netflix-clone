@@ -1,11 +1,6 @@
-import {
-  getTrending,
-  getMovies,
-  getUpcoming,
-  createMovie
-} from './modules/utils.js'
+import { getTrending, getMovies, getUpcoming } from './modules/utils.js'
 import createBanner from './modules/banner.js'
-import createRow from './modules/swiper.js'
+import { pushMovie } from './modules/swiper.js'
 
 const titles = {
   0: 'Top Rated Movies',
@@ -16,28 +11,19 @@ const titles = {
   5: 'Trending Now'
 }
 
-getTrending('all').then(({ results }) => {
-  const row = createRow(5, titles[5])
-  results.forEach(movie => createMovie(movie, row, 'w300'))
-})
+getTrending('all').then(({ results }) => pushMovie(results, 5, null, titles[5]))
 
 getMovies().then(res => {
   const movies = res[0]
   const tv = res[1]
   const all = [...movies, ...tv]
 
-  createBanner({ ...movies[0].results[0], type: 'movie' })
+  createBanner({ ...movies[0].results[3], type: 'movie' })
 
   all.forEach(({ results }, i) => {
-    const row = createRow(i, titles[i])
     const type = i < 2 ? types[0] : types[1]
-    results.forEach(movie => createMovie({ ...movie, type }, row, 'w300'))
+    pushMovie(results, i, type, titles[i])
   })
 })
 
-getUpcoming().then(({ results }) => {
-  const row = createRow(4, titles[4])
-  results.forEach(movie =>
-    createMovie({ ...movie, type: 'movie' }, row, 'w300')
-  )
-})
+getUpcoming().then(({ results }) => pushMovie(results, 4, 'movie', titles[4]))

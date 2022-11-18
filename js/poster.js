@@ -1,17 +1,10 @@
-import {
-  getTrending,
-  getGenres,
-  posterAPI,
-  createMovie
-} from './modules/utils.js'
+import { getTrending, getGenres, posterAPI } from './modules/utils.js'
 import createBanner from './modules/banner.js'
-import createRow from './modules/swiper.js'
+import { pushMovie } from './modules/swiper.js'
 
 getTrending(types[0]).then(({ results }) => {
-  const row = createRow(0, `${text}`)
-
   createBanner(results[id])
-  results.forEach(movie => createMovie(movie, row, 'w300'))
+  pushMovie(results, 0, null, title)
 })
 
 const getPosterWithGenres = type => {
@@ -23,10 +16,7 @@ const getPosterWithGenres = type => {
           .then(({ results }) => {
             if (!results) return
 
-            const row = createRow(genre.id, genre.name)
-            results.forEach(movie =>
-              createMovie({ ...movie, type }, row, 'w300')
-            )
+            pushMovie(results, genre.id, type, genre.name)
           })
       })
     )
