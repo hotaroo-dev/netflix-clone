@@ -21,31 +21,28 @@ function swiperInit(index) {
     spaceBetween: 10,
     breakpoints: {
       220: {
-        slidesPerView: 2.5
+        slidesPerView: 2.55
       },
       365: {
-        slidesPerView: 3.5
+        slidesPerView: 3.55
       },
-      480: {
-        slidesPerView: 4.5
+      540: {
+        slidesPerView: 4.55
       },
-      640: {
-        slidesPerView: 5.5
+      714: {
+        slidesPerView: 5.55
       },
-      812: {
+      882: {
         slidesPerView: 6.5
       },
-      1024: {
+      1050: {
         slidesPerView: 7.5
       },
-      1100: {
+      1250: {
         slidesPerView: 8.5
       },
-      1250: {
-        slidesPerView: 9.5
-      },
       1500: {
-        slidesPerView: 10.5
+        slidesPerView: 9.5
       }
     }
   })
