@@ -63,8 +63,8 @@ main .swiper {
 
 .card > div:first-of-type {
   display: grid;
-  padding-top: 10px;
-  padding-left: 20px;
+  padding-top: 0.5rem;
+  padding-left: 1.25rem;
   cursor: pointer;
 }
 
@@ -115,10 +115,13 @@ main .swiper {
 }
 
 .card p {
+  --max-lines: 5;
+  --line-height: 1.4;
+
   width: 85%;
-  height: 110px;
   padding-right: 10px;
-  line-height: 1.4;
+  height: calc(var(--max-lines) * 1rem * var(--line-height));
+  line-height: var(--line-height);
   overflow: hidden;
   cursor: auto;
 }
@@ -204,8 +207,8 @@ main .swiper {
     font-size: 1.2rem;
   }
   .card p {
-    line-height: 1.24;
-    height: 78px;
+    --max-lines: 4;
+    --line-height: 1.24;
   }
   .card > div:first-of-type {
     padding: 0;

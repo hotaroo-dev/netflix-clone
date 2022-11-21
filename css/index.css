@@ -34,6 +34,8 @@ html {
 body {
   height: 100vh;
   font-family: 'Netflix-Sans';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.2;
   color: #e5e5e5;
   background-color: #202023;
