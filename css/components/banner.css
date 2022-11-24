@@ -4,7 +4,6 @@
   align-items: flex-end;
   padding: 40px;
   background-position: center;
-  background-attachment: fixed;
   background-size: cover;
   transition: all 0.2s ease-in-out;
 }
