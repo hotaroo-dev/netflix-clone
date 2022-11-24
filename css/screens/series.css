@@ -208,7 +208,7 @@ main .swiper {
   }
   .card p {
     --max-lines: 4;
-    --line-height: 1.24;
+    --line-height: 1.25;
   }
   .card > div:first-of-type {
     padding: 0;
