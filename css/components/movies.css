@@ -111,10 +111,6 @@
   .movies img {
     transition: transform 0.2s ease-in-out;
   }
-  .movie.swiper-slide img:hover {
-    transition-delay: 0.5s;
-    transform: scale(1.03) translateY(-6px);
-  }
   main .swiper {
     padding-top: 0.8rem;
     padding-left: 0.2rem;

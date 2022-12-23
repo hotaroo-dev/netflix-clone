@@ -5,7 +5,6 @@
   padding: 40px;
   background-position: center;
   background-size: cover;
-  background-attachment: scroll;
   transition: all 0.2s ease-in-out;
 }
 
