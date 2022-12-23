@@ -124,7 +124,4 @@ nav#dropdown.open .dropdown {
   .mobile {
     display: none !important;
   }
-  .banner {
-    background-attachment: fixed;
-  }
 }

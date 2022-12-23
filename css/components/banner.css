@@ -5,6 +5,7 @@
   padding: 40px;
   background-position: center;
   background-size: cover;
+  background-attachment: scroll;
   transition: all 0.2s ease-in-out;
 }
 
@@ -14,7 +15,7 @@
 
 .banner .title {
   letter-spacing: 6px;
-  font-size: 60px;
+  font-size: 3.4rem;
   color: var(--red);
   text-shadow: 2px 1px 2px #000, 3px 2px 2px #000, 4px 3px 2px #000,
     5px 4px 2px #000, 6px 5px 2px #000a, 0 6px 0 transparent,
