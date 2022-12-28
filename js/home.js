@@ -18,7 +18,7 @@ getMovies().then(res => {
   const tv = res[1]
   const all = [...movies, ...tv]
 
-  createBanner({ ...movies[0].results[6], type: 'movie' })
+  createBanner({ ...movies[0].results[5], type: 'movie' })
 
   all.forEach(({ results }, i) => {
     const type = i < 2 ? types[0] : types[1]
