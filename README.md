@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <a href="https://rolo-coding.github.io/netflix-clone/">🖥️ Live Demo</a>
+  <a href="https://hotaroo-dev.github.io/netflix-clone/">🖥️ Live Demo</a>
 </p>
 
 <br/>
