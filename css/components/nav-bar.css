@@ -61,16 +61,17 @@ nav#dropdown.open .dropdown {
 
 .dropdown {
   z-index: 3;
-  min-width: 12.5rem;
+  min-width: 15rem;
   position: absolute;
   top: 50px;
   right: 0;
   padding: 10px 0;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   background-color: #202023;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
-    rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px;
-  border: 1px solid #fff4;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  border: 1px solid rgba(63, 63, 70, 0.43);
   opacity: 0;
   visibility: hidden;
   transform: scale(0.8) translateZ(0px);
