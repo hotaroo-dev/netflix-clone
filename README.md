@@ -18,7 +18,7 @@
 ## 🕸️ Projects!
 
 <p align="center">
-  <img width="600px" src="images/markdown/preview.gif"/>
+  <img width="600px" src="images/markdown/preview.jpg"/>
 </p>
 
 <p align="center">
