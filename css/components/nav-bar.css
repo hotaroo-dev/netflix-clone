@@ -65,8 +65,8 @@ nav#dropdown.open .dropdown {
   position: absolute;
   top: 50px;
   right: 0;
-  padding: 10px 0;
-  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+  border-radius: 0.375rem;
   background-color: #202023;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
@@ -76,7 +76,7 @@ nav#dropdown.open .dropdown {
   visibility: hidden;
   transform: scale(0.8) translateZ(0px);
   transform-origin: top right;
-  transition: all 0.1s cubic-bezier(0.4, 0, 1, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown li {
@@ -84,7 +84,7 @@ nav#dropdown.open .dropdown {
   padding: 0.4rem;
   padding-inline: 0.8rem;
   cursor: pointer;
-  transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
 }
 
 .dropdown li:hover {
