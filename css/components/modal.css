@@ -29,9 +29,12 @@
   opacity: 0;
   top: -50px;
   padding: 24px;
-  aspect-ratio: 10 / 3;
   transform: scale(0.98) translateZ(0);
   transform-origin: bottom left;
+}
+
+.modal .modal-card h3 {
+  text-align: center;
 }
 
 .modal .modal-card img {

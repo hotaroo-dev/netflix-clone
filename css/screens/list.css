@@ -26,7 +26,7 @@
 }
 
 .wrapper .fall {
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.85s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(8rem);
   opacity: 0;
 }
