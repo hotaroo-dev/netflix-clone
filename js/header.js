@@ -7,9 +7,7 @@ setInterval(() => {
   if (!scrolled) return
 
   scrolled = false
-  window.scrollY > 60
-    ? header.classList.add('blur')
-    : header.classList.remove('blur')
+  header.classList.toggle('blur', window.scrollY > 60)
 }, 250)
 
 const logo = document.querySelectorAll('#logo')
