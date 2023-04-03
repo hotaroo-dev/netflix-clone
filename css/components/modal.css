@@ -8,7 +8,7 @@
   display: grid;
   place-items: center;
   visibility: hidden;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-active.modal {
@@ -22,19 +22,14 @@
 .video-active iframe {
   transform: none;
   opacity: 1;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal .modal-card {
   opacity: 0;
-  top: -50px;
   padding: 24px;
   transform: scale(0.98) translateZ(0);
   transform-origin: bottom left;
-}
-
-.modal .modal-card h3 {
-  text-align: center;
 }
 
 .modal .modal-card img {
@@ -152,5 +147,8 @@ circle:last-child {
 @media screen and (max-width: 560px) {
   .modal-card {
     background-image: linear-gradient(#181818 100%, #000a) !important;
+  }
+  .modal .modal-card h3 {
+    text-align: center;
   }
 }
