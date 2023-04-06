@@ -14,9 +14,10 @@ const titles = {
 getTrending('all').then(({ results }) => pushMovie(results, 5, null, titles[5]))
 
 getMovies().then(res => {
-  const movies = res[0]
-  const tv = res[1]
+  const [movies, tv] = res
   const all = [...movies, ...tv]
+
+  console.log(movies, tv)
 
   createBanner({ ...movies[0].results[5], type: 'movie' })
 
