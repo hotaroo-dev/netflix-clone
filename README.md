@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <a href="https://hotaroo-dev.github.io/netflix-clone/">🖥️ Live Demo</a>
+  <a href="https://netflix-clone-nine-sandy.vercel.app/">🖥️ Live Demo</a>
 </p>
 
 <br/>
